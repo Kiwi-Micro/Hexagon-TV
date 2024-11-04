@@ -1,0 +1,260 @@
+/* Main Styles */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	color: #e1e1e1;
+}
+
+html {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	font-family: Helvetica, Helvetica, Arial, sans-serif;
+	background-color: #1c1d1f;
+}
+
+footer {
+	position: absolute;
+	text-align: center;
+	left: 0;
+	width: 100vw;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #2a2b2c;
+	z-index: 999;
+}
+
+.main {
+	max-width: 1900px;
+	margin-inline: auto;
+}
+
+/* Nav Styles */
+
+nav {
+	display: flex;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	width: 100vw;
+	height: 45px;
+	background: #1c1d1f;
+	border-bottom: solid 2px #47494d;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+nav ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navLink {
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ebebeb;
+	text-decoration: none;
+}
+
+.navLink img {
+	height: 40px;
+}
+
+/* Card Styles */
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	margin: 0 10px;
+	flex: 0 0 auto;
+}
+
+.card h3 {
+	max-width: 250px;
+}
+
+.card img {
+	width: 250px;
+	height: 130px;
+	border-radius: 12px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+	transform: translateY(-10px);
+}
+
+/* Home Page Styles */
+
+.homePageViewButton {
+	margin-inline: auto;
+	background: #ffffff;
+	border-radius: 5px;
+	text-align: center;
+	display: inline-block;
+	padding: 10px 50px;
+	color: #000000;
+	text-decoration: none;
+	font-size: 1em;
+	z-index: 2;
+	width: fit-content;
+	border: 0;
+}
+
+.homePageVideosHeader {
+	margin-left: 10px;
+	text-transform: uppercase;
+}
+
+.homePageVideosList {
+	display: flex;
+	scrollbar-width: none;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	overflow-x: auto;
+	padding: 10px 0;
+	scroll-behavior: smooth;
+}
+
+.homePageVideosList::-webkit-scrollbar:horizontal {
+	display: none;
+}
+
+.heroContainer {
+	position: relative;
+	display: flex;
+	align-items: center;
+	max-width: 1900px;
+	justify-content: center;
+}
+
+.homePageHero {
+	margin-top: 45px;
+	max-width: 1900px;
+	width: 100vw;
+	height: calc(100vh - 45px);
+	object-fit: cover;
+}
+
+.homePageHeroBlur {
+	position: absolute;
+	left: 0;
+	bottom: -25px;
+	width: 100vw;
+	height: 40px;
+	backdrop-filter: blur(10px) saturate(0.5);
+	filter: blur(10px) saturate(0.5);
+	background-color: #1c1d1f;
+}
+
+.homePageHeroInfo {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	backdrop-filter: blur(10px) saturate(1);
+	border-top-right-radius: 25px;
+	width: calc(100vw / 4);
+	padding: 20px;
+	padding-top: 25px;
+	padding-right: 25px;
+	background-color: #0000006f;
+}
+
+@media screen and (max-width: 740px) {
+	.homePageHeroInfo {
+		position: absolute;
+		text-align: center;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100vw;
+		max-width: calc(100vw - 20px);
+		backdrop-filter: blur(10px) saturate(1);
+		border-radius: 0;
+		padding: 10px;
+		background: linear-gradient(to bottom, #00000000 0%, #00000070 30%, #000000b3 100%);
+	}
+}
+
+/* Misc Styles */
+
+.btn {
+	background: #007aff;
+	border-radius: 15px;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 1em;
+	z-index: 2;
+	width: fit-content;
+	border: 0;
+}
+
+.aboutVideoItem {
+	border-radius: 15px;
+	padding: 10px;
+	width: 300px;
+	background-color: #65676b6c;
+	margin-inline: 10px;
+}
+
+.video {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+}
+
+.videoPageHeaderNav {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	padding: 5px;
+	backdrop-filter: blur(10px) saturate(1);
+	border-radius: 25px;
+	transition: all 0.5s ease-in-out;
+}
+
+.videoPageHeaderNavBlur {
+	border-bottom-right-radius: 25px;
+	width: fit-content;
+	height: fit-content;
+	padding: 20px;
+	padding-top: 25px;
+	padding-right: 25px;
+	background-color: #0000006f;
+}
+
+.videoPageHeaderNav p {
+	margin-left: 10px;
+}
