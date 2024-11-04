@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Index from "./pages/Index";
 import Video from "./pages/Video";
@@ -21,17 +22,25 @@ async function getJSONData(url: string) {
 	}
 }
 
-// Usage
-const url = "https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/continueWatching.json";
-getJSONData(url).then((data) => {
-	console.log(data);
-});
-
-let movies = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
-let documentaries = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/documentaries.json");
-let tvshows = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/tvshows.json");
-
 function App() {
+	const [movies, setMovies] = useState([]);
+	const [documentaries, setDocumentaries] = useState([]);
+	const [tvshows, setTvShows] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const moviesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
+			const documentariesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/documentaries.json");
+			const tvshowsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/tvshows.json");
+
+			setMovies(moviesData || []);
+			setDocumentaries(documentariesData || []);
+			setTvShows(tvshowsData || []);
+		};
+
+		fetchData();
+	}, []);
+
 	return (
 		<div>
 			<Router>

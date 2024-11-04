@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import VideoCard from "../components/VideoCard";
@@ -11,6 +12,11 @@ interface ProductProps {
 	thumbnailURL: string;
 	db: any;
 	rating: string;
+}
+
+interface RatingInfo {
+	rating: string;
+	description: string;
 }
 
 async function getJSONData(url: string) {
@@ -28,10 +34,19 @@ async function getJSONData(url: string) {
 	}
 }
 
-let ratings = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/ratings.json");
-
 function Video({ name, videoPage, description, thumbnailURL, db, rating }: ProductProps) {
-	console.log(description);
+	const [ratings, setRatings] = useState<RatingInfo[]>([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const ratingsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
+
+			setRatings(ratingsData || []);
+		};
+
+		fetchData();
+	}, []);
+
 	document.title = "Hexagon TV | " + name;
 	const ratingInfo = ratings.find((item: any) => item.rating === rating);
 	return (

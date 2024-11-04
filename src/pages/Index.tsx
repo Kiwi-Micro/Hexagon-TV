@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import hero from "../assets/hero.mp4";
@@ -20,15 +21,31 @@ async function getJSONData(url: string) {
 	}
 }
 
-let watchlistdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/watchlist.json");
-let continueWatchingdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/continueWatching.json");
-let moviesdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
-let documentariesdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/documentaries.json");
-let tvshowsdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/tvshows.json");
-
 function Index() {
-	document.title = "Hexagon TV | Home";
+	const [watchlistdb, setWatchlistdb] = useState([]);
+	const [continueWatchingdb, setContinueWatchingdb] = useState([]);
+	const [moviesdb, setMoviesdb] = useState([]);
+	const [documentariesdb, setDocumentariesdb] = useState([]);
+	const [tvshowsdb, setTvShowsdb] = useState([]);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			const watchlistData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/watchlist.json");
+			const continueWatchingData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/continueWatching.json");
+			const moviesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
+			const documentariesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/documentaries.json");
+			const tvshowsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/tvshows.json");
+
+			setWatchlistdb(watchlistData || []);
+			setContinueWatchingdb(continueWatchingData || []);
+			setMoviesdb(moviesData || []);
+			setDocumentariesdb(documentariesData || []);
+			setTvShowsdb(tvshowsData || []);
+		};
+
+		fetchData();
+	}, []);
+	document.title = "Hexagon TV | Home";
 	return (
 		<div className="main">
 			<GlobalNavBar />
