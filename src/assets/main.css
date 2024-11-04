@@ -116,6 +116,7 @@ nav ul {
 
 .homePageViewButton {
 	margin-inline: auto;
+	margin-bottom: 20px;
 	background: #ffffff;
 	border-radius: 5px;
 	text-align: center;
