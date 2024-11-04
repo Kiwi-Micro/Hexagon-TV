@@ -22,12 +22,12 @@ html {
 	-ms-user-select: none;
 	overflow-x: hidden;
 	scroll-behavior: smooth;
+	font-family: Helvetica, Helvetica, Arial, sans-serif;
 }
 
 body {
 	width: 100vw;
 	height: 100vh;
-	font-family: Helvetica, Helvetica, Arial, sans-serif;
 	background-color: #1c1d1f;
 }
 
@@ -205,20 +205,7 @@ nav ul {
 	}
 }
 
-/* Misc Styles */
-
-.btn {
-	background: #007aff;
-	border-radius: 15px;
-	display: inline-block;
-	padding: 10px 20px;
-	color: #ffffff;
-	text-decoration: none;
-	font-size: 1em;
-	z-index: 2;
-	width: fit-content;
-	border: 0;
-}
+/* Video Page Styles */
 
 .aboutVideoItem {
 	border-radius: 15px;
@@ -258,4 +245,19 @@ nav ul {
 
 .videoPageHeaderNav p {
 	margin-left: 10px;
+}
+
+/* Misc Styles */
+
+.btn {
+	background: #007aff;
+	border-radius: 15px;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 1em;
+	z-index: 2;
+	width: fit-content;
+	border: 0;
 }
