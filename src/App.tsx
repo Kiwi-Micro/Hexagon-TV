@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Index from "./pages/Index";
 import Video from "./pages/Video";
 import VideoViewer from "./pages/VideoViewer";
-import NotFound from "./pages/404";
+//import NotFound from "./pages/404";
 import "./assets/main.css";
 
 async function getJSONData(url: string) {
@@ -90,9 +90,9 @@ function App() {
 							</Route>
 						);
 					})}
-					<Route path="/*">
+					{/*<Route path="/*">
 						<NotFound />
-					</Route>
+					</Route>*/}
 				</Switch>
 			</Router>
 		</div>
