@@ -2,7 +2,6 @@ import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import VideoCard from "../components/VideoCard";
 import CustomBreak from "../components/CustomBreak";
-import ratings from "../assets/API/ratings.json";
 import "../assets/main.css";
 
 interface ProductProps {
@@ -14,10 +13,27 @@ interface ProductProps {
 	rating: string;
 }
 
+async function getJSONData(url: string) {
+	try {
+		const response = await fetch(url);
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error("Failed to fetch JSON:", error);
+	}
+}
+
+let ratings = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/ratings.json");
+
 function Video({ name, videoPage, description, thumbnailURL, db, rating }: ProductProps) {
 	console.log(description);
 	document.title = "Hexagon TV | " + name;
-	const ratingInfo = ratings.find((item) => item.rating === rating);
+	const ratingInfo = ratings.find((item: any) => item.rating === rating);
 	return (
 		<div className="main">
 			<GlobalNavBar />

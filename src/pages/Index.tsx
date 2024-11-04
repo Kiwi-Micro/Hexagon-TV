@@ -1,14 +1,30 @@
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
-import watchlistdb from "../assets/API/videoDatabases/watchlist.json";
-import moviesdb from "../assets/API/videoDatabases/movies.json";
-import documentariesdb from "../assets/API/videoDatabases/documentaries.json";
-import tvshowsdb from "../assets/API/videoDatabases/tvshows.json";
-import continueWatchingdb from "../assets/API/videoDatabases/continueWatching.json";
 import hero from "../assets/hero.mp4";
 import VideoCard from "../components/VideoCard";
 import CustomBreak from "../components/CustomBreak";
 import "../assets/main.css";
+
+async function getJSONData(url: string) {
+	try {
+		const response = await fetch(url);
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error("Failed to fetch JSON:", error);
+	}
+}
+
+let watchlistdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/watchlist.json");
+let continueWatchingdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/continueWatching.json");
+let moviesdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
+let documentariesdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/documentaries.json");
+let tvshowsdb = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/tvshows.json");
 
 function Index() {
 	document.title = "Hexagon TV | Home";
@@ -36,7 +52,7 @@ function Index() {
 							{continueWatchingdb
 								.slice()
 								.reverse()
-								.map((video) => {
+								.map((video: any) => {
 									return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
 								})}
 						</div>
@@ -49,7 +65,7 @@ function Index() {
 							{watchlistdb
 								.slice()
 								.reverse()
-								.map((video) => {
+								.map((video: any) => {
 									return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
 								})}
 						</div>
@@ -62,7 +78,7 @@ function Index() {
 							{moviesdb
 								.slice()
 								.reverse()
-								.map((video) => {
+								.map((video: any) => {
 									return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
 								})}
 						</div>
@@ -75,7 +91,7 @@ function Index() {
 							{documentariesdb
 								.slice()
 								.reverse()
-								.map((video) => {
+								.map((video: any) => {
 									return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
 								})}
 						</div>
@@ -88,7 +104,7 @@ function Index() {
 							{tvshowsdb
 								.slice()
 								.reverse()
-								.map((video) => {
+								.map((video: any) => {
 									return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
 								})}
 						</div>
