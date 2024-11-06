@@ -39,7 +39,7 @@ function Video({ name, videoPage, description, thumbnailURL, db, rating }: Produ
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const ratingsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
+			const ratingsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/ratings.json");
 
 			setRatings(ratingsData || []);
 		};
