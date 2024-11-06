@@ -73,7 +73,7 @@ function Video({ name, videoPage, description, thumbnailURL, db, rating }: Produ
 					.slice()
 					.reverse()
 					.map((video: any) => {
-						return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}`} thumbnailURL={video.thumbnailURL} />;
+						return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
 					})}
 			</div>
 			<div style={{ backgroundColor: "#101112" }}>
