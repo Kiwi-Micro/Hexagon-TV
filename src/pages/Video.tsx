@@ -65,8 +65,8 @@ function Video({ name, videoPage, description, thumbnailURL, db, rating }: Produ
 					</svg>
 				</div>
 				<div className="homePageHeroBlur" />
-				<CustomBreak height={1} />
 			</div>
+			<CustomBreak height={1} />
 			<h1 className="homePageVideosHeader">More In This Category</h1>
 			<div className="homePageVideosList">
 				{db
