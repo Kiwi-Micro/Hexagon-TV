@@ -42,7 +42,7 @@ function VideoViewer({ name, videoURL, previousPage }: ProductProps) {
 					}}
 					className="videoPageHeaderNav"
 					style={active ? { display: "flex" } : { display: "none" }}>
-					<img src={backArrow} draggable="false" height={32} />
+					<img src={backArrow} draggable="false" height={32} alt="back arrow" />
 					<p style={{ marginTop: "5px" }}>{name}</p>
 				</p>
 				<video src={videoURL} controls={active} className="video" id="myVideo" />

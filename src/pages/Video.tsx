@@ -53,7 +53,7 @@ function Video({ name, videoPage, description, thumbnailURL, db, rating }: Produ
 		<div className="main">
 			<GlobalNavBar />
 			<div className="videoPage heroContainer">
-				<img src={thumbnailURL} className="homePageHero" />
+				<img src={thumbnailURL} className="homePageHero" alt="hero" />
 				<div className="homePageHeroInfo">
 					<h1>{name}</h1>
 					<p>{description}</p>
