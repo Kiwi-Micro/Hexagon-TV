@@ -4,9 +4,11 @@ function GlobalNavBar() {
 	return (
 		<nav>
 			<ul>
-				<a href="/" className="navLink">
-					<img src={logo} alt="Logo" />
-				</a>
+				<li className="navLink">
+					<a href="/">
+						<img src={logo} alt="Logo" />
+					</a>
+				</li>
 			</ul>
 		</nav>
 	);
