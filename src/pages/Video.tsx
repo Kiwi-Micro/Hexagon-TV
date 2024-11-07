@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getJSONData } from "../utils/api";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import VideoCard from "../components/VideoCard";
@@ -19,29 +20,13 @@ interface RatingInfo {
 	description: string;
 }
 
-async function getJSONData(url: string) {
-	try {
-		const response = await fetch(url);
-
-		if (!response.ok) {
-			throw new Error(`HTTP error! Status: ${response.status}`);
-		}
-
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Failed to fetch JSON:", error);
-	}
-}
-
 function Video({ name, videoPage, description, thumbnailURL, db, rating }: ProductProps) {
 	const [ratings, setRatings] = useState<RatingInfo[]>([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const ratingsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/ratings.json");
-
-			setRatings(ratingsData || []);
+			const ratingsData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/ratings");
+			setRatings(ratingsData || [{ hello: "world" }]);
 		};
 
 		fetchData();

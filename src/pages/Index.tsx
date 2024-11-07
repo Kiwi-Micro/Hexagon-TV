@@ -1,25 +1,11 @@
 import { useEffect, useState } from "react";
+import { getJSONData } from "../utils/api";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import hero from "../assets/hero.mp4";
 import VideoCard from "../components/VideoCard";
 import CustomBreak from "../components/CustomBreak";
 import "../assets/main.css";
-
-async function getJSONData(url: string) {
-	try {
-		const response = await fetch(url);
-
-		if (!response.ok) {
-			throw new Error(`HTTP error! Status: ${response.status}`);
-		}
-
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Failed to fetch JSON:", error);
-	}
-}
 
 function Index() {
 	const [watchlistdb, setWatchlistdb] = useState([]);
@@ -32,9 +18,9 @@ function Index() {
 		const fetchData = async () => {
 			const watchlistData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/watchlist.json");
 			const continueWatchingData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/continueWatching.json");
-			const moviesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
-			const documentariesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/documentaries.json");
-			const tvshowsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/tvshows.json");
+			const moviesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/movies");
+			const documentariesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/documentaries");
+			const tvshowsData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/tvshows");
 
 			setWatchlistdb(watchlistData || []);
 			setContinueWatchingdb(continueWatchingData || []);

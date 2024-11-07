@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import { getJSONData } from "./utils/api";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Index from "./pages/Index";
@@ -7,21 +8,6 @@ import VideoViewer from "./pages/VideoViewer";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
 
-async function getJSONData(url: string) {
-	try {
-		const response = await fetch(url);
-
-		if (!response.ok) {
-			throw new Error(`HTTP error! Status: ${response.status}`);
-		}
-
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Failed to fetch JSON:", error);
-	}
-}
-
 function App() {
 	const [movies, setMovies] = useState([]);
 	const [documentaries, setDocumentaries] = useState([]);
@@ -29,9 +15,9 @@ function App() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const moviesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/movies.json");
-			const documentariesData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/documentaries.json");
-			const tvshowsData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/tvshows.json");
+			const moviesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/movies");
+			const documentariesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/documentaries");
+			const tvshowsData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/tvshows");
 
 			setMovies(moviesData || []);
 			setDocumentaries(documentariesData || []);
