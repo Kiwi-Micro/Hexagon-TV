@@ -15,9 +15,9 @@ function App() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const moviesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/movies");
-			const documentariesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/documentaries");
-			const tvshowsData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/tvshows");
+			const moviesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies");
+			const documentariesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries");
+			const tvshowsData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows");
 
 			setMovies(moviesData || []);
 			setDocumentaries(documentariesData || []);

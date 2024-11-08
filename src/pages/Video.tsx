@@ -25,7 +25,7 @@ function Video({ name, videoPage, description, thumbnailURL, db, rating }: Produ
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const ratingsData = await getJSONData("http://api.hexagon.kiwi-micro.com:8081/ratings");
+			const ratingsData = await getJSONData("https://api.hexagon.kiwi-micro.com:8083/ratings");
 			setRatings(ratingsData || [{ hello: "world" }]);
 		};
 
