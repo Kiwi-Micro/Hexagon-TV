@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getJSONData } from "../utils/api";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
-import hero from "../assets/hero.mp4";
 import VideoCard from "../components/VideoCard";
 import CustomBreak from "../components/CustomBreak";
 import "../assets/main.css";
@@ -16,8 +15,9 @@ function Index() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const watchlistData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/watchlist.json");
-			const continueWatchingData = await getJSONData("https://raw.githubusercontent.com/Mooshay105/Hex-TV-Assests/refs/heads/main/API/videoDatabases/continueWatching.json");
+			// To Fill When API is Ready
+			const watchlistData = await getJSONData("");
+			const continueWatchingData = await getJSONData("");
 			const moviesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/movies");
 			const documentariesData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/documentaries");
 			const tvshowsData = await getJSONData("http://api.hexagon.kiwi-micro.com:8080/tvshows");
@@ -36,7 +36,7 @@ function Index() {
 		<div className="main">
 			<GlobalNavBar />
 			<div className="heroContainer">
-				<video src={hero} muted autoPlay loop className="homePageHero" />
+				<video src="https://utfs.io/a/javgoq6sm5/7cipGy3KpezYU3eEZ16rmn8iRqzsZA90JeWTS3bEtBwXVjYx" muted autoPlay loop className="homePageHero" />
 				<div className="homePageHeroInfo">
 					<h1>Cool New Shows Coming To You!</h1>
 					<p>How can we keep this free? Well that is a good question, We do not know either.</p>
