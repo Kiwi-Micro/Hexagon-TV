@@ -9,73 +9,62 @@ import VideoViewer from "./pages/VideoViewer";
 import "./assets/main.css";
 
 function App() {
-	const [movies, setMovies] = useState([]);
-	const [documentaries, setDocumentaries] = useState([]);
-	const [tvshows, setTvShows] = useState([]);
+	const [watchlist, setWatchlistdb] = useState([]);
+	const [continueWatching, setContinueWatchingdb] = useState([]);
+	const [movies, setMoviesdb] = useState([]);
+	const [documentaries, setDocumentariesdb] = useState([]);
+	const [tvshows, setTvShowsdb] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
+			// To Fill When User Data API is Ready
+			const watchlistData = await getJSONData("");
+			const continueWatchingData = await getJSONData("");
+
 			const moviesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies");
 			const documentariesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries");
 			const tvshowsData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows");
 
-			setMovies(moviesData || []);
-			setDocumentaries(documentariesData || []);
-			setTvShows(tvshowsData || []);
+			setWatchlistdb(watchlistData || []);
+			setContinueWatchingdb(continueWatchingData || []);
+			setMoviesdb(moviesData || []);
+			setDocumentariesdb(documentariesData || []);
+			setTvShowsdb(tvshowsData || []);
 		};
 
 		fetchData();
 	}, []);
+
+	function renderVideoRoutes(db: any) {
+		return db.map((video: any) => (
+			<Route key={video.urlName} path={"/" + video.urlName + ".html"}>
+				<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} />
+			</Route>
+		));
+	}
+	function renderVideoViewerRoutes(db: any) {
+		return db.map((video: any) => (
+			<Route key={video.urlName} path={"/watch/" + video.urlName + ".html"}>
+				<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={"/" + video.urlName + ".html"} />
+			</Route>
+		));
+	}
 
 	return (
 		<div>
 			<Router>
 				<Switch>
 					<Route exact path="/">
-						<Index />
+						<Index watchlist={watchlist} continueWatching={continueWatching} movies={movies} documentaries={documentaries} tvshows={tvshows} />
 					</Route>
-					{movies.map((video: any) => {
-						return (
-							<Route path={"/" + video.urlName + ".html"}>
-								<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={movies} rating={video.rating} description={video.description} />
-							</Route>
-						);
-					})}
-					{movies.map((video: any) => {
-						return (
-							<Route path={"/watch/" + video.urlName + ".html"}>
-								<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={"/" + video.urlName + ".html"} />
-							</Route>
-						);
-					})}
-					{documentaries.map((video: any) => {
-						return (
-							<Route path={"/" + video.urlName + ".html"}>
-								<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={documentaries} rating={video.rating} description={video.description} />
-							</Route>
-						);
-					})}
-					{documentaries.map((video: any) => {
-						return (
-							<Route path={"/watch/" + video.urlName + ".html"}>
-								<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={"/" + video.urlName + ".html"} />
-							</Route>
-						);
-					})}
-					{tvshows.map((video: any) => {
-						return (
-							<Route path={"/" + video.urlName + ".html"}>
-								<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={tvshows} rating={video.rating} description={video.description} />
-							</Route>
-						);
-					})}
-					{tvshows.map((video: any) => {
-						return (
-							<Route path={"/watch/" + video.urlName + ".html"}>
-								<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={"/" + video.urlName + ".html"} />
-							</Route>
-						);
-					})}
+					{renderVideoRoutes(watchlist)}
+					{renderVideoRoutes(continueWatching)}
+					{renderVideoRoutes(movies)}
+					{renderVideoViewerRoutes(movies)}
+					{renderVideoRoutes(documentaries)}
+					{renderVideoViewerRoutes(documentaries)}
+					{renderVideoRoutes(tvshows)}
+					{renderVideoViewerRoutes(tvshows)}
 					{/*<Route path="/*">
 						<NotFound />
 					</Route>*/}
