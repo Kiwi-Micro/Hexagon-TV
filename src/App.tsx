@@ -36,17 +36,17 @@ function App() {
 		fetchData();
 	}, []);
 
-	function renderVideoRoutes(db: any) {
+	function renderVideoRoutes(db: any, isViewer?: boolean) {
+		if (isViewer) {
+			return db.map((video: any) => (
+				<Route key={video.urlName} path={"/watch/" + video.urlName + ".html"}>
+					<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={"/" + video.urlName + ".html"} />
+				</Route>
+			));
+		}
 		return db.map((video: any) => (
 			<Route key={video.urlName} path={"/" + video.urlName + ".html"}>
 				<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} />
-			</Route>
-		));
-	}
-	function renderVideoViewerRoutes(db: any) {
-		return db.map((video: any) => (
-			<Route key={video.urlName} path={"/watch/" + video.urlName + ".html"}>
-				<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={"/" + video.urlName + ".html"} />
 			</Route>
 		));
 	}
@@ -64,11 +64,11 @@ function App() {
 					{renderVideoRoutes(watchlist)}
 					{renderVideoRoutes(continueWatching)}
 					{renderVideoRoutes(movies)}
-					{renderVideoViewerRoutes(movies)}
+					{renderVideoRoutes(movies, true)}
 					{renderVideoRoutes(documentaries)}
-					{renderVideoViewerRoutes(documentaries)}
+					{renderVideoRoutes(documentaries, true)}
 					{renderVideoRoutes(tvshows)}
-					{renderVideoViewerRoutes(tvshows)}
+					{renderVideoRoutes(tvshows, true)}
 					{/*<Route path="/*">
 						<NotFound />
 					</Route>*/}
