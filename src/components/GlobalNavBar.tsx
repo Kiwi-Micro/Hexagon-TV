@@ -31,7 +31,7 @@ function GlobalNavBar() {
 	async function handleSearch(searchQuery: string) {
 		if (!query) return;
 		try {
-			const response = await fetch(`http://api.hexagon.kiwi-micro.com:8080/search?query=${searchQuery}`);
+			const response = await fetch(`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`);
 			const data = await response.json();
 			setResults(data as SearchResult[]);
 		} catch (error) {
