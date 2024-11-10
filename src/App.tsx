@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Index from "./pages/Index";
 import Video from "./pages/Video";
 import VideoViewer from "./pages/VideoViewer";
+import Search from "./pages/Search";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
 
@@ -56,6 +57,9 @@ function App() {
 				<Switch>
 					<Route exact path="/">
 						<Index watchlist={watchlist} continueWatching={continueWatching} movies={movies} documentaries={documentaries} tvshows={tvshows} />
+					</Route>
+					<Route path="/search">
+						<Search />
 					</Route>
 					{renderVideoRoutes(watchlist)}
 					{renderVideoRoutes(continueWatching)}
