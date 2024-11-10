@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { getJSONData } from "../utils/api";
 import VideoCard from "../components/VideoCard";
 import logo from "../assets/img/logo.png";
 
@@ -30,13 +31,8 @@ function GlobalNavBar() {
 
 	async function handleSearch(searchQuery: string) {
 		if (!query) return;
-		try {
-			const response = await fetch(`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`);
-			const data = await response.json();
-			setResults(data as SearchResult[]);
-		} catch (error) {
-			console.error("Error fetching search results:", error);
-		}
+		const data = await getJSONData(`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`);
+		setResults(data as SearchResult[]);
 	}
 
 	function handleSearchChange(e: any) {

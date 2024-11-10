@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getJSONData } from "../utils/api";
 import VideoCard from "../components/VideoCard";
 import GlobalNavBar from "../components/GlobalNavBar";
 import CustomBreak from "../components/CustomBreak";
@@ -34,13 +35,8 @@ function Search() {
 
 	async function handleSearch(searchQuery: string) {
 		if (!query) return;
-		try {
-			const response = await fetch(`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`);
-			const data = await response.json();
-			setResults(data as SearchResult[]);
-		} catch (error) {
-			console.error("Error fetching search results:", error);
-		}
+		const data = await getJSONData(`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`);
+		setResults(data as SearchResult[]);
 	}
 
 	return (
