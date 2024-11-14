@@ -22,7 +22,7 @@ function GlobalNavBar() {
 	const [results, setResults] = useState<SearchResult[]>([]);
 	const [isMobile, setIsMobile] = useState(false);
 	const location = useLocation();
-	const isSearchPage = location.pathname === "/search";
+	const isSearchPage = location.pathname === "/search" || location.pathname === "/login";
 
 	useEffect(() => {
 		async function handleSearch(searchQuery: string) {

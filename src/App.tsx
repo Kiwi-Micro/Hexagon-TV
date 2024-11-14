@@ -8,6 +8,7 @@ import VideoViewer from "./pages/VideoViewer";
 import Search from "./pages/Search";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
+import Login from "./pages/login";
 
 function App() {
 	const [watchlist, setWatchlistdb] = useState([]);
@@ -60,6 +61,9 @@ function App() {
 					</Route>
 					<Route path="/search">
 						<Search />
+					</Route>
+					<Route path="/login">
+						<Login />
 					</Route>
 					{renderVideoRoutes(watchlist)}
 					{renderVideoRoutes(continueWatching)}
