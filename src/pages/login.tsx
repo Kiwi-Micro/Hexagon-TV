@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import { getJSONData } from "../utils/api";
@@ -22,13 +22,18 @@ function Login() {
 				id: data.ID,
 				status: data.Status,
 			});
-			console.log("RESPONCE (DATA): ID: " + data.ID + " STATUS: " + data.Status);
 		}
 
 		getId();
 	}
 
-	console.log("RESPONCE: ID: " + id.id + " STATUS: " + id.status);
+	useEffect(() => {
+		if (id.status === "success") {
+			localStorage.setItem("id", id.id);
+			localStorage.setItem("username", username);
+			window.location.href = "/account";
+		}
+	}, [id]);
 
 	return (
 		<div className="main">
