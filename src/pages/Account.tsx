@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { getJSONData } from "../utils/api";
+import { useEffect } from "react";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import VideoCard from "../components/VideoCard";
