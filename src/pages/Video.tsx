@@ -24,7 +24,6 @@ interface RatingInfo {
 
 function Video({ name, videoPage, description, thumbnailURL, db, rating, urlName }: ProductProps) {
 	const [ratings, setRatings] = useState<RatingInfo[]>([]);
-	console.log(description);
 	useEffect(() => {
 		const fetchData = async () => {
 			const ratingsData = await getJSONData("https://api.hexagon.kiwi-micro.com:8083/ratings");
