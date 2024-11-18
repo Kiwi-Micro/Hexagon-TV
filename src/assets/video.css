@@ -1,0 +1,41 @@
+/* Video Page Styles */
+
+.aboutVideoItem {
+	border-radius: 15px;
+	padding: 10px;
+	width: 300px;
+	background-color: #65676b6c;
+	margin-inline: 10px;
+}
+
+.video {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+}
+
+.videoPageHeaderNav {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	padding: 5px;
+	backdrop-filter: blur(10px) saturate(1);
+	border-radius: 25px;
+	transition: all 0.5s ease-in-out;
+}
+
+.videoPageHeaderNavBlur {
+	border-bottom-right-radius: 25px;
+	width: fit-content;
+	height: fit-content;
+	padding: 20px;
+	padding-top: 25px;
+	padding-right: 25px;
+	background-color: #0000006f;
+}
+
+.videoPageHeaderNav p {
+	margin-left: 10px;
+}

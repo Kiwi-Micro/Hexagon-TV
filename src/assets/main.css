@@ -46,118 +46,6 @@ footer {
 	margin-inline: auto;
 }
 
-/* Nav Styles */
-
-nav {
-	display: flex;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 3;
-	width: 100vw;
-	height: 45px;
-	background: #1c1d1f;
-	border-bottom: solid 2px #47494d;
-	justify-content: center;
-	align-items: center;
-	margin: 0 auto;
-	box-sizing: border-box;
-}
-
-nav ul {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.navLink {
-	font-size: 15px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #ebebeb;
-	text-decoration: none;
-}
-
-.navLink img {
-	height: 40px;
-}
-
-.navSearchVideosList {
-	position: fixed;
-	top: 50px;
-	right: 10px;
-	display: flex;
-	flex-direction: column;
-	scrollbar-width: none;
-	flex-wrap: wrap;
-	justify-content: left;
-	overflow-x: auto;
-	border: #ffffff 2px solid;
-	border-radius: 15px;
-	background-color: #0000006f;
-	backdrop-filter: blur(20px) saturate(1);
-	padding: 10px;
-}
-
-.navSearchBar {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: fit-content;
-	height: fit-content;
-	border: solid 2px #ffffff;
-	background-color: #00000000;
-	border-radius: 5px;
-}
-
-.navSearchBar svg {
-	margin-right: 10px;
-	margin: 5px;
-	fill: #ffffff;
-}
-
-.navSearchBar input {
-	border: 0;
-	outline: 0;
-	background-color: #00000000;
-	color: #ffffff;
-	width: 80px;
-	height: 5px;
-	padding: 10px;
-}
-
-@media screen and (max-width: 740px) {
-	.navSearchBar input {
-		display: none;
-	}
-	.navSearchBar {
-		border: 0;
-	}
-}
-
-.searchCard {
-	display: flex;
-	flex-direction: row;
-	margin-top: 10px;
-	flex: 0 0 auto;
-}
-
-.searchCard h2 {
-	margin-left: 10px;
-	margin-top: 5px;
-	max-width: 250px;
-}
-
-.searchCard img {
-	width: 130px;
-	height: 70px;
-	border-radius: 12px;
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-	transform: translateY(-10px);
-}
-
 /* Card Styles */
 
 .cards {
@@ -279,143 +167,7 @@ nav ul {
 	}
 }
 
-/* Video Page Styles */
-
-.aboutVideoItem {
-	border-radius: 15px;
-	padding: 10px;
-	width: 300px;
-	background-color: #65676b6c;
-	margin-inline: 10px;
-}
-
-.video {
-	width: 100vw;
-	height: 100vh;
-	object-fit: cover;
-}
-
-.videoPageHeaderNav {
-	display: flex;
-	flex-direction: row;
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	padding: 5px;
-	backdrop-filter: blur(10px) saturate(1);
-	border-radius: 25px;
-	transition: all 0.5s ease-in-out;
-}
-
-.videoPageHeaderNavBlur {
-	border-bottom-right-radius: 25px;
-	width: fit-content;
-	height: fit-content;
-	padding: 20px;
-	padding-top: 25px;
-	padding-right: 25px;
-	background-color: #0000006f;
-}
-
-.videoPageHeaderNav p {
-	margin-left: 10px;
-}
-
-/* Login Page Styles */
-
-.loginPage {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-}
-
-.loginPageDiv {
-	border: #ebebeb 2px solid;
-	background-color: #1c1d1f;
-	border-radius: 25px;
-	padding: 20px;
-}
-
-.loginPageHeader {
-	font-size: 50px;
-	margin-bottom: 20px;
-}
-
-.loginPageForm {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: #1c1d1f;
-	border-radius: 25px;
-}
-
-.loginPageFormInput {
-	margin-bottom: 10px;
-	border-radius: 5px;
-	padding: 5px;
-	border: 0;
-	width: 300px;
-	height: 30px;
-}
-
-.loginPageFormButton {
-	width: 310px;
-	height: 40px;
-	padding: 5px;
-	background-color: #ffffff;
-	color: #000000;
-	border: 0;
-	border-radius: 5px;
-}
-
-@media screen and (max-width: 400px) {
-	.loginPageForm {
-		width: calc(100vw - (100vw / 5));
-	}
-
-	.loginPageFormInput {
-		width: calc(100% - 10px);
-	}
-
-	.loginPageFormButton {
-		width: 100%;
-	}
-}
-
-/* Account Page Styles */
-
-.accountPageUserInfo {
-	margin: 65px 20px 20px;
-	background-color: #0d1117;
-	border-radius: 25px;
-	height: 100%;
-	width: 100vw;
-	padding: 20px;
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-.accountPageUserInfoUsername {
-	margin-left: 10px;
-	font-size: 50px;
-}
-
-/* Misc Styles */
-
-.btn {
-	background: #007aff;
-	border-radius: 15px;
-	display: inline-block;
-	padding: 10px 20px;
-	color: #ffffff;
-	text-decoration: none;
-	font-size: 1em;
-	z-index: 2;
-	width: fit-content;
-	border: 0;
-}
+/* Search Page Styles */
 
 .searchPageVideosList {
 	display: flex;
@@ -468,4 +220,19 @@ nav ul {
 	width: 100%;
 	height: 5px;
 	padding: 10px;
+}
+
+/* Misc Styles */
+
+.btn {
+	background: #007aff;
+	border-radius: 15px;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 1em;
+	z-index: 2;
+	width: fit-content;
+	border: 0;
 }

@@ -7,9 +7,12 @@ import Video from "./pages/Video";
 import VideoViewer from "./pages/VideoViewer";
 import Search from "./pages/Search";
 import Account from "./pages/Account";
+import Login from "./pages/login";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
-import Login from "./pages/login";
+import "./assets/nav.css";
+import "./assets/video.css";
+import "./assets/account.css";
 
 function App() {
 	const username = localStorage.getItem("username");
