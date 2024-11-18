@@ -52,7 +52,7 @@ function App() {
 		}
 		return db.map((video: any) => (
 			<Route key={video.urlName} path={"/" + video.urlName + ".html"}>
-				<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} urlName={video.urlName} />
+				<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} urlName={video.urlName} watchlist={watchlist} />
 			</Route>
 		));
 	}

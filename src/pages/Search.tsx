@@ -27,7 +27,7 @@ function Search() {
 			setQuery(queryParam);
 			handleSearch(queryParam);
 		}
-	}, [queryParam]); // Runs only when queryParam changes
+	}, [queryParam]);
 
 	useEffect(() => {
 		handleSearch(query);
