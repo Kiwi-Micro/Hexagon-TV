@@ -17,7 +17,7 @@ function renderVideoCard(db: any) {
 		.slice()
 		.reverse()
 		.map((video: any) => {
-			return <VideoCard key={video.id} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
+			return <VideoCard key={video.urlName} name={video.name} videoLink={`${video.urlName}.html`} thumbnailURL={video.thumbnailURL} />;
 		});
 }
 

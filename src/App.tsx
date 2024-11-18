@@ -73,8 +73,6 @@ function App() {
 					<Route path="/account">
 						<Account continueWatching={continueWatching} watchlist={watchlist} />
 					</Route>
-					{renderVideoRoutes(watchlist)}
-					{renderVideoRoutes(continueWatching)}
 					{renderVideoRoutes(movies)}
 					{renderVideoRoutes(movies, true)}
 					{renderVideoRoutes(documentaries)}
