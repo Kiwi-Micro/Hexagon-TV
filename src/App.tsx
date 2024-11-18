@@ -6,11 +6,13 @@ import Index from "./pages/Index";
 import Video from "./pages/Video";
 import VideoViewer from "./pages/VideoViewer";
 import Search from "./pages/Search";
+import Account from "./pages/Account";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
 import Login from "./pages/login";
 
 function App() {
+	const username = localStorage.getItem("username");
 	const [watchlist, setWatchlistdb] = useState([]);
 	const [continueWatching, setContinueWatchingdb] = useState([]);
 	const [movies, setMoviesdb] = useState([]);
@@ -19,9 +21,12 @@ function App() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			// To Fill When User Data API is Ready
-			const watchlistData = await getJSONData("");
-			const continueWatchingData = await getJSONData("");
+			let watchlistData = [];
+			let continueWatchingData = [];
+			if (username != null) {
+				watchlistData = await getJSONData("http://api.hexagon.kiwi-micro.com:8070/getWatchlist?username=" + username);
+				continueWatchingData = await getJSONData("http://api.hexagon.kiwi-micro.com:8070/getContinueWatching?username=" + username);
+			}
 
 			const moviesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies");
 			const documentariesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries");
@@ -47,7 +52,7 @@ function App() {
 		}
 		return db.map((video: any) => (
 			<Route key={video.urlName} path={"/" + video.urlName + ".html"}>
-				<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} />
+				<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} urlName={video.urlName} />
 			</Route>
 		));
 	}
@@ -64,6 +69,9 @@ function App() {
 					</Route>
 					<Route path="/login">
 						<Login />
+					</Route>
+					<Route path="/account">
+						<Account continueWatching={continueWatching} watchlist={watchlist} />
 					</Route>
 					{renderVideoRoutes(watchlist)}
 					{renderVideoRoutes(continueWatching)}
