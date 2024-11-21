@@ -55,6 +55,9 @@ function Login() {
 							Login
 						</button>
 					</div>
+					<a href="/register" className="loginPageRegisterLink">
+						Don't have an account? Register here!
+					</a>
 				</div>
 			</div>
 			<GlobalFooter />
