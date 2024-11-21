@@ -28,8 +28,8 @@ function App() {
 			let watchlistData = [];
 			let continueWatchingData = [];
 			if (username != null) {
-				watchlistData = await getJSONData("http://api.hexagon.kiwi-micro.com:8070/getWatchlist?username=" + username);
-				continueWatchingData = await getJSONData("http://api.hexagon.kiwi-micro.com:8070/getContinueWatching?username=" + username);
+				watchlistData = await getJSONData("https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=" + username);
+				continueWatchingData = await getJSONData("https://api.hexagon.kiwi-micro.com:8072/getContinueWatching?username=" + username);
 			}
 
 			const moviesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies");

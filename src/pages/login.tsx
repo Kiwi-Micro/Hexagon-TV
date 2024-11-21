@@ -18,7 +18,7 @@ function Login() {
 				return;
 			}
 			try {
-				const data = await postJSONData(`http://api.hexagon.kiwi-micro.com:8071/auth`, {
+				const data = await postJSONData(`https://api.hexagon.kiwi-micro.com:8073/auth`, {
 					username: username,
 					passwordCheckSum: password,
 				});
