@@ -8,6 +8,7 @@ import VideoViewer from "./pages/VideoViewer";
 import Search from "./pages/Search";
 import Account from "./pages/Account";
 import Login from "./pages/login";
+import Register from "./pages/Register";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
 import "./assets/nav.css";
@@ -75,6 +76,9 @@ function App() {
 					</Route>
 					<Route path="/account">
 						<Account continueWatching={continueWatching} watchlist={watchlist} />
+					</Route>
+					<Route path="/register">
+						<Register />
 					</Route>
 					{renderVideoRoutes(movies)}
 					{renderVideoRoutes(movies, true)}

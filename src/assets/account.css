@@ -15,6 +15,17 @@
 	padding: 20px;
 }
 
+.loginHasFailed {
+	width: 290px;
+	color: #ffffff;
+	background-color: #ff000086;
+	border: #ff0000 2px solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+	max-width: 100%;
+}
+
 .loginPageHeader {
 	font-size: 50px;
 	margin-bottom: 20px;
@@ -53,11 +64,92 @@
 		width: calc(100vw - (100vw / 5));
 	}
 
+	.loginHasFailed {
+		width: calc(100% - 55px);
+	}
 	.loginPageFormInput {
 		width: calc(100% - 10px);
 	}
 
 	.loginPageFormButton {
+		width: 100%;
+	}
+}
+
+/* Register Page Styles */
+
+.registerPage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.registerPageDiv {
+	border: #ebebeb 2px solid;
+	background-color: #1c1d1f;
+	border-radius: 25px;
+	padding: 20px;
+}
+
+.registerHasFailed {
+	width: 290px;
+	color: #ffffff;
+	background-color: #ff000086;
+	border: #ff0000 2px solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+	max-width: 100%;
+}
+
+.registerPageHeader {
+	font-size: 50px;
+	margin-bottom: 20px;
+}
+
+.registerPageForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #1c1d1f;
+	border-radius: 25px;
+}
+
+.registerPageFormInput {
+	margin-bottom: 10px;
+	border-radius: 5px;
+	padding: 5px;
+	border: 0;
+	width: 300px;
+	height: 30px;
+}
+
+.registerPageFormButton {
+	width: 310px;
+	height: 40px;
+	padding: 5px;
+	background-color: #ffffff;
+	color: #000000;
+	border: 0;
+	border-radius: 5px;
+}
+
+@media screen and (max-width: 400px) {
+	.registerPageForm {
+		width: calc(100vw - (100vw / 5));
+	}
+
+	.registerHasFailed {
+		width: calc(100% - 55px);
+	}
+	.registerPageFormInput {
+		width: calc(100% - 10px);
+	}
+
+	.registerPageFormButton {
 		width: 100%;
 	}
 }
