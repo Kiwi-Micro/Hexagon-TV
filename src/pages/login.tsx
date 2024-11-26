@@ -25,6 +25,7 @@ function Login() {
 				if (data.status === "success") {
 					localStorage.setItem("id", data.ID);
 					localStorage.setItem("username", username);
+					window.location.href = "/account";
 				} else {
 					setFailureReason(data.status);
 					setHasFailed(true);
