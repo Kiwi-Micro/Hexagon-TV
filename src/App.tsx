@@ -9,6 +9,8 @@ import Search from "./pages/Search";
 import Account from "./pages/Account";
 import Login from "./pages/login";
 import Register from "./pages/Register";
+import DeleteAccount from "./pages/deleteAccount";
+import WipeData from "./pages/wipeData";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
 import "./assets/nav.css";
@@ -79,6 +81,12 @@ function App() {
 					</Route>
 					<Route path="/register">
 						<Register />
+					</Route>
+					<Route path="/deleteAccount">
+						<DeleteAccount />
+					</Route>
+					<Route path="/wipeData">
+						<WipeData />
 					</Route>
 					{renderVideoRoutes(movies)}
 					{renderVideoRoutes(movies, true)}

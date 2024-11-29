@@ -46,6 +46,29 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 							</>
 						) : null}
 					</div>
+					<div className="dangerZoneContainer">
+						<h2 className="dangerZoneHeader">Danger Zone</h2>
+						<div className="dangerZone">
+							<div className="dangerZoneItem">
+								<div>
+									<h3 className="dangerZoneItemHeader">Delete Account</h3>
+									<p className="dangerZoneItemText">This will delete your account and all of your data. This action cannot be undone.</p>
+								</div>
+								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/deleteAccount")}>
+									Delete Account
+								</button>
+							</div>
+							<div className="dangerZoneItem">
+								<div>
+									<h3 className="dangerZoneItemHeader">Wipe Data</h3>
+									<p className="dangerZoneItemText">This will delete all of your data. This action cannot be undone.</p>
+								</div>
+								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/wipeData")}>
+									Wipe Data
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<GlobalFooter />
