@@ -46,6 +46,26 @@ footer {
 	margin-inline: auto;
 }
 
+.hasFailed {
+	width: 290px;
+	color: #ffffff;
+	background-color: #ff000086;
+	border: #ff0000 2px solid;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+	max-width: 100%;
+}
+
+@media screen and (max-width: 400px) {
+	.hasFailed {
+		width: calc(100% - 55px);
+	}
+}
+
 /* Card Styles */
 
 .cards {

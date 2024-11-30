@@ -9,9 +9,10 @@ import Search from "./pages/Search";
 import Account from "./pages/Account";
 import Login from "./pages/login";
 import Register from "./pages/Register";
-import DeleteAccount from "./pages/deleteAccount";
-import WipeData from "./pages/wipeData";
+import DeleteAccount from "./pages/DeleteAccount";
+import WipeData from "./pages/WipeData";
 import Logout from "./pages/logout";
+import ChangePassword from "./pages/ChangePassword";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
 import "./assets/nav.css";
@@ -91,6 +92,9 @@ function App() {
 					</Route>
 					<Route path="/Logout">
 						<Logout />
+					</Route>
+					<Route path="/changePassword">
+						<ChangePassword />
 					</Route>
 					{renderVideoRoutes(movies)}
 					{renderVideoRoutes(movies, true)}

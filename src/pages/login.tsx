@@ -45,7 +45,7 @@ function Login() {
 			<div className="loginPage">
 				<div className="loginPageDiv">
 					<p className="loginPageHeader">Login</p>
-					<div className="registerHasFailed" style={{ display: hasFailed ? "block" : "none" }}>
+					<div className="hasFailed" style={{ display: hasFailed ? "block" : "none" }}>
 						{hasFailed && <h4>{failureReason}</h4>}
 					</div>
 					<div className="loginPageForm">

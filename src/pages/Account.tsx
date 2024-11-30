@@ -72,6 +72,15 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 									Wipe Data
 								</button>
 							</div>
+							<div className="dangerZoneItem">
+								<div>
+									<h3 className="dangerZoneItemHeader">Change Password</h3>
+									<p className="dangerZoneItemText">This will change your password.</p>
+								</div>
+								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/changePassword")}>
+									Change Password
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

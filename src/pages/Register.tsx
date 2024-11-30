@@ -45,7 +45,7 @@ function Register() {
 			<div className="registerPage">
 				<div className="registerPageDiv">
 					<p className="registerPageHeader">Register</p>
-					<div className="registerHasFailed" style={{ display: hasFailed ? "block" : "none" }}>
+					<div className="hasFailed" style={{ display: hasFailed ? "block" : "none" }}>
 						{hasFailed && <h4>{failureReason}</h4>}
 					</div>
 					<div className="registerPageForm">

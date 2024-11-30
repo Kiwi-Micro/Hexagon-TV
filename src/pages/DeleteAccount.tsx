@@ -3,14 +3,14 @@ import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import { deleteJSONData } from "../utils/api";
 
-function WipeData() {
+function DeleteAccount() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [hasFailed, setHasFailed] = useState(false);
 	const [failureReason, setFailureReason] = useState("");
-	document.title = "Hexagon TV | Wipe Data";
+	document.title = "Hexagon TV | Delete Account";
 
-	function handleWipeData() {
+	function handleDeleteAccount() {
 		async function getId() {
 			if (!username || !password) {
 				setHasFailed(true);
@@ -18,7 +18,7 @@ function WipeData() {
 				return;
 			}
 			try {
-				const data = await deleteJSONData(`https://api.hexagon.kiwi-micro.com:8073/wipe`, {
+				const data = await deleteJSONData(`https://api.hexagon.kiwi-micro.com:8073/delete`, {
 					username: username,
 					passwordCheckSum: password,
 				});
@@ -31,7 +31,7 @@ function WipeData() {
 					setHasFailed(true);
 				}
 			} catch (error) {
-				setFailureReason("There was an error wiping your data! Please try again later. (500)");
+				setFailureReason("There was an error deleting your account! Please try again later. (500)");
 				setHasFailed(true);
 			}
 		}
@@ -44,15 +44,15 @@ function WipeData() {
 			<GlobalNavBar />
 			<div className="warningPage">
 				<div className="warningPageDiv">
-					<p className="warningPageHeader">Wipe Data</p>
-					<div className="registerHasFailed" style={{ display: hasFailed ? "block" : "none" }}>
+					<p className="warningPageHeader">Delete Account</p>
+					<div className="hasFailed" style={{ display: hasFailed ? "block" : "none" }}>
 						{hasFailed && <h4>{failureReason}</h4>}
 					</div>
 					<div className="warningPageForm">
 						<input type="text" placeholder="Username" className="warningPageFormInput" value={username} onChange={(e) => setUsername(e.target.value)} />
 						<input type="password" placeholder="Password" className="warningPageFormInput" value={password} onChange={(e) => setPassword(e.target.value)} />
-						<button className="warningPageFormButton" onClick={() => handleWipeData()}>
-							Wipe Data
+						<button className="warningPageFormButton" onClick={() => handleDeleteAccount()}>
+							Delete Account
 						</button>
 					</div>
 				</div>
@@ -62,4 +62,4 @@ function WipeData() {
 	);
 }
 
-export default WipeData;
+export default DeleteAccount;
