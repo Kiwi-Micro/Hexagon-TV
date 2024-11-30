@@ -31,7 +31,12 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 			<GlobalNavBar />
 			<div className="accountPage" style={{ display: "flex", flexDirection: "row" }}>
 				<div className="accountPageUserInfo">
-					<h1 className="accountPageUserInfoUsername">{username}</h1>
+					<div className="accountPageHeader">
+						<h1 className="accountPageUserInfoUsername">{username}</h1>
+						<button className="accountPageLogoutButton" onClick={() => (window.location.href = "/Logout")}>
+							Log Out
+						</button>
+					</div>
 					<div id="videos" className="homePageVideos">
 						{continueWatching.length > 0 ? (
 							<>

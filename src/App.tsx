@@ -11,6 +11,7 @@ import Login from "./pages/login";
 import Register from "./pages/Register";
 import DeleteAccount from "./pages/deleteAccount";
 import WipeData from "./pages/wipeData";
+import Logout from "./pages/logout";
 //import NotFound from "./pages/404";
 import "./assets/main.css";
 import "./assets/nav.css";
@@ -87,6 +88,9 @@ function App() {
 					</Route>
 					<Route path="/wipeData">
 						<WipeData />
+					</Route>
+					<Route path="/Logout">
+						<Logout />
 					</Route>
 					{renderVideoRoutes(movies)}
 					{renderVideoRoutes(movies, true)}

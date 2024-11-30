@@ -38,6 +38,23 @@ nav ul {
 .navSearchVideosList {
 	position: fixed;
 	top: 50px;
+	right: 60px;
+	display: flex;
+	flex-direction: column;
+	scrollbar-width: none;
+	flex-wrap: wrap;
+	justify-content: left;
+	overflow-x: auto;
+	border: #ffffff 2px solid;
+	border-radius: 15px;
+	background-color: #0000006f;
+	backdrop-filter: blur(20px) saturate(1);
+	padding: 10px;
+}
+
+.navAccountOptions {
+	position: fixed;
+	top: 50px;
 	right: 10px;
 	display: flex;
 	flex-direction: column;

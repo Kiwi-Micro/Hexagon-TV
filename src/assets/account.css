@@ -8,6 +8,23 @@
 	height: 100vh;
 }
 
+.accountPageHeader {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.accountPageLogoutButton {
+	background-color: #00000000;
+	color: #ffffff;
+	border: #ffffff 2px solid;
+	padding: 10px;
+	border-radius: 20px;
+	width: 150px;
+	height: 50px;
+	cursor: pointer;
+}
+
 .loginPageDiv {
 	border: #ebebeb 2px solid;
 	background-color: #1c1d1f;
