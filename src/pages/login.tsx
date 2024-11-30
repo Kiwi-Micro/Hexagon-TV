@@ -31,7 +31,7 @@ function Login() {
 					setHasFailed(true);
 				}
 			} catch (error) {
-				setFailureReason("There was an error logging you in! Please try again later. (500)");
+				setFailureReason("There was an error logging you in! Please try again later. (client error)");
 				setHasFailed(true);
 			}
 		}

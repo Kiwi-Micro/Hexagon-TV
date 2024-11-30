@@ -31,7 +31,7 @@ function Register() {
 					setHasFailed(true);
 				}
 			} catch (error) {
-				setFailureReason("There was an error registering your account! Please try again later. (500)");
+				setFailureReason("There was an error registering your account! Please try again later. (client error)");
 				setHasFailed(true);
 			}
 		}
