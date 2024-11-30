@@ -32,10 +32,10 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 			<div className="accountPage" style={{ display: "flex", flexDirection: "row" }}>
 				<div className="accountPageUserInfo">
 					<div className="accountPageHeader">
-						<h1 className="accountPageUserInfoUsername">{username}</h1>
-						<button className="accountPageLogoutButton" onClick={() => (window.location.href = "/Logout")}>
-							Log Out
-						</button>
+						<div style={{ display: "flex", flexDirection: "column" }}>
+							<h1 className="accountPageUserInfoHeader">Settings</h1>
+							<h3 className="accountPageUserInfoUsername">{username}</h3>
+						</div>
 					</div>
 					<div id="videos" className="homePageVideos">
 						{continueWatching.length > 0 ? (
@@ -47,7 +47,7 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 						{watchlist.length > 0 ? (
 							<>
 								<h1 className="homePageVideosHeader">Watchlist</h1>
-								<div className="homePageVideosList">{renderVideoCard(watchlist)}</div>
+								<div className="accountPageVideosList">{renderVideoCard(watchlist)}</div>
 							</>
 						) : null}
 					</div>
@@ -79,6 +79,15 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 								</div>
 								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/changePassword")}>
 									Change Password
+								</button>
+							</div>
+							<div className="dangerZoneItem">
+								<div>
+									<h3 className="dangerZoneItemHeader">Log Out</h3>
+									<p className="dangerZoneItemText">This will log you out of your account.</p>
+								</div>
+								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/Logout")}>
+									Log Out
 								</button>
 							</div>
 						</div>
