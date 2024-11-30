@@ -15,7 +15,7 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 	const id = localStorage.getItem("id");
 
 	useEffect(() => {
-		if (username == null || id == null) {
+		if (username == null || id == null || id === "" || username === "") {
 			window.location.href = "/login";
 		}
 	}, []);
