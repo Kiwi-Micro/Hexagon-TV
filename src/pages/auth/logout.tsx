@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { postJSONData } from "../utils/api";
+import { postJSONData } from "../../utils/api";
 
 function Logout() {
 	document.title = "Hexagon TV | Logout";

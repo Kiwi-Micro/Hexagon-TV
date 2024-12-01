@@ -1,13 +1,15 @@
 import { useState } from "react";
-import GlobalNavBar from "../components/GlobalNavBar";
-import GlobalFooter from "../components/GlobalFooter";
-import { postJSONData } from "../utils/api";
+import GlobalNavBar from "../../components/GlobalNavBar";
+import GlobalFooter from "../../components/GlobalFooter";
+import { postJSONData } from "../../utils/api";
+import PasswordBox from "../../components/PasswordBox";
 
 function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [hasFailed, setHasFailed] = useState(false);
 	const [failureReason, setFailureReason] = useState("");
+	const [isVisible, setIsVisible] = useState(false);
 	document.title = "Hexagon TV | Login";
 
 	function handleLogin() {
@@ -50,7 +52,7 @@ function Login() {
 					</div>
 					<div className="loginPageForm">
 						<input type="text" placeholder="Username" className="loginPageFormInput" value={username} onChange={(e) => setUsername(e.target.value)} />
-						<input type="password" placeholder="Password" className="loginPageFormInput" value={password} onChange={(e) => setPassword(e.target.value)} />
+						<PasswordBox isVisible={isVisible} setIsVisible={setIsVisible} password={password} setPassword={setPassword} />
 						<button className="loginPageFormButton" onClick={() => handleLogin()}>
 							Login
 						</button>

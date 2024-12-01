@@ -1,13 +1,15 @@
 import { useState } from "react";
-import GlobalNavBar from "../components/GlobalNavBar";
-import GlobalFooter from "../components/GlobalFooter";
-import { deleteJSONData } from "../utils/api";
+import GlobalNavBar from "../../components/GlobalNavBar";
+import GlobalFooter from "../../components/GlobalFooter";
+import { deleteJSONData } from "../../utils/api";
+import PasswordBox from "../../components/PasswordBox";
 
 function DeleteAccount() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [hasFailed, setHasFailed] = useState(false);
 	const [failureReason, setFailureReason] = useState("");
+	const [isVisible, setIsVisible] = useState(false);
 	document.title = "Hexagon TV | Delete Account";
 
 	function handleDeleteAccount() {
@@ -50,7 +52,7 @@ function DeleteAccount() {
 					</div>
 					<div className="warningPageForm">
 						<input type="text" placeholder="Username" className="warningPageFormInput" value={username} onChange={(e) => setUsername(e.target.value)} />
-						<input type="password" placeholder="Password" className="warningPageFormInput" value={password} onChange={(e) => setPassword(e.target.value)} />
+						<PasswordBox isVisible={isVisible} setIsVisible={setIsVisible} password={password} setPassword={setPassword} />
 						<button className="warningPageFormButton" onClick={() => handleDeleteAccount()}>
 							Delete Account
 						</button>

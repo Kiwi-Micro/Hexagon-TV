@@ -8,21 +8,25 @@
 	height: 100vh;
 }
 
-.accountPageHeader {
+.loginPageFormPasswordDiv {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 }
 
-.accountPageLogoutButton {
-	background-color: #00000000;
+.loginPageFormPasswordDiv input {
+	margin-right: 10px;
+	width: 260px;
+}
+
+.loginPageFormPasswordDiv svg {
+	width: 30px;
+	height: 30px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
 	color: #ffffff;
-	border: #ffffff 2px solid;
-	padding: 10px;
-	border-radius: 20px;
-	width: 150px;
-	height: 50px;
-	cursor: pointer;
 }
 
 .loginPageDiv {
@@ -241,6 +245,23 @@
 
 .accountPageUserInfoUsername {
 	margin-left: 10px;
+}
+
+.accountPageHeader {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.accountPageLogoutButton {
+	background-color: #00000000;
+	color: #ffffff;
+	border: #ffffff 2px solid;
+	padding: 10px;
+	border-radius: 20px;
+	width: 150px;
+	height: 50px;
+	cursor: pointer;
 }
 
 .accountPageUserInfoHeader {

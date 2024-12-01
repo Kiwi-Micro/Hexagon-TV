@@ -1,7 +1,8 @@
 import { useState } from "react";
-import GlobalNavBar from "../components/GlobalNavBar";
-import GlobalFooter from "../components/GlobalFooter";
-import { postJSONData } from "../utils/api";
+import GlobalNavBar from "../../components/GlobalNavBar";
+import GlobalFooter from "../../components/GlobalFooter";
+import { postJSONData } from "../../utils/api";
+import PasswordBox from "../../components/PasswordBox";
 
 function Register() {
 	const [username, setUsername] = useState("");
@@ -9,6 +10,7 @@ function Register() {
 	const [email, setEmail] = useState("");
 	const [hasFailed, setHasFailed] = useState(false);
 	const [failureReason, setFailureReason] = useState("");
+	const [isVisible, setIsVisible] = useState(false);
 	document.title = "Hexagon TV | Register";
 
 	function handleLogin() {
@@ -51,7 +53,7 @@ function Register() {
 					<div className="registerPageForm">
 						<input type="email" placeholder="Email" className="registerPageFormInput" value={email} onChange={(e) => setEmail(e.target.value)} />
 						<input type="text" placeholder="Username" className="registerPageFormInput" value={username} onChange={(e) => setUsername(e.target.value)} />
-						<input type="password" placeholder="Password" className="registerPageFormInput" value={password} onChange={(e) => setPassword(e.target.value)} />
+						<PasswordBox isVisible={isVisible} setIsVisible={setIsVisible} password={password} setPassword={setPassword} />
 						<button className="registerPageFormButton" onClick={() => handleLogin()}>
 							Register
 						</button>

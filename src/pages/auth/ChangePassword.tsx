@@ -1,13 +1,15 @@
 import { useState } from "react";
-import GlobalNavBar from "../components/GlobalNavBar";
-import GlobalFooter from "../components/GlobalFooter";
-import { patchJSONData } from "../utils/api";
+import GlobalNavBar from "../../components/GlobalNavBar";
+import GlobalFooter from "../../components/GlobalFooter";
+import { patchJSONData } from "../../utils/api";
+import PasswordBox from "../../components/PasswordBox";
 
 function ChangePassword() {
 	const [oldPassword, setOldPassword] = useState("");
 	const [newPssword, setNewPassword] = useState("");
 	const [hasFailed, setHasFailed] = useState(false);
 	const [failureReason, setFailureReason] = useState("");
+	const [isVisible, setIsVisible] = useState(false);
 	document.title = "Hexagon TV | Change Password";
 
 	function handleWipeData() {
@@ -52,7 +54,7 @@ function ChangePassword() {
 					</div>
 					<div className="warningPageForm">
 						<input type="password" placeholder="Old Password" className="warningPageFormInput" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
-						<input type="password" placeholder="New Password" className="warningPageFormInput" value={newPssword} onChange={(e) => setNewPassword(e.target.value)} />
+						<PasswordBox isVisible={isVisible} setIsVisible={setIsVisible} password={newPssword} setPassword={setNewPassword} />
 						<button className="warningPageFormButton" onClick={() => handleWipeData()}>
 							Change Password
 						</button>
