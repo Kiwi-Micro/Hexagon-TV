@@ -90,8 +90,11 @@ function App() {
 					<Route path="/wipeData">
 						<WipeData />
 					</Route>
-					<Route path="/Logout">
+					<Route path="/logout">
 						<Logout />
+					</Route>
+					<Route path="/logoutAll">
+						<Logout all={true} />
 					</Route>
 					<Route path="/changePassword">
 						<ChangePassword />

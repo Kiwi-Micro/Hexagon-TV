@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { postJSONData } from "../../utils/api";
 
-function Logout() {
+interface LogoutProps {
+	all?: boolean;
+}
+
+function Logout({ all = false }: LogoutProps) {
 	document.title = "Hexagon TV | Logout";
 
 	const username = localStorage.getItem("username");
@@ -17,6 +21,7 @@ function Logout() {
 			await postJSONData(`https://api.hexagon.kiwi-micro.com:8073/logout`, {
 				username: username,
 				id: id,
+				all: all,
 			});
 			setTimeout(() => {
 				window.location.href = "/";

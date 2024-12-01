@@ -86,8 +86,17 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 									<h3 className="dangerZoneItemHeader">Log Out</h3>
 									<p className="dangerZoneItemText">This will log you out of your account.</p>
 								</div>
-								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/Logout")}>
+								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/logout")}>
 									Log Out
+								</button>
+							</div>
+							<div className="dangerZoneItem">
+								<div>
+									<h3 className="dangerZoneItemHeader">Log Out All Devices</h3>
+									<p className="dangerZoneItemText">This will log you out of all devices. This action cannot be undone.</p>
+								</div>
+								<button className="dangerZoneItemButton" onClick={() => (window.location.href = "/logoutAll")}>
+									Log Out All Devices
 								</button>
 							</div>
 						</div>
