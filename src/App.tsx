@@ -13,7 +13,7 @@ import DeleteAccount from "./pages/auth/DeleteAccount";
 import WipeData from "./pages/auth/WipeData";
 import Logout from "./pages/auth/Logout";
 import ChangePassword from "./pages/auth/ChangePassword";
-//import NotFound from "./pages/404";
+import NotFound from "./pages/404";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
@@ -105,9 +105,9 @@ function App() {
 					{renderVideoRoutes(documentaries, true)}
 					{renderVideoRoutes(tvshows)}
 					{renderVideoRoutes(tvshows, true)}
-					{/*<Route path="/*">
+					<Route path="/*">
 						<NotFound />
-					</Route>*/}
+					</Route>
 				</Switch>
 			</Router>
 		</div>
