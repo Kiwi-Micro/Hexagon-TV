@@ -6,15 +6,16 @@ import PasswordBox from "../../components/PasswordBox";
 
 function ChangePassword() {
 	const [oldPassword, setOldPassword] = useState("");
-	const [newPssword, setNewPassword] = useState("");
+	const [newPassword, setNewPassword] = useState("");
 	const [hasFailed, setHasFailed] = useState(false);
 	const [failureReason, setFailureReason] = useState("");
-	const [isVisible, setIsVisible] = useState(false);
+	const [oldIsVisible, setOldIsVisible] = useState(false);
+	const [newIsVisible, setNewIsVisible] = useState(false);
 	document.title = "Hexagon TV | Change Password";
 
 	function handleWipeData() {
 		async function getId() {
-			if (!oldPassword || !newPssword) {
+			if (!oldPassword || !newPassword) {
 				setHasFailed(true);
 				setFailureReason("Please fill in all fields!");
 				return;
@@ -23,7 +24,7 @@ function ChangePassword() {
 				const username = localStorage.getItem("username");
 				const data = await patchJSONData(`https://api.hexagon.kiwi-micro.com:8073/changePassword`, {
 					username: username,
-					newPassword: newPssword,
+					newPassword: newPassword,
 					oldPassword: oldPassword,
 				});
 				if (data.status === "success") {
@@ -53,8 +54,8 @@ function ChangePassword() {
 						{hasFailed && <h4>{failureReason}</h4>}
 					</div>
 					<div className="warningPageForm">
-						<input type="password" placeholder="Old Password" className="warningPageFormInput" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
-						<PasswordBox isVisible={isVisible} setIsVisible={setIsVisible} password={newPssword} setPassword={setNewPassword} />
+						<PasswordBox isVisible={oldIsVisible} setIsVisible={setOldIsVisible} password={oldPassword} setPassword={setOldPassword} placeholder="Old Password" />
+						<PasswordBox isVisible={newIsVisible} setIsVisible={setNewIsVisible} password={newPassword} setPassword={setNewPassword} placeholder="New Password" />
 						<button className="warningPageFormButton" onClick={() => handleWipeData()}>
 							Change Password
 						</button>
