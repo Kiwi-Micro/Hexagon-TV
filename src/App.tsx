@@ -26,14 +26,15 @@ function App() {
 	const [movies, setMoviesdb] = useState([]);
 	const [documentaries, setDocumentariesdb] = useState([]);
 	const [tvshows, setTvShowsdb] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			let watchlistData = [];
 			let continueWatchingData = [];
-			if (username != null) {
-				watchlistData = await getJSONData("https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=" + username);
-				continueWatchingData = await getJSONData("https://api.hexagon.kiwi-micro.com:8072/getContinueWatching?username=" + username);
+			if (username) {
+				watchlistData = await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`);
+				continueWatchingData = await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getContinueWatching?username=${username}`);
 			}
 
 			const moviesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies");
@@ -45,6 +46,7 @@ function App() {
 			setMoviesdb(moviesData || []);
 			setDocumentariesdb(documentariesData || []);
 			setTvShowsdb(tvshowsData || []);
+			setLoading(false);
 		};
 
 		fetchData();
@@ -53,14 +55,14 @@ function App() {
 	function renderVideoRoutes(db: any, isViewer?: boolean) {
 		if (isViewer) {
 			return db.map((video: any) => (
-				<Route key={video.urlName} path={"/watch/" + video.urlName + ".html"}>
-					<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={"/" + video.urlName + ".html"} />
+				<Route key={video.urlName} path={`/watch/${video.urlName}.html`}>
+					<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={`/${video.urlName}.html`} />
 				</Route>
 			));
 		}
 		return db.map((video: any) => (
-			<Route key={video.urlName} path={"/" + video.urlName + ".html"}>
-				<Video key={video.urlName} name={video.name} videoPage={"/watch/" + video.urlName + ".html"} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} urlName={video.urlName} watchlist={watchlist} />
+			<Route key={video.urlName} path={`/${video.urlName}.html`}>
+				<Video key={video.urlName} name={video.name} videoPage={`/watch/${video.urlName}.html`} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} urlName={video.urlName} watchlist={watchlist} />
 			</Route>
 		));
 	}
@@ -68,47 +70,53 @@ function App() {
 	return (
 		<div>
 			<Router>
-				<Switch>
-					<Route exact path="/">
-						<Index watchlist={watchlist} continueWatching={continueWatching} movies={movies} documentaries={documentaries} tvshows={tvshows} />
-					</Route>
-					<Route path="/search">
-						<Search />
-					</Route>
-					<Route path="/login">
-						<Login />
-					</Route>
-					<Route path="/account">
-						<Account continueWatching={continueWatching} watchlist={watchlist} />
-					</Route>
-					<Route path="/register">
-						<Register />
-					</Route>
-					<Route path="/deleteAccount">
-						<DeleteAccount />
-					</Route>
-					<Route path="/wipeData">
-						<WipeData />
-					</Route>
-					<Route path="/logout">
-						<Logout />
-					</Route>
-					<Route path="/logoutAll">
-						<Logout all={true} />
-					</Route>
-					<Route path="/changePassword">
-						<ChangePassword />
-					</Route>
-					{renderVideoRoutes(movies)}
-					{renderVideoRoutes(movies, true)}
-					{renderVideoRoutes(documentaries)}
-					{renderVideoRoutes(documentaries, true)}
-					{renderVideoRoutes(tvshows)}
-					{renderVideoRoutes(tvshows, true)}
-					<Route path="/*">
-						<NotFound />
-					</Route>
-				</Switch>
+				{loading ? (
+					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", width: "100vw" }}>
+						<h1>Loading...</h1>
+					</div>
+				) : (
+					<Switch>
+						<Route exact path="/">
+							<Index watchlist={watchlist} continueWatching={continueWatching} movies={movies} documentaries={documentaries} tvshows={tvshows} />
+						</Route>
+						<Route path="/search">
+							<Search />
+						</Route>
+						<Route path="/login">
+							<Login />
+						</Route>
+						<Route path="/account">
+							<Account continueWatching={continueWatching} watchlist={watchlist} />
+						</Route>
+						<Route path="/register">
+							<Register />
+						</Route>
+						<Route path="/deleteAccount">
+							<DeleteAccount />
+						</Route>
+						<Route path="/wipeData">
+							<WipeData />
+						</Route>
+						<Route path="/logout">
+							<Logout />
+						</Route>
+						<Route path="/logoutAll">
+							<Logout all={true} />
+						</Route>
+						<Route path="/changePassword">
+							<ChangePassword />
+						</Route>
+						{renderVideoRoutes(movies)}
+						{renderVideoRoutes(movies, true)}
+						{renderVideoRoutes(documentaries)}
+						{renderVideoRoutes(documentaries, true)}
+						{renderVideoRoutes(tvshows)}
+						{renderVideoRoutes(tvshows, true)}
+						<Route path="/*">
+							<NotFound />
+						</Route>
+					</Switch>
+				)}
 			</Router>
 		</div>
 	);
