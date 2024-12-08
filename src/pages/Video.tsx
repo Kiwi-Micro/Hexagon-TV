@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getJSONData } from "../utils/api";
 import { addToWatchlist, removeFromWatchlist } from "../utils/watchlist";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
@@ -18,25 +17,25 @@ interface ProductProps {
 	watchlist: any;
 }
 
-interface RatingInfo {
-	rating: string;
-	description: string;
-}
-
 function Video({ name, videoPage, description, thumbnailURL, db, rating, urlName, watchlist }: ProductProps) {
-	const [ratings, setRatings] = useState<RatingInfo[]>([]);
+	const ratings = [
+		{
+			rating: "G",
+			description: "Suitable for all ages",
+		},
+		{
+			rating: "PG",
+			description: "Some material may not be suitable for children",
+		},
+		{
+			rating: "CTC",
+			description: "Check the classification closer to its release date",
+		},
+	];
 	const [isInWatchlist, setIsInWatchlist] = useState(false);
 	useEffect(() => {
-		const fetchData = async () => {
-			const ratingsData = await getJSONData("https://api.hexagon.kiwi-micro.com:8083/ratings");
-			setRatings(ratingsData || [{ hello: "world" }]);
-		};
-
-		// Search for video in watchlist
 		const isInWatchlist = watchlist.find((item: any) => item.urlName === urlName);
 		setIsInWatchlist(isInWatchlist ? true : false);
-
-		fetchData();
 	}, []);
 
 	document.title = "Hexagon TV | " + name;
