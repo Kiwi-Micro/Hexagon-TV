@@ -19,13 +19,25 @@ import "./assets/nav.css";
 import "./assets/video.css";
 import "./assets/account.css";
 
+interface VideoInfo {
+	category: string;
+	date: string;
+	description: string;
+	id: number;
+	name: string;
+	rating: string;
+	thumbnailURL: string;
+	urlName: string;
+	videoURL: string;
+}
+
 function App() {
 	const username = localStorage.getItem("username");
-	const [watchlist, setWatchlistdb] = useState([]);
-	const [continueWatching, setContinueWatchingdb] = useState([]);
-	const [movies, setMoviesdb] = useState([]);
-	const [documentaries, setDocumentariesdb] = useState([]);
-	const [tvshows, setTvShowsdb] = useState([]);
+	const [watchlist, setWatchlistdb] = useState<VideoInfo[]>([]);
+	const [continueWatching, setContinueWatchingdb] = useState<VideoInfo[]>([]);
+	const [movies, setMoviesdb] = useState<VideoInfo[]>([]);
+	const [documentaries, setDocumentariesdb] = useState<VideoInfo[]>([]);
+	const [tvshows, setTvShowsdb] = useState<VideoInfo[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -41,11 +53,81 @@ function App() {
 			const documentariesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries");
 			const tvshowsData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows");
 
-			setWatchlistdb(watchlistData || []);
-			setContinueWatchingdb(continueWatchingData || []);
-			setMoviesdb(moviesData || []);
-			setDocumentariesdb(documentariesData || []);
-			setTvShowsdb(tvshowsData || []);
+			setWatchlistdb(
+				watchlistData.map((item: any) => {
+					return {
+						category: item.category,
+						date: item.date,
+						description: item.description,
+						id: item.id,
+						name: item.name,
+						rating: item.rating,
+						thumbnailURL: item.thumbnailURL,
+						urlName: item.urlName,
+						videoURL: item.videoURL,
+					};
+				}),
+			);
+			setContinueWatchingdb(
+				continueWatchingData.map((item: any) => {
+					return {
+						category: item.category,
+						date: item.date,
+						description: item.description,
+						id: item.id,
+						name: item.name,
+						rating: item.rating,
+						thumbnailURL: item.thumbnailURL,
+						urlName: item.urlName,
+						videoURL: item.videoURL,
+					};
+				}),
+			);
+			setMoviesdb(
+				moviesData.map((item: any) => {
+					return {
+						category: item.category,
+						date: item.date,
+						description: item.description,
+						id: item.id,
+						name: item.name,
+						rating: item.rating,
+						thumbnailURL: item.thumbnailURL,
+						urlName: item.urlName,
+						videoURL: item.videoURL,
+					};
+				}),
+			);
+			setDocumentariesdb(
+				documentariesData.map((item: any) => {
+					return {
+						category: item.category,
+						date: item.date,
+						description: item.description,
+						id: item.id,
+						name: item.name,
+						rating: item.rating,
+						thumbnailURL: item.thumbnailURL,
+						urlName: item.urlName,
+						videoURL: item.videoURL,
+					};
+				}),
+			);
+			setTvShowsdb(
+				tvshowsData.map((item: any) => {
+					return {
+						category: item.category,
+						date: item.date,
+						description: item.description,
+						id: item.id,
+						name: item.name,
+						rating: item.rating,
+						thumbnailURL: item.thumbnailURL,
+						urlName: item.urlName,
+						videoURL: item.videoURL,
+					};
+				}),
+			);
 			setLoading(false);
 		};
 
