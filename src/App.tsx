@@ -14,6 +14,7 @@ import WipeData from "./pages/auth/WipeData";
 import Logout from "./pages/auth/Logout";
 import ChangePassword from "./pages/auth/ChangePassword";
 import NotFound from "./pages/404";
+import metaImage from "./assets/img/metaImage.png";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
@@ -32,6 +33,10 @@ interface VideoInfo {
 }
 
 function App() {
+	useEffect(() => {
+		setMetaTag("twitter:image", metaImage);
+		setMetaTag("og:image", metaImage);
+	}, []);
 	const username = localStorage.getItem("username");
 	const [watchlist, setWatchlistdb] = useState<VideoInfo[]>([]);
 	const [movies, setMoviesdb] = useState<VideoInfo[]>([]);
@@ -184,6 +189,16 @@ function App() {
 			</Router>
 		</div>
 	);
+}
+
+function setMetaTag(property: any, content: any) {
+	let metaTag = document.querySelector(`meta[property="${property}"]`);
+	if (!metaTag) {
+		metaTag = document.createElement("meta");
+		metaTag.setAttribute("property", property);
+		document.head.appendChild(metaTag);
+	}
+	metaTag.setAttribute("content", content);
 }
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(<App />);
