@@ -34,7 +34,6 @@ interface VideoInfo {
 function App() {
 	const username = localStorage.getItem("username");
 	const [watchlist, setWatchlistdb] = useState<VideoInfo[]>([]);
-	const [continueWatching, setContinueWatchingdb] = useState<VideoInfo[]>([]);
 	const [movies, setMoviesdb] = useState<VideoInfo[]>([]);
 	const [documentaries, setDocumentariesdb] = useState<VideoInfo[]>([]);
 	const [tvshows, setTvShowsdb] = useState<VideoInfo[]>([]);
@@ -42,11 +41,10 @@ function App() {
 
 	useEffect(() => {
 		const fetchData = async () => {
+			setLoading(false);
 			let watchlistData = [];
-			let continueWatchingData = [];
 			if (username) {
 				watchlistData = await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`);
-				continueWatchingData = await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getContinueWatching?username=${username}`);
 			}
 
 			const moviesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies");
@@ -55,21 +53,6 @@ function App() {
 
 			setWatchlistdb(
 				watchlistData.map((item: any) => {
-					return {
-						category: item.category,
-						date: item.date,
-						description: item.description,
-						id: item.id,
-						name: item.name,
-						rating: item.rating,
-						thumbnailURL: item.thumbnailURL,
-						urlName: item.urlName,
-						videoURL: item.videoURL,
-					};
-				}),
-			);
-			setContinueWatchingdb(
-				continueWatchingData.map((item: any) => {
 					return {
 						category: item.category,
 						date: item.date,
@@ -128,7 +111,6 @@ function App() {
 					};
 				}),
 			);
-			setLoading(false);
 		};
 
 		fetchData();
@@ -159,7 +141,7 @@ function App() {
 				) : (
 					<Switch>
 						<Route exact path="/">
-							<Index watchlist={watchlist} continueWatching={continueWatching} movies={movies} documentaries={documentaries} tvshows={tvshows} />
+							<Index watchlist={watchlist} movies={movies} documentaries={documentaries} tvshows={tvshows} />
 						</Route>
 						<Route path="/search">
 							<Search />
@@ -168,7 +150,7 @@ function App() {
 							<Login />
 						</Route>
 						<Route path="/account">
-							<Account continueWatching={continueWatching} watchlist={watchlist} />
+							<Account watchlist={watchlist} />
 						</Route>
 						<Route path="/register">
 							<Register />

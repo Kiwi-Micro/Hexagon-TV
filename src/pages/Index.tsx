@@ -2,11 +2,11 @@ import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import VideoCard from "../components/VideoCard";
 import CustomBreak from "../components/CustomBreak";
+import hero from "../assets/hero.mp4";
 import "../assets/main.css";
 
 interface IndexProps {
 	watchlist: any;
-	continueWatching: any;
 	movies: any;
 	documentaries: any;
 	tvshows: any;
@@ -21,13 +21,13 @@ function renderVideoCard(db: any) {
 		});
 }
 
-function Index({ watchlist, continueWatching, movies, documentaries, tvshows }: IndexProps) {
+function Index({ watchlist, movies, documentaries, tvshows }: IndexProps) {
 	document.title = "Hexagon TV | Home";
 	return (
 		<div className="main">
 			<GlobalNavBar />
 			<div className="heroContainer">
-				<video src="https://utfs.io/a/javgoq6sm5/7cipGy3KpezYU3eEZ16rmn8iRqzsZA90JeWTS3bEtBwXVjYx" muted autoPlay loop className="homePageHero" />
+				<video src={hero} muted autoPlay loop className="homePageHero" />
 				<div className="homePageHeroInfo">
 					<h1>Cool New Shows Coming To You!</h1>
 					<p>How can we keep this free? Well that is a good question, We do not know either.</p>
@@ -39,12 +39,6 @@ function Index({ watchlist, continueWatching, movies, documentaries, tvshows }: 
 			</div>
 			<CustomBreak height={1} />
 			<div id="videos" className="homePageVideos">
-				{continueWatching.length > 0 ? (
-					<>
-						<h1 className="homePageVideosHeader">Continue Watching</h1>
-						<div className="homePageVideosList">{renderVideoCard(continueWatching)}</div>
-					</>
-				) : null}
 				{watchlist.length > 0 ? (
 					<>
 						<h1 className="homePageVideosHeader">Watchlist</h1>

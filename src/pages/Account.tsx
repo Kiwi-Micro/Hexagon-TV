@@ -4,11 +4,10 @@ import GlobalFooter from "../components/GlobalFooter";
 import VideoCard from "../components/VideoCard";
 
 interface AccountDataProps {
-	continueWatching: any;
 	watchlist: any;
 }
 
-function Account({ continueWatching, watchlist }: AccountDataProps) {
+function Account({ watchlist }: AccountDataProps) {
 	document.title = "Hexagon TV | Account";
 
 	const username = localStorage.getItem("username");
@@ -38,12 +37,6 @@ function Account({ continueWatching, watchlist }: AccountDataProps) {
 						</div>
 					</div>
 					<div id="videos" className="homePageVideos">
-						{continueWatching.length > 0 ? (
-							<>
-								<h1 className="homePageVideosHeader">Continue Watching</h1>
-								<div className="homePageVideosList">{renderVideoCard(continueWatching)}</div>
-							</>
-						) : null}
 						{watchlist.length > 0 ? (
 							<>
 								<h1 className="homePageVideosHeader">Watchlist</h1>
