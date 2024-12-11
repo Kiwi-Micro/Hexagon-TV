@@ -33,10 +33,7 @@ interface VideoInfo {
 }
 
 function App() {
-	useEffect(() => {
-		setMetaTag("twitter:image", metaImage);
-		setMetaTag("og:image", metaImage);
-	}, []);
+	console.log(metaImage);
 	const username = localStorage.getItem("username");
 	const [watchlist, setWatchlistdb] = useState<VideoInfo[]>([]);
 	const [movies, setMoviesdb] = useState<VideoInfo[]>([]);
@@ -189,16 +186,6 @@ function App() {
 			</Router>
 		</div>
 	);
-}
-
-function setMetaTag(property: any, content: any) {
-	let metaTag = document.querySelector(`meta[property="${property}"]`);
-	if (!metaTag) {
-		metaTag = document.createElement("meta");
-		metaTag.setAttribute("property", property);
-		document.head.appendChild(metaTag);
-	}
-	metaTag.setAttribute("content", content);
 }
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(<App />);
