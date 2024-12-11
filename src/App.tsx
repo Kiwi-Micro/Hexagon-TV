@@ -14,7 +14,6 @@ import WipeData from "./pages/auth/WipeData";
 import Logout from "./pages/auth/Logout";
 import ChangePassword from "./pages/auth/ChangePassword";
 import NotFound from "./pages/404";
-import metaImage from "./assets/img/metaImage.png";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
@@ -33,23 +32,6 @@ interface VideoInfo {
 }
 
 function App() {
-	const metaImageURL = new URL(metaImage, window.location.href);
-
-	console.log(metaImageURL);
-
-	const twitterMetaTag = document.querySelector("meta[property='twitter:image']");
-	if (twitterMetaTag) {
-		twitterMetaTag.setAttribute("content", metaImageURL.href);
-	} else {
-		console.warn("Twitter meta tag not found.");
-	}
-
-	const ogMetaTag = document.querySelector("meta[property='og:image']");
-	if (ogMetaTag) {
-		ogMetaTag.setAttribute("content", metaImageURL.href);
-	} else {
-		console.warn("Open Graph meta tag not found.");
-	}
 	const username = localStorage.getItem("username");
 	const [watchlist, setWatchlistdb] = useState<VideoInfo[]>([]);
 	const [movies, setMoviesdb] = useState<VideoInfo[]>([]);
