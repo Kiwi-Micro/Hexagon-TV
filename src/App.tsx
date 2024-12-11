@@ -33,7 +33,9 @@ interface VideoInfo {
 }
 
 function App() {
-	const metaImageURL = new URL(metaImage);
+	const metaImageURL = new URL(metaImage, window.location.href);
+
+	console.log(metaImageURL);
 
 	const twitterMetaTag = document.querySelector("meta[property='twitter:image']");
 	if (twitterMetaTag) {
