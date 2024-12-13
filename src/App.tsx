@@ -41,15 +41,14 @@ function App() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setLoading(false);
-			let watchlistData = [];
+			let watchlistData: any = [];
 			if (username) {
-				watchlistData = await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`);
+				watchlistData = (await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`)) || [{ id: "0" }];
 			}
 
-			const moviesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies");
-			const documentariesData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries");
-			const tvshowsData = await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows");
+			const moviesData = (await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies")) || [{ id: "0" }];
+			const documentariesData = (await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries")) || [{ id: "0" }];
+			const tvshowsData = (await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows")) || [{ id: "0" }];
 
 			setWatchlistdb(
 				watchlistData.map((item: any) => {
@@ -111,6 +110,7 @@ function App() {
 					};
 				}),
 			);
+			setLoading(false);
 		};
 
 		fetchData();

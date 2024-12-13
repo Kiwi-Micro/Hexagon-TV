@@ -39,25 +39,25 @@ function Index({ watchlist, movies, documentaries, tvshows }: IndexProps) {
 			</div>
 			<CustomBreak height={1} />
 			<div id="videos" className="homePageVideos">
-				{watchlist.length > 0 ? (
+				{watchlist.length > 0 && watchlist[0].id !== "0" ? (
 					<>
 						<h1 className="homePageVideosHeader">Watchlist</h1>
 						<div className="homePageVideosList">{renderVideoCard(watchlist)}</div>
 					</>
 				) : null}
-				{movies.length > 0 ? (
+				{movies.length > 0 && movies[0].id !== "0" ? (
 					<>
 						<h1 className="homePageVideosHeader">Movies</h1>
 						<div className="homePageVideosList">{renderVideoCard(movies)}</div>
 					</>
 				) : null}
-				{documentaries.length > 0 ? (
+				{documentaries.length > 0 && documentaries[0].id !== "0" ? (
 					<>
 						<h1 className="homePageVideosHeader">Documentaries</h1>
 						<div className="homePageVideosList">{renderVideoCard(documentaries)}</div>
 					</>
 				) : null}
-				{tvshows.length > 0 ? (
+				{tvshows.length > 0 && tvshows[0].id !== "0" ? (
 					<>
 						<h1 className="homePageVideosHeader">TV Shows</h1>
 						<div className="homePageVideosList">{renderVideoCard(tvshows)}</div>
