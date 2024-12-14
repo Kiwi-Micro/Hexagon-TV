@@ -1,134 +1,48 @@
 import ReactDOM from "react-dom/client";
-import { getJSONData } from "./utils/api";
+import { getJSONData, formatVideoAPIData } from "./utils/api";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Index from "./pages/Index";
-import Video from "./pages/Video";
-import VideoViewer from "./pages/VideoViewer";
-import Search from "./pages/Search";
-import Account from "./pages/Account";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import DeleteAccount from "./pages/auth/DeleteAccount";
-import WipeData from "./pages/auth/WipeData";
-import Logout from "./pages/auth/Logout";
-import ChangePassword from "./pages/auth/ChangePassword";
-import NotFound from "./pages/404";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Video } from "./utils/types";
+import { Index, VideoPage, VideoViewer, Search, Account, Login, Register, DeleteAccount, WipeData, Logout, ChangePassword, NotFound } from "./utils/pages";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
 import "./assets/account.css";
 
-interface VideoInfo {
-	category: string;
-	date: string;
-	description: string;
-	id: number;
-	name: string;
-	rating: string;
-	thumbnailURL: string;
-	urlName: string;
-	videoURL: string;
-}
-
 function App() {
 	const username = localStorage.getItem("username");
-	const [watchlist, setWatchlistdb] = useState<VideoInfo[]>([]);
-	const [movies, setMoviesdb] = useState<VideoInfo[]>([]);
-	const [documentaries, setDocumentariesdb] = useState<VideoInfo[]>([]);
-	const [tvshows, setTvShowsdb] = useState<VideoInfo[]>([]);
+	const [watchlist, setWatchlistdb] = useState<Video[]>([]);
+	const [movies, setMoviesdb] = useState<Video[]>([]);
+	const [documentaries, setDocumentariesdb] = useState<Video[]>([]);
+	const [tvshows, setTvShowsdb] = useState<Video[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			let watchlistData: any = [];
 			if (username) {
-				watchlistData = (await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`)) || [{ id: "0" }];
+				watchlistData = formatVideoAPIData((await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`)) || [{ id: "0" }]);
 			}
 
-			const moviesData = (await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies")) || [{ id: "0" }];
-			const documentariesData = (await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries")) || [{ id: "0" }];
-			const tvshowsData = (await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows")) || [{ id: "0" }];
+			const moviesData = formatVideoAPIData((await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies")) || [{ id: "0" }]);
+			const documentariesData = formatVideoAPIData((await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries")) || [{ id: "0" }]);
+			const tvshowsData = formatVideoAPIData((await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows")) || [{ id: "0" }]);
 
-			setWatchlistdb(
-				watchlistData.map((item: any) => {
-					return {
-						category: item.category,
-						date: item.date,
-						description: item.description,
-						id: item.id,
-						name: item.name,
-						rating: item.rating,
-						thumbnailURL: item.thumbnailURL,
-						urlName: item.urlName,
-						videoURL: item.videoURL,
-					};
-				}),
-			);
-			setMoviesdb(
-				moviesData.map((item: any) => {
-					return {
-						category: item.category,
-						date: item.date,
-						description: item.description,
-						id: item.id,
-						name: item.name,
-						rating: item.rating,
-						thumbnailURL: item.thumbnailURL,
-						urlName: item.urlName,
-						videoURL: item.videoURL,
-					};
-				}),
-			);
-			setDocumentariesdb(
-				documentariesData.map((item: any) => {
-					return {
-						category: item.category,
-						date: item.date,
-						description: item.description,
-						id: item.id,
-						name: item.name,
-						rating: item.rating,
-						thumbnailURL: item.thumbnailURL,
-						urlName: item.urlName,
-						videoURL: item.videoURL,
-					};
-				}),
-			);
-			setTvShowsdb(
-				tvshowsData.map((item: any) => {
-					return {
-						category: item.category,
-						date: item.date,
-						description: item.description,
-						id: item.id,
-						name: item.name,
-						rating: item.rating,
-						thumbnailURL: item.thumbnailURL,
-						urlName: item.urlName,
-						videoURL: item.videoURL,
-					};
-				}),
-			);
+			setWatchlistdb(watchlistData);
+			setMoviesdb(moviesData);
+			setDocumentariesdb(documentariesData);
+			setTvShowsdb(tvshowsData);
 			setLoading(false);
 		};
 
 		fetchData();
 	}, []);
 
-	function renderVideoRoutes(db: any, isViewer?: boolean) {
+	function renderVideoRoutes(db: Video[], isViewer?: boolean) {
 		if (isViewer) {
-			return db.map((video: any) => (
-				<Route key={video.urlName} path={`/watch/${video.urlName}.html`}>
-					<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={`/${video.urlName}.html`} />
-				</Route>
-			));
+			return db.map((video: Video) => <Route key={video.urlName} path={`/watch/${video.urlName}.html`} element={<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={`/${video.urlName}.html`} />} />);
 		}
-		return db.map((video: any) => (
-			<Route key={video.urlName} path={`/${video.urlName}.html`}>
-				<Video key={video.urlName} name={video.name} videoPage={`/watch/${video.urlName}.html`} thumbnailURL={video.thumbnailURL} db={db} rating={video.rating} description={video.description} urlName={video.urlName} watchlist={watchlist} />
-			</Route>
-		));
+		return db.map((video: Video) => <Route key={video.urlName} path={`/${video.urlName}.html`} element={<VideoPage key={video.urlName} videoInfo={video} db={db} watchlist={watchlist} />} />);
 	}
 
 	return (
@@ -139,47 +53,25 @@ function App() {
 						<h1>Loading...</h1>
 					</div>
 				) : (
-					<Switch>
-						<Route exact path="/">
-							<Index watchlist={watchlist} movies={movies} documentaries={documentaries} tvshows={tvshows} />
-						</Route>
-						<Route path="/search">
-							<Search />
-						</Route>
-						<Route path="/login">
-							<Login />
-						</Route>
-						<Route path="/account">
-							<Account watchlist={watchlist} />
-						</Route>
-						<Route path="/register">
-							<Register />
-						</Route>
-						<Route path="/deleteAccount">
-							<DeleteAccount />
-						</Route>
-						<Route path="/wipeData">
-							<WipeData />
-						</Route>
-						<Route path="/logout">
-							<Logout />
-						</Route>
-						<Route path="/logoutAll">
-							<Logout all={true} />
-						</Route>
-						<Route path="/changePassword">
-							<ChangePassword />
-						</Route>
+					<Routes>
+						<Route path="/" element={<Index watchlist={watchlist} movies={movies} documentaries={documentaries} tvshows={tvshows} />} />
+						<Route path="/search" element={<Search />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/account" element={<Account watchlist={watchlist} />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/deleteAccount" element={<DeleteAccount />} />
+						<Route path="/wipeData" element={<WipeData />} />
+						<Route path="/logout" element={<Logout />} />
+						<Route path="/logoutAll" element={<Logout all={true} />} />
+						<Route path="/changePassword" element={<ChangePassword />} />
 						{renderVideoRoutes(movies)}
 						{renderVideoRoutes(movies, true)}
 						{renderVideoRoutes(documentaries)}
 						{renderVideoRoutes(documentaries, true)}
 						{renderVideoRoutes(tvshows)}
 						{renderVideoRoutes(tvshows, true)}
-						<Route path="/*">
-							<NotFound />
-						</Route>
-					</Switch>
+						<Route path="/*" element={<NotFound />} />
+					</Routes>
 				)}
 			</Router>
 		</div>

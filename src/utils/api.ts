@@ -1,3 +1,5 @@
+import { Video } from "./types";
+
 async function getJSONData(url: string) {
 	try {
 		const response = await fetch(url);
@@ -64,4 +66,18 @@ async function patchJSONData(url: string, data: any) {
 	}
 }
 
-export { getJSONData, postJSONData, deleteJSONData, patchJSONData };
+function formatVideoAPIData(db: Video[]) {
+	return db.map((video: Video) => ({
+		category: video.category,
+		date: video.date,
+		description: video.description,
+		id: video.id,
+		name: video.name,
+		rating: video.rating,
+		thumbnailURL: video.thumbnailURL,
+		urlName: video.urlName,
+		videoURL: video.videoURL,
+	}));
+}
+
+export { getJSONData, postJSONData, deleteJSONData, patchJSONData, formatVideoAPIData };

@@ -21,13 +21,9 @@ function VideoViewer({ name, videoURL, previousPage }: ProductProps) {
 	}
 	useEffect(() => {
 		hideControlsTimeout = setTimeout(hideControls, hideControlsDelay);
-		return () => {
-			clearTimeout(hideControlsTimeout);
-		};
-	}, []);
-	useEffect(() => {
 		document.addEventListener("mousemove", handleMouseMove);
 		return () => {
+			clearTimeout(hideControlsTimeout);
 			document.removeEventListener("mousemove", handleMouseMove);
 			clearTimeout(hideControlsTimeout);
 		};
