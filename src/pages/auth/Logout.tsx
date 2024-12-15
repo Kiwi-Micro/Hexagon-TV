@@ -9,20 +9,16 @@ function Logout({ all = false }: LogoutProps) {
 	document.title = "Hexagon TV | Logout";
 
 	const username = localStorage.getItem("username");
-	const id = localStorage.getItem("id");
+	const sessionId = localStorage.getItem("sessionId");
 
-	if (username != null && id != null) {
-		localStorage.setItem("id", "");
+	if (username != null && sessionId != null) {
+		localStorage.setItem("sessionId", "");
 		localStorage.setItem("username", "");
 	}
 
 	useEffect(() => {
 		async function logOut() {
-			await postJSONData(`https://api.hexagon.kiwi-micro.com:8073/logout`, {
-				username: username,
-				id: id,
-				all: all,
-			});
+			await postJSONData(`https://api.hexagon.kiwi-micro.com:8073/logout`, { username, sessionId, all });
 			setTimeout(() => {
 				window.location.href = "/";
 			}, 1000);

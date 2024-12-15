@@ -28,7 +28,7 @@ function ChangePassword() {
 					oldPassword: oldPassword,
 				});
 				if (data.status === "success") {
-					localStorage.setItem("id", "");
+					localStorage.setItem("sessionId", "");
 					localStorage.setItem("username", "");
 					window.location.href = "/login";
 				} else {

@@ -11,10 +11,10 @@ function Account({ watchlist }: AccountDataProps) {
 	document.title = "Hexagon TV | Account";
 
 	const username = localStorage.getItem("username");
-	const id = localStorage.getItem("id");
+	const sessionId = localStorage.getItem("sessionId");
 
 	useEffect(() => {
-		if (username == null || id == null || id === "" || username === "") {
+		if (username == null || sessionId == null || sessionId === "" || username === "") {
 			window.location.href = "/login";
 		}
 	}, []);

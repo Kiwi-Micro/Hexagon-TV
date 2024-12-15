@@ -17,7 +17,7 @@ interface SearchResult {
 }
 
 function GlobalNavBar() {
-	const id = localStorage.getItem("id");
+	const sessionId = localStorage.getItem("sessionId");
 	const username = localStorage.getItem("username");
 	const [query, setQuery] = useState("");
 	const [isLogedIn, setIsLogedIn] = useState(false);
@@ -39,7 +39,7 @@ function GlobalNavBar() {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			if (id == null || username == null) {
+			if (sessionId == null || username == null || sessionId === "" || username === "") {
 				setIsLogedIn(false);
 			} else {
 				setIsLogedIn(true);

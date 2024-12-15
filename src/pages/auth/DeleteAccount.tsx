@@ -25,7 +25,7 @@ function DeleteAccount() {
 					passwordCheckSum: password,
 				});
 				if (data.status === "success") {
-					localStorage.setItem("id", "");
+					localStorage.setItem("sessionId", "");
 					localStorage.setItem("username", "");
 					window.location.href = "/";
 				} else {
