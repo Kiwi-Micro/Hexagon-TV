@@ -3,7 +3,7 @@ import { getJSONData, formatVideoAPIData } from "./utils/api";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Video } from "./utils/types";
-import { Index, VideoPage, VideoViewer, Search, Account, Login, Register, DeleteAccount, WipeData, Logout, ChangePassword, NotFound } from "./utils/pages";
+import { Index, VideoPage, VideoViewer, Search, Account, Register, Logout, ChangePassword, PasswordEntry, NotFound } from "./utils/pages";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
@@ -56,11 +56,11 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Index watchlist={watchlist} movies={movies} documentaries={documentaries} tvshows={tvshows} />} />
 						<Route path="/search" element={<Search />} />
-						<Route path="/login" element={<Login />} />
+						<Route path="/login" element={<PasswordEntry operationName="Login" operationURL="https://api.hexagon.kiwi-micro.com:8073/auth" operationFailMessage="There was an error logging you in! Please try again later." operationAPIType="post" isLogin={true} />} />
 						<Route path="/account" element={<Account watchlist={watchlist} />} />
 						<Route path="/register" element={<Register />} />
-						<Route path="/deleteAccount" element={<DeleteAccount />} />
-						<Route path="/wipeData" element={<WipeData />} />
+						<Route path="/deleteAccount" element={<PasswordEntry operationName="Delete Account" operationURL="https://api.hexagon.kiwi-micro.com:8073/delete" operationFailMessage="There was an error deleting your account! Please try again later." isDangerous={true} operationAPIType="delete" />} />
+						<Route path="/wipeData" element={<PasswordEntry operationName="Wipe Data" operationURL="https://api.hexagon.kiwi-micro.com:8073/wipe" operationFailMessage="There was an error wiping your data! Please try again later." isDangerous={true} operationAPIType="delete" />} />
 						<Route path="/logout" element={<Logout />} />
 						<Route path="/logoutAll" element={<Logout all={true} />} />
 						<Route path="/changePassword" element={<ChangePassword />} />

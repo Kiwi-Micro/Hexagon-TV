@@ -5,19 +5,19 @@ interface CustomBreakProps {
 }
 
 function CustomBreak({ height, hasHR = false, paddBothSides = false }: CustomBreakProps) {
-	let br = "";
+	let tags = "";
 	for (let i = 0; i < height; i++) {
-		br += "<br />";
+		tags += "<br />";
 	}
 	if (hasHR) {
-		br += "<hr />";
+		tags += "<hr />";
 	}
 	if (paddBothSides) {
 		for (let i = 0; i < height; i++) {
-			br += "<br />";
+			tags += "<br />";
 		}
 	}
-	return <span dangerouslySetInnerHTML={{ __html: br }}></span>;
+	return <span dangerouslySetInnerHTML={{ __html: tags }}></span>;
 }
 
 export default CustomBreak;
