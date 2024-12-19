@@ -48,6 +48,7 @@ function ChangePassword() {
 					setHasFailed(true);
 				}
 			} catch (error) {
+				console.log(error);
 				setFailureReason(
 					"There was an error changing your password (it has not been changed)! Please try again later. (client error)",
 				);

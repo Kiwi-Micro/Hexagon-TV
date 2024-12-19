@@ -30,6 +30,7 @@ async function addToWatchlist(
 		}
 		setIsInWatchlist(true);
 	} catch (error) {
+		console.log(error);
 		window.location.href = "/login";
 		return;
 	}
@@ -54,6 +55,7 @@ async function removeFromWatchlist(
 		}
 		setIsInWatchlist(false);
 	} catch (error) {
+		console.log(error);
 		window.location.href = "/login";
 		return;
 	}

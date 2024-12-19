@@ -85,6 +85,7 @@ function PasswordEntry({
 					setHasFailed(true);
 				}
 			} catch (error) {
+				console.log(error);
 				setFailureReason(operationFailMessage);
 				setHasFailed(true);
 			}

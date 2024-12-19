@@ -41,6 +41,7 @@ function Register() {
 					setHasFailed(true);
 				}
 			} catch (error) {
+				console.log(error);
 				setFailureReason(
 					"There was an error registering your account! Please try again later. (client error)",
 				);
