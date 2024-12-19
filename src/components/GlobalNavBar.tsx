@@ -27,7 +27,7 @@ function GlobalNavBar() {
 
 	useEffect(() => {
 		async function handleSearch(searchQuery: string) {
-			if (!query) return;
+			if (!searchQuery) return;
 			const data = await getJSONData(`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`);
 			setResults(data as SearchResult[]);
 		}
