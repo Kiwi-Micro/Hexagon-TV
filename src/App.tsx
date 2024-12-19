@@ -22,6 +22,7 @@ import {
 	PasswordEntry,
 	NotFound,
 } from "./utils/pages";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
@@ -119,6 +120,7 @@ function App() {
 
 	return (
 		<div>
+			<SpeedInsights />
 			<Router>
 				{loading ? (
 					<div
