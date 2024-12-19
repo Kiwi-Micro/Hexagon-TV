@@ -1,32 +1,75 @@
 import ReactDOM from "react-dom/client";
-import { getJSONData, formatVideoAPIData } from "./utils/api";
+import {
+	getJSONData,
+	formatVideoAPIData,
+} from "./utils/api";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+} from "react-router-dom";
 import { Video } from "./utils/types";
-import { Index, VideoPage, VideoViewer, Search, Account, Register, Logout, ChangePassword, PasswordEntry, NotFound } from "./utils/pages";
+import {
+	Index,
+	VideoPage,
+	VideoViewer,
+	Search,
+	Account,
+	Register,
+	Logout,
+	ChangePassword,
+	PasswordEntry,
+	NotFound,
+} from "./utils/pages";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
 import "./assets/account.css";
 
 function App() {
-	const username = localStorage.getItem("username");
-	const [watchlist, setWatchlistdb] = useState<Video[]>([]);
-	const [movies, setMoviesdb] = useState<Video[]>([]);
-	const [documentaries, setDocumentariesdb] = useState<Video[]>([]);
-	const [tvshows, setTvShowsdb] = useState<Video[]>([]);
+	const username =
+		localStorage.getItem("username");
+	const [watchlist, setWatchlistdb] = useState<
+		Video[]
+	>([]);
+	const [movies, setMoviesdb] = useState<Video[]>(
+		[],
+	);
+	const [documentaries, setDocumentariesdb] =
+		useState<Video[]>([]);
+	const [tvshows, setTvShowsdb] = useState<
+		Video[]
+	>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			let watchlistData: any = [];
 			if (username) {
-				watchlistData = formatVideoAPIData((await getJSONData(`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`)) || [{ id: "0" }]);
+				watchlistData = formatVideoAPIData(
+					(await getJSONData(
+						`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`,
+					)) || [{ id: "0" }],
+				);
 			}
 
-			const moviesData = formatVideoAPIData((await getJSONData("https://api.hexagon.kiwi-micro.com:8082/movies")) || [{ id: "0" }]);
-			const documentariesData = formatVideoAPIData((await getJSONData("https://api.hexagon.kiwi-micro.com:8082/documentaries")) || [{ id: "0" }]);
-			const tvshowsData = formatVideoAPIData((await getJSONData("https://api.hexagon.kiwi-micro.com:8082/tvshows")) || [{ id: "0" }]);
+			const moviesData = formatVideoAPIData(
+				(await getJSONData(
+					"https://api.hexagon.kiwi-micro.com:8082/movies",
+				)) || [{ id: "0" }],
+			);
+			const documentariesData =
+				formatVideoAPIData(
+					(await getJSONData(
+						"https://api.hexagon.kiwi-micro.com:8082/documentaries",
+					)) || [{ id: "0" }],
+				);
+			const tvshowsData = formatVideoAPIData(
+				(await getJSONData(
+					"https://api.hexagon.kiwi-micro.com:8082/tvshows",
+				)) || [{ id: "0" }],
+			);
 
 			setWatchlistdb(watchlistData);
 			setMoviesdb(moviesData);
@@ -38,39 +81,146 @@ function App() {
 		fetchData();
 	}, []);
 
-	function renderVideoRoutes(db: Video[], isViewer?: boolean) {
+	function renderVideoRoutes(
+		db: Video[],
+		isViewer?: boolean,
+	) {
 		if (isViewer) {
-			return db.map((video: Video) => <Route key={video.urlName} path={`/watch/${video.urlName}.html`} element={<VideoViewer key={video.urlName} name={video.name} videoURL={video.videoURL} previousPage={`/${video.urlName}.html`} />} />);
+			return db.map((video: Video) => (
+				<Route
+					key={video.urlName}
+					path={`/watch/${video.urlName}.html`}
+					element={
+						<VideoViewer
+							key={video.urlName}
+							name={video.name}
+							videoURL={video.videoURL}
+							previousPage={`/${video.urlName}.html`}
+						/>
+					}
+				/>
+			));
 		}
-		return db.map((video: Video) => <Route key={video.urlName} path={`/${video.urlName}.html`} element={<VideoPage key={video.urlName} videoInfo={video} db={db} watchlist={watchlist} />} />);
+		return db.map((video: Video) => (
+			<Route
+				key={video.urlName}
+				path={`/${video.urlName}.html`}
+				element={
+					<VideoPage
+						key={video.urlName}
+						videoInfo={video}
+						db={db}
+						watchlist={watchlist}
+					/>
+				}
+			/>
+		));
 	}
 
 	return (
 		<div>
 			<Router>
 				{loading ? (
-					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", width: "100vw" }}>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							justifyContent: "center",
+							height: "100vh",
+							width: "100vw",
+						}}
+					>
 						<h1>Loading...</h1>
 					</div>
 				) : (
 					<Routes>
-						<Route path="/" element={<Index watchlist={watchlist} movies={movies} documentaries={documentaries} tvshows={tvshows} />} />
-						<Route path="/search" element={<Search />} />
-						<Route path="/login" element={<PasswordEntry operationName="Login" operationURL="https://api.hexagon.kiwi-micro.com:8073/auth" operationFailMessage="There was an error logging you in! Please try again later." operationAPIType="post" isLogin={true} />} />
-						<Route path="/account" element={<Account watchlist={watchlist} />} />
-						<Route path="/register" element={<Register />} />
-						<Route path="/deleteAccount" element={<PasswordEntry operationName="Delete Account" operationURL="https://api.hexagon.kiwi-micro.com:8073/delete" operationFailMessage="There was an error deleting your account! Please try again later." isDangerous={true} operationAPIType="delete" />} />
-						<Route path="/wipeData" element={<PasswordEntry operationName="Wipe Data" operationURL="https://api.hexagon.kiwi-micro.com:8073/wipe" operationFailMessage="There was an error wiping your data! Please try again later." isDangerous={true} operationAPIType="delete" />} />
-						<Route path="/logout" element={<Logout />} />
-						<Route path="/logoutAll" element={<Logout all={true} />} />
-						<Route path="/changePassword" element={<ChangePassword />} />
+						<Route
+							path="/"
+							element={
+								<Index
+									watchlist={watchlist}
+									movies={movies}
+									documentaries={documentaries}
+									tvshows={tvshows}
+								/>
+							}
+						/>
+						<Route
+							path="/search"
+							element={<Search />}
+						/>
+						<Route
+							path="/login"
+							element={
+								<PasswordEntry
+									operationName="Login"
+									operationURL="https://api.hexagon.kiwi-micro.com:8073/auth"
+									operationFailMessage="There was an error logging you in! Please try again later."
+									operationAPIType="post"
+									isLogin={true}
+								/>
+							}
+						/>
+						<Route
+							path="/account"
+							element={
+								<Account watchlist={watchlist} />
+							}
+						/>
+						<Route
+							path="/register"
+							element={<Register />}
+						/>
+						<Route
+							path="/deleteAccount"
+							element={
+								<PasswordEntry
+									operationName="Delete Account"
+									operationURL="https://api.hexagon.kiwi-micro.com:8073/delete"
+									operationFailMessage="There was an error deleting your account! Please try again later."
+									isDangerous={true}
+									operationAPIType="delete"
+								/>
+							}
+						/>
+						<Route
+							path="/wipeData"
+							element={
+								<PasswordEntry
+									operationName="Wipe Data"
+									operationURL="https://api.hexagon.kiwi-micro.com:8073/wipe"
+									operationFailMessage="There was an error wiping your data! Please try again later."
+									isDangerous={true}
+									operationAPIType="delete"
+								/>
+							}
+						/>
+						<Route
+							path="/logout"
+							element={<Logout />}
+						/>
+						<Route
+							path="/logoutAll"
+							element={<Logout all={true} />}
+						/>
+						<Route
+							path="/changePassword"
+							element={<ChangePassword />}
+						/>
 						{renderVideoRoutes(movies)}
 						{renderVideoRoutes(movies, true)}
 						{renderVideoRoutes(documentaries)}
-						{renderVideoRoutes(documentaries, true)}
+						{renderVideoRoutes(
+							documentaries,
+							true,
+						)}
 						{renderVideoRoutes(tvshows)}
 						{renderVideoRoutes(tvshows, true)}
-						<Route path="/*" element={<NotFound />} />
+						<Route
+							path="/*"
+							element={<NotFound />}
+						/>
 					</Routes>
 				)}
 			</Router>
@@ -78,4 +228,6 @@ function App() {
 	);
 }
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(<App />);
+ReactDOM.createRoot(
+	document.getElementById("root") as HTMLElement,
+).render(<App />);

@@ -1,10 +1,29 @@
-import { postJSONData, deleteJSONData } from "./api";
+import {
+	postJSONData,
+	deleteJSONData,
+} from "./api";
 
-async function addToWatchlist(name: string, urlName: string, thumbnailURL: string, setIsInWatchlist: any) {
-	const username = localStorage.getItem("username") || "";
-	const sessionId = localStorage.getItem("sessionId") || "";
+async function addToWatchlist(
+	name: string,
+	urlName: string,
+	thumbnailURL: string,
+	setIsInWatchlist: any,
+) {
+	const username =
+		localStorage.getItem("username") || "";
+	const sessionId =
+		localStorage.getItem("sessionId") || "";
 	try {
-		const data = await postJSONData(`https://api.hexagon.kiwi-micro.com:8072/addToWatchlist`, { name, urlName, thumbnailURL, username, sessionId });
+		const data = await postJSONData(
+			`https://api.hexagon.kiwi-micro.com:8072/addToWatchlist`,
+			{
+				name,
+				urlName,
+				thumbnailURL,
+				username,
+				sessionId,
+			},
+		);
 		if (data.status !== "success") {
 			window.location.href = "/login";
 			return;
@@ -16,11 +35,19 @@ async function addToWatchlist(name: string, urlName: string, thumbnailURL: strin
 	}
 }
 
-async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
-	const username = localStorage.getItem("username") || "";
-	const sessionId = localStorage.getItem("sessionId") || "";
+async function removeFromWatchlist(
+	urlName: string,
+	setIsInWatchlist: any,
+) {
+	const username =
+		localStorage.getItem("username") || "";
+	const sessionId =
+		localStorage.getItem("sessionId") || "";
 	try {
-		const data = await deleteJSONData(`https://api.hexagon.kiwi-micro.com:8072/removeFromWatchlist`, { urlName, username, sessionId });
+		const data = await deleteJSONData(
+			`https://api.hexagon.kiwi-micro.com:8072/removeFromWatchlist`,
+			{ urlName, username, sessionId },
+		);
 		if (data.status !== "success") {
 			window.location.href = "/login";
 			return;

@@ -4,7 +4,11 @@ interface CustomBreakProps {
 	paddBothSides?: boolean;
 }
 
-function CustomBreak({ height, hasHR = false, paddBothSides = false }: CustomBreakProps) {
+function CustomBreak({
+	height,
+	hasHR = false,
+	paddBothSides = false,
+}: CustomBreakProps) {
 	let tags = "";
 	for (let i = 0; i < height; i++) {
 		tags += "<br />";
@@ -17,7 +21,11 @@ function CustomBreak({ height, hasHR = false, paddBothSides = false }: CustomBre
 			tags += "<br />";
 		}
 	}
-	return <span dangerouslySetInnerHTML={{ __html: tags }}></span>;
+	return (
+		<span
+			dangerouslySetInnerHTML={{ __html: tags }}
+		></span>
+	);
 }
 
 export default CustomBreak;

@@ -8,8 +8,10 @@ interface LogoutProps {
 function Logout({ all = false }: LogoutProps) {
 	document.title = "Hexagon TV | Logout";
 
-	const username = localStorage.getItem("username");
-	const sessionId = localStorage.getItem("sessionId");
+	const username =
+		localStorage.getItem("username");
+	const sessionId =
+		localStorage.getItem("sessionId");
 
 	if (username != null && sessionId != null) {
 		localStorage.setItem("sessionId", "");
@@ -18,7 +20,10 @@ function Logout({ all = false }: LogoutProps) {
 
 	useEffect(() => {
 		async function logOut() {
-			await postJSONData(`https://api.hexagon.kiwi-micro.com:8073/logout`, { username, sessionId, all });
+			await postJSONData(
+				`https://api.hexagon.kiwi-micro.com:8073/logout`,
+				{ username, sessionId, all },
+			);
 			setTimeout(() => {
 				window.location.href = "/";
 			}, 1000);
@@ -28,7 +33,17 @@ function Logout({ all = false }: LogoutProps) {
 	}, []);
 
 	return (
-		<div className="main" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", width: "100vw" }}>
+		<div
+			className="main"
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "center",
+				height: "100vh",
+				width: "100vw",
+			}}
+		>
 			<h1>Logging Out...</h1>
 		</div>
 	);
