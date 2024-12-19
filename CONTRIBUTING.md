@@ -47,7 +47,3 @@ async function getRating(ratingInfo) {
 	return ratingInfo ? ratingInfo.description : "Rating not found";
 }
 ```
-
-Commit Message:
-
-Update README add LICENSE and a Contributing Guide
