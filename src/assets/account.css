@@ -298,13 +298,6 @@
 	margin-bottom: 10px;
 }
 
-@media screen and (max-width: 825px) {
-	.dangerZoneItem {
-		flex-direction: column;
-		justify-content: space-between;
-	}
-}
-
 .dangerZoneItemButton {
 	background-color: #00000000;
 	color: #ffffff;
@@ -313,6 +306,18 @@
 	border-radius: 20px;
 	width: 150px;
 	cursor: pointer;
+}
+
+@media screen and (max-width: 825px) {
+	.dangerZoneItem {
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.dangerZoneItemButton {
+		margin-top: 10px;
+		width: 100%;
+	}
 }
 
 .accountPageVideosList {
