@@ -7,15 +7,11 @@ interface AccountDataProps {
 	watchlist: any;
 }
 
-function Account({
-	watchlist,
-}: AccountDataProps) {
+function Account({ watchlist }: AccountDataProps) {
 	document.title = "Hexagon TV | Account";
 
-	const username =
-		localStorage.getItem("username");
-	const sessionId =
-		localStorage.getItem("sessionId");
+	const username = localStorage.getItem("username");
+	const sessionId = localStorage.getItem("sessionId");
 
 	useEffect(() => {
 		if (
@@ -59,23 +55,14 @@ function Account({
 								flexDirection: "column",
 							}}
 						>
-							<h1 className="accountPageUserInfoHeader">
-								Settings
-							</h1>
-							<h3 className="accountPageUserInfoUsername">
-								{username}
-							</h3>
+							<h1 className="accountPageUserInfoHeader">Settings</h1>
+							<h3 className="accountPageUserInfoUsername">{username}</h3>
 						</div>
 					</div>
-					<div
-						id="videos"
-						className="homePageVideos"
-					>
+					<div id="videos" className="homePageVideos">
 						{watchlist.length > 0 ? (
 							<>
-								<h1 className="homePageVideosHeader">
-									Watchlist
-								</h1>
+								<h1 className="homePageVideosHeader">Watchlist</h1>
 								<div className="accountPageVideosList">
 									{renderVideoCard(watchlist)}
 								</div>
@@ -83,67 +70,49 @@ function Account({
 						) : null}
 					</div>
 					<div className="dangerZoneContainer">
-						<h2 className="dangerZoneHeader">
-							Danger Zone
-						</h2>
+						<h2 className="dangerZoneHeader">Danger Zone</h2>
 						<div className="dangerZone">
 							<div className="dangerZoneItem">
 								<div>
-									<h3 className="dangerZoneItemHeader">
-										Delete Account
-									</h3>
+									<h3 className="dangerZoneItemHeader">Delete Account</h3>
 									<p className="dangerZoneItemText">
-										This will delete your account
-										and all of your data. This
-										action cannot be undone.
+										This will delete your account and all of your data.
+										This action cannot be undone.
 									</p>
 								</div>
 								<button
 									className="dangerZoneItemButton"
-									onClick={() =>
-										(window.location.href =
-											"/deleteAccount")
-									}
+									onClick={() => (window.location.href = "/deleteAccount")}
 								>
 									Delete Account
 								</button>
 							</div>
 							<div className="dangerZoneItem">
 								<div>
-									<h3 className="dangerZoneItemHeader">
-										Wipe Data
-									</h3>
+									<h3 className="dangerZoneItemHeader">Wipe Data</h3>
 									<p className="dangerZoneItemText">
-										This will delete all of your
-										data. This action cannot be
-										undone.
+										This will delete all of your data. This action cannot
+										be undone.
 									</p>
 								</div>
 								<button
 									className="dangerZoneItemButton"
-									onClick={() =>
-										(window.location.href =
-											"/wipeData")
-									}
+									onClick={() => (window.location.href = "/wipeData")}
 								>
 									Wipe Data
 								</button>
 							</div>
 							<div className="dangerZoneItem">
 								<div>
-									<h3 className="dangerZoneItemHeader">
-										Change Password
-									</h3>
+									<h3 className="dangerZoneItemHeader">Change Password</h3>
 									<p className="dangerZoneItemText">
-										This will change your
-										password.
+										This will change your password.
 									</p>
 								</div>
 								<button
 									className="dangerZoneItemButton"
 									onClick={() =>
-										(window.location.href =
-											"/changePassword")
+										(window.location.href = "/changePassword")
 									}
 								>
 									Change Password
@@ -151,20 +120,14 @@ function Account({
 							</div>
 							<div className="dangerZoneItem">
 								<div>
-									<h3 className="dangerZoneItemHeader">
-										Log Out
-									</h3>
+									<h3 className="dangerZoneItemHeader">Log Out</h3>
 									<p className="dangerZoneItemText">
-										This will log you out of your
-										account.
+										This will log you out of your account.
 									</p>
 								</div>
 								<button
 									className="dangerZoneItemButton"
-									onClick={() =>
-										(window.location.href =
-											"/logout")
-									}
+									onClick={() => (window.location.href = "/logout")}
 								>
 									Log Out
 								</button>
@@ -175,17 +138,13 @@ function Account({
 										Log Out All Devices
 									</h3>
 									<p className="dangerZoneItemText">
-										This will log you out of all
-										devices. This action cannot be
-										undone.
+										This will log you out of all devices. This action
+										cannot be undone.
 									</p>
 								</div>
 								<button
 									className="dangerZoneItemButton"
-									onClick={() =>
-										(window.location.href =
-											"/logoutAll")
-									}
+									onClick={() => (window.location.href = "/logoutAll")}
 								>
 									Log Out All Devices
 								</button>

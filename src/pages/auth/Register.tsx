@@ -8,21 +8,16 @@ function Register() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
-	const [hasFailed, setHasFailed] =
-		useState(false);
-	const [failureReason, setFailureReason] =
-		useState("");
-	const [isVisible, setIsVisible] =
-		useState(false);
+	const [hasFailed, setHasFailed] = useState(false);
+	const [failureReason, setFailureReason] = useState("");
+	const [isVisible, setIsVisible] = useState(false);
 	document.title = "Hexagon TV | Register";
 
 	function handleLogin() {
 		async function getId() {
 			if (!username || !password || !email) {
 				setHasFailed(true);
-				setFailureReason(
-					"Please fill in all fields!",
-				);
+				setFailureReason("Please fill in all fields!");
 				return;
 			}
 			try {
@@ -57,20 +52,14 @@ function Register() {
 			<GlobalNavBar />
 			<div className="registerPage">
 				<div className="registerPageDiv">
-					<p className="registerPageHeader">
-						Register
-					</p>
+					<p className="registerPageHeader">Register</p>
 					<div
-						className="hasFailed"
+						className="failMessage"
 						style={{
-							display: hasFailed
-								? "block"
-								: "none",
+							display: hasFailed ? "block" : "none",
 						}}
 					>
-						{hasFailed && (
-							<h4>{failureReason}</h4>
-						)}
+						{hasFailed && <h4>{failureReason}</h4>}
 					</div>
 					<div className="registerPageForm">
 						<input
@@ -78,18 +67,14 @@ function Register() {
 							placeholder="Email"
 							className="registerPageFormInput"
 							value={email}
-							onChange={(e) =>
-								setEmail(e.target.value)
-							}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<input
 							type="text"
 							placeholder="Username"
 							className="registerPageFormInput"
 							value={username}
-							onChange={(e) =>
-								setUsername(e.target.value)
-							}
+							onChange={(e) => setUsername(e.target.value)}
 						/>
 						<PasswordBox
 							isVisible={isVisible}

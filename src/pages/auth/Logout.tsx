@@ -8,10 +8,8 @@ interface LogoutProps {
 function Logout({ all = false }: LogoutProps) {
 	document.title = "Hexagon TV | Logout";
 
-	const username =
-		localStorage.getItem("username");
-	const sessionId =
-		localStorage.getItem("sessionId");
+	const username = localStorage.getItem("username");
+	const sessionId = localStorage.getItem("sessionId");
 
 	if (username != null && sessionId != null) {
 		localStorage.setItem("sessionId", "");

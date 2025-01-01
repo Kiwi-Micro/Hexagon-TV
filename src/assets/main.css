@@ -21,7 +21,7 @@ html {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	scroll-behavior: smooth;
-	font-family: Helvetica, Helvetica, Arial, sans-serif;
+	font-family: "Ubuntu", sans-serif;
 }
 
 body {
@@ -62,6 +62,36 @@ footer {
 
 @media screen and (max-width: 400px) {
 	.hasFailed {
+		width: calc(100% - 55px);
+	}
+}
+
+.successMessage {
+	background-color: #00ff0086;
+	border: #00ff00 2px solid;
+}
+
+.failMessage {
+	background-color: #ff000086;
+	border: #ff0000 2px solid;
+}
+
+.failMessage,
+.successMessage {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+	max-width: 100%;
+	width: 290px;
+	color: #ffffff;
+}
+
+@media screen and (max-width: 400px) {
+	.failMessage,
+	.successMessage {
 		width: calc(100% - 55px);
 	}
 }
@@ -183,7 +213,12 @@ footer {
 		backdrop-filter: blur(10px) saturate(1);
 		border-radius: 0;
 		padding: 10px;
-		background: linear-gradient(to bottom, #00000000 0%, #00000070 30%, #000000b3 100%);
+		background: linear-gradient(
+			to bottom,
+			#00000000 0%,
+			#00000070 30%,
+			#000000b3 100%
+		);
 	}
 }
 

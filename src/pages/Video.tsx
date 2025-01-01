@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-	addToWatchlist,
-	removeFromWatchlist,
-} from "../utils/watchlist";
+import { addToWatchlist, removeFromWatchlist } from "../utils/watchlist";
 import { Video as VideoInfo } from "../utils/types";
 import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
@@ -16,11 +13,7 @@ interface ProductProps {
 	watchlist: any;
 }
 
-function Video({
-	videoInfo,
-	db,
-	watchlist,
-}: ProductProps) {
+function Video({ videoInfo, db, watchlist }: ProductProps) {
 	const ratings = [
 		{
 			rating: "G",
@@ -28,32 +21,24 @@ function Video({
 		},
 		{
 			rating: "PG",
-			description:
-				"Some material may not be suitable for children",
+			description: "Some material may not be suitable for children",
 		},
 		{
 			rating: "CTC",
-			description:
-				"Check the classification closer to its release date",
+			description: "Check the classification closer to its release date",
 		},
 	];
-	const [isInWatchlist, setIsInWatchlist] =
-		useState(false);
+	const [isInWatchlist, setIsInWatchlist] = useState(false);
 	useEffect(() => {
 		const isInWatchlist = watchlist.find(
-			(item: any) =>
-				item.urlName === videoInfo.urlName,
+			(item: any) => item.urlName === videoInfo.urlName,
 		);
-		setIsInWatchlist(
-			isInWatchlist ? true : false,
-		);
+		setIsInWatchlist(isInWatchlist ? true : false);
 	}, []);
 
-	document.title =
-		"Hexagon TV | " + videoInfo.name;
+	document.title = "Hexagon TV | " + videoInfo.name;
 	const ratingInfo = ratings.find(
-		(item: any) =>
-			item.rating === videoInfo.rating,
+		(item: any) => item.rating === videoInfo.rating,
 	);
 	return (
 		<div className="main">
@@ -86,10 +71,7 @@ function Video({
 							}}
 							xmlns="http://www.w3.org/2000/svg"
 							onClick={() =>
-								removeFromWatchlist(
-									videoInfo.urlName,
-									setIsInWatchlist,
-								)
+								removeFromWatchlist(videoInfo.urlName, setIsInWatchlist)
 							}
 						>
 							<path d="M8 15.15c3.911 0 7.15-3.246 7.15-7.15 0-3.911-3.246-7.15-7.157-7.15C4.089.85.85 4.089.85 8c0 3.904 3.246 7.15 7.15 7.15zm0-1.192A5.93 5.93 0 012.049 8a5.924 5.924 0 015.944-5.958A5.946 5.946 0 0113.958 8 5.931 5.931 0 018 13.958zM5.245 8.596h5.503c.392 0 .659-.203.659-.575 0-.378-.253-.596-.66-.596H5.246c-.407 0-.666.218-.666.596 0 .372.274.575.666.575z" />
@@ -122,9 +104,7 @@ function Video({
 				<div className="homePageHeroBlur" />
 			</div>
 			<CustomBreak height={1} />
-			<h1 className="homePageVideosHeader">
-				More In This Category
-			</h1>
+			<h1 className="homePageVideosHeader">More In This Category</h1>
 			<div className="homePageVideosList">
 				{db
 					.slice()
@@ -142,9 +122,7 @@ function Video({
 			</div>
 			<div style={{ backgroundColor: "#101112" }}>
 				<CustomBreak height={1} />
-				<h2 className="homePageVideosHeader">
-					About
-				</h2>
+				<h2 className="homePageVideosHeader">About</h2>
 				<div className="homePageVideosList">
 					<div className="aboutVideoItem">
 						<h3>{videoInfo.name}</h3>
@@ -154,9 +132,7 @@ function Video({
 						<h3>{videoInfo.name} Age Rating:</h3>
 						<h4>{videoInfo.rating}</h4>
 						<p>
-							{ratingInfo
-								? ratingInfo.description
-								: "Rating not found"}
+							{ratingInfo ? ratingInfo.description : "Rating not found"}
 						</p>
 					</div>
 				</div>

@@ -4,22 +4,15 @@ async function getJSONData(url: string) {
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {
-			throw new Error(
-				`HTTP error! Status: ${response.status}`,
-			);
+			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
 		return await response.json();
 	} catch (error) {
-		throw new Error(
-			`Failed to fetch data: ${error}`,
-		);
+		throw new Error(`Failed to fetch data: ${error}`);
 	}
 }
 
-async function postJSONData(
-	url: string,
-	data: any,
-) {
+async function postJSONData(url: string, data: any) {
 	try {
 		const response = await fetch(url, {
 			method: "POST",
@@ -29,22 +22,15 @@ async function postJSONData(
 			body: JSON.stringify(data),
 		});
 		if (!response.ok) {
-			throw new Error(
-				`HTTP error! Status: ${response.status}`,
-			);
+			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
 		return await response.json();
 	} catch (error) {
-		throw new Error(
-			`Failed to post data: ${error}`,
-		);
+		throw new Error(`Failed to post data: ${error}`);
 	}
 }
 
-async function deleteJSONData(
-	url: string,
-	data: any,
-) {
+async function deleteJSONData(url: string, data: any) {
 	try {
 		const response = await fetch(url, {
 			method: "DELETE",
@@ -54,22 +40,15 @@ async function deleteJSONData(
 			body: JSON.stringify(data),
 		});
 		if (!response.ok) {
-			throw new Error(
-				`HTTP error! Status: ${response.status}`,
-			);
+			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
 		return await response.json();
 	} catch (error) {
-		throw new Error(
-			`Failed to delete data: ${error}`,
-		);
+		throw new Error(`Failed to delete data: ${error}`);
 	}
 }
 
-async function patchJSONData(
-	url: string,
-	data: any,
-) {
+async function patchJSONData(url: string, data: any) {
 	try {
 		const response = await fetch(url, {
 			method: "PATCH",
@@ -79,15 +58,11 @@ async function patchJSONData(
 			body: JSON.stringify(data),
 		});
 		if (!response.ok) {
-			throw new Error(
-				`HTTP error! Status: ${response.status}`,
-			);
+			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
 		return await response.json();
 	} catch (error) {
-		throw new Error(
-			`Failed to patch data: ${error}`,
-		);
+		throw new Error(`Failed to patch data: ${error}`);
 	}
 }
 
@@ -105,11 +80,7 @@ function formatVideoAPIData(db: Video[]) {
 	}));
 }
 
-function callAPI(
-	url: string,
-	data: any,
-	type?: string,
-) {
+function callAPI(url: string, data: any, type?: string) {
 	if (type === "post") {
 		return postJSONData(url, data);
 	} else if (type === "patch") {

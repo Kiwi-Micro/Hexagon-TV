@@ -23,32 +23,22 @@ function PasswordEntry({
 }: PasswordEntryProps) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [hasFailed, setHasFailed] =
-		useState(false);
-	const [failureReason, setFailureReason] =
-		useState("");
-	const [isVisible, setIsVisible] =
-		useState(false);
-	document.title =
-		"Hexagon TV | " + operationName;
+	const [hasFailed, setHasFailed] = useState(false);
+	const [failureReason, setFailureReason] = useState("");
+	const [isVisible, setIsVisible] = useState(false);
+	document.title = "Hexagon TV | " + operationName;
 
 	function handleDeleteAccount() {
 		async function getId() {
 			if (!username || !password) {
 				setHasFailed(true);
-				setFailureReason(
-					"Please fill in all fields!",
-				);
+				setFailureReason("Please fill in all fields!");
 				return;
 			}
 
-			const loggedInUsername =
-				localStorage.getItem("username");
+			const loggedInUsername = localStorage.getItem("username");
 
-			if (
-				username != loggedInUsername &&
-				isDangerous
-			) {
+			if (username != loggedInUsername && isDangerous) {
 				setHasFailed(true);
 				setFailureReason(
 					"Please Enter The Username That You Are Loged In With!",
@@ -67,14 +57,8 @@ function PasswordEntry({
 				);
 				if (data.status === "success") {
 					if (isLogin) {
-						localStorage.setItem(
-							"sessionId",
-							data.sessionId,
-						);
-						localStorage.setItem(
-							"username",
-							username,
-						);
+						localStorage.setItem("sessionId", data.sessionId);
+						localStorage.setItem("username", username);
 					} else {
 						localStorage.setItem("sessionId", "");
 						localStorage.setItem("username", "");
@@ -97,60 +81,34 @@ function PasswordEntry({
 	return (
 		<div className="main">
 			<GlobalNavBar />
-			<div
-				className={
-					isDangerous
-						? "warningPage"
-						: "loginPage"
-				}
-			>
-				<div
-					className={
-						isDangerous
-							? "warningPageDiv"
-							: "loginPageDiv"
-					}
-				>
+			<div className={isDangerous ? "warningPage" : "loginPage"}>
+				<div className={isDangerous ? "warningPageDiv" : "loginPageDiv"}>
 					<p
 						className={
-							isDangerous
-								? "warningPageHeader"
-								: "loginPageHeader"
+							isDangerous ? "warningPageHeader" : "loginPageHeader"
 						}
 					>
 						{operationName}
 					</p>
 					<div
-						className="hasFailed"
+						className="failMessage"
 						style={{
-							display: hasFailed
-								? "block"
-								: "none",
+							display: hasFailed ? "block" : "none",
 						}}
 					>
-						{hasFailed && (
-							<h4>{failureReason}</h4>
-						)}
+						{hasFailed && <h4>{failureReason}</h4>}
 					</div>
 					<div
-						className={
-							isDangerous
-								? "warningPageForm"
-								: "loginPageForm"
-						}
+						className={isDangerous ? "warningPageForm" : "loginPageForm"}
 					>
 						<input
 							type="text"
 							placeholder="Username"
 							className={
-								isDangerous
-									? "warningPageFormInput"
-									: "loginPageFormInput"
+								isDangerous ? "warningPageFormInput" : "loginPageFormInput"
 							}
 							value={username}
-							onChange={(e) =>
-								setUsername(e.target.value)
-							}
+							onChange={(e) => setUsername(e.target.value)}
 						/>
 						<PasswordBox
 							isVisible={isVisible}
@@ -164,9 +122,7 @@ function PasswordEntry({
 									? "warningPageFormButton"
 									: "loginPageFormButton"
 							}
-							onClick={() =>
-								handleDeleteAccount()
-							}
+							onClick={() => handleDeleteAccount()}
 						>
 							{operationName}
 						</button>

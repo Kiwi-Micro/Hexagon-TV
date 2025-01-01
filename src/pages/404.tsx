@@ -19,12 +19,7 @@ function NotFound() {
 					width: "100vw",
 				}}
 			>
-				<img
-					src={logo}
-					width="200px"
-					height="200px"
-					alt="Logo"
-				/>
+				<img src={logo} width="200px" height="200px" alt="Logo" />
 				<h1
 					style={{
 						fontSize: "4rem",
@@ -35,9 +30,7 @@ function NotFound() {
 				>
 					404
 				</h1>
-				<h3 style={{ textAlign: "center" }}>
-					Page Not Found
-				</h3>
+				<h3 style={{ textAlign: "center" }}>Page Not Found</h3>
 			</div>
 			<GlobalFooter />
 		</div>

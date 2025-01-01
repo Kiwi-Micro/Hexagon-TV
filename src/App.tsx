@@ -1,14 +1,7 @@
 import ReactDOM from "react-dom/client";
-import {
-	getJSONData,
-	formatVideoAPIData,
-} from "./utils/api";
+import { getJSONData, formatVideoAPIData } from "./utils/api";
 import { useEffect, useState } from "react";
-import {
-	BrowserRouter as Router,
-	Route,
-	Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Video } from "./utils/types";
 import {
 	Index,
@@ -29,19 +22,11 @@ import "./assets/video.css";
 import "./assets/account.css";
 
 function App() {
-	const username =
-		localStorage.getItem("username");
-	const [watchlist, setWatchlistdb] = useState<
-		Video[]
-	>([]);
-	const [movies, setMoviesdb] = useState<Video[]>(
-		[],
-	);
-	const [documentaries, setDocumentariesdb] =
-		useState<Video[]>([]);
-	const [tvshows, setTvShowsdb] = useState<
-		Video[]
-	>([]);
+	const username = localStorage.getItem("username");
+	const [watchlist, setWatchlistdb] = useState<Video[]>([]);
+	const [movies, setMoviesdb] = useState<Video[]>([]);
+	const [documentaries, setDocumentariesdb] = useState<Video[]>([]);
+	const [tvshows, setTvShowsdb] = useState<Video[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -60,12 +45,11 @@ function App() {
 					"https://api.hexagon.kiwi-micro.com:8082/movies",
 				)) || [{ id: "0" }],
 			);
-			const documentariesData =
-				formatVideoAPIData(
-					(await getJSONData(
-						"https://api.hexagon.kiwi-micro.com:8082/documentaries",
-					)) || [{ id: "0" }],
-				);
+			const documentariesData = formatVideoAPIData(
+				(await getJSONData(
+					"https://api.hexagon.kiwi-micro.com:8082/documentaries",
+				)) || [{ id: "0" }],
+			);
 			const tvshowsData = formatVideoAPIData(
 				(await getJSONData(
 					"https://api.hexagon.kiwi-micro.com:8082/tvshows",
@@ -82,10 +66,7 @@ function App() {
 		fetchData();
 	}, []);
 
-	function renderVideoRoutes(
-		db: Video[],
-		isViewer?: boolean,
-	) {
+	function renderVideoRoutes(db: Video[], isViewer?: boolean) {
 		if (isViewer) {
 			return db.map((video: Video) => (
 				<Route
@@ -148,10 +129,7 @@ function App() {
 								/>
 							}
 						/>
-						<Route
-							path="/search"
-							element={<Search />}
-						/>
+						<Route path="/search" element={<Search />} />
 						<Route
 							path="/login"
 							element={
@@ -166,14 +144,9 @@ function App() {
 						/>
 						<Route
 							path="/account"
-							element={
-								<Account watchlist={watchlist} />
-							}
+							element={<Account watchlist={watchlist} />}
 						/>
-						<Route
-							path="/register"
-							element={<Register />}
-						/>
+						<Route path="/register" element={<Register />} />
 						<Route
 							path="/deleteAccount"
 							element={
@@ -198,31 +171,16 @@ function App() {
 								/>
 							}
 						/>
-						<Route
-							path="/logout"
-							element={<Logout />}
-						/>
-						<Route
-							path="/logoutAll"
-							element={<Logout all={true} />}
-						/>
-						<Route
-							path="/changePassword"
-							element={<ChangePassword />}
-						/>
+						<Route path="/logout" element={<Logout />} />
+						<Route path="/logoutAll" element={<Logout all={true} />} />
+						<Route path="/changePassword" element={<ChangePassword />} />
 						{renderVideoRoutes(movies)}
 						{renderVideoRoutes(movies, true)}
 						{renderVideoRoutes(documentaries)}
-						{renderVideoRoutes(
-							documentaries,
-							true,
-						)}
+						{renderVideoRoutes(documentaries, true)}
 						{renderVideoRoutes(tvshows)}
 						{renderVideoRoutes(tvshows, true)}
-						<Route
-							path="/*"
-							element={<NotFound />}
-						/>
+						<Route path="/*" element={<NotFound />} />
 					</Routes>
 				)}
 			</Router>
@@ -230,6 +188,6 @@ function App() {
 	);
 }
 
-ReactDOM.createRoot(
-	document.getElementById("root") as HTMLElement,
-).render(<App />);
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+	<App />,
+);

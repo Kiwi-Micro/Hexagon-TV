@@ -1,7 +1,4 @@
-import {
-	postJSONData,
-	deleteJSONData,
-} from "./api";
+import { postJSONData, deleteJSONData } from "./api";
 
 async function addToWatchlist(
 	name: string,
@@ -9,10 +6,8 @@ async function addToWatchlist(
 	thumbnailURL: string,
 	setIsInWatchlist: any,
 ) {
-	const username =
-		localStorage.getItem("username") || "";
-	const sessionId =
-		localStorage.getItem("sessionId") || "";
+	const username = localStorage.getItem("username") || "";
+	const sessionId = localStorage.getItem("sessionId") || "";
 	try {
 		const data = await postJSONData(
 			`https://api.hexagon.kiwi-micro.com:8072/addToWatchlist`,
@@ -40,10 +35,8 @@ async function removeFromWatchlist(
 	urlName: string,
 	setIsInWatchlist: any,
 ) {
-	const username =
-		localStorage.getItem("username") || "";
-	const sessionId =
-		localStorage.getItem("sessionId") || "";
+	const username = localStorage.getItem("username") || "";
+	const sessionId = localStorage.getItem("sessionId") || "";
 	try {
 		const data = await deleteJSONData(
 			`https://api.hexagon.kiwi-micro.com:8072/removeFromWatchlist`,

@@ -9,14 +9,14 @@ nav {
 	width: 100vw;
 	height: 45px;
 	background: #1c1d1f;
-	border-bottom: solid 2px #47494d;
+	border-bottom: solid 2px #2a2b2c;
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;
 	box-sizing: border-box;
 }
 
-nav ul {
+.navLinkList {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -29,10 +29,6 @@ nav ul {
 	justify-content: center;
 	color: #ebebeb;
 	text-decoration: none;
-}
-
-.navLink img {
-	height: 40px;
 }
 
 .navSearchVideosList {

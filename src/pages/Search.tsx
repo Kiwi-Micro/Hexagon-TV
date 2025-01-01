@@ -18,12 +18,8 @@ interface SearchResult {
 
 function Search() {
 	const [query, setQuery] = useState("");
-	const [results, setResults] = useState<
-		SearchResult[]
-	>([]);
-	const urlParams = new URLSearchParams(
-		window.location.search,
-	);
+	const [results, setResults] = useState<SearchResult[]>([]);
+	const urlParams = new URLSearchParams(window.location.search);
 	const queryParam = urlParams.get("query");
 
 	useEffect(() => {
@@ -37,9 +33,7 @@ function Search() {
 		handleSearch(query);
 	}, [query]);
 
-	async function handleSearch(
-		searchQuery: string,
-	) {
+	async function handleSearch(searchQuery: string) {
 		if (!query) return;
 		const data = await getJSONData(
 			`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`,
@@ -51,10 +45,7 @@ function Search() {
 		<div>
 			<GlobalNavBar />
 			<CustomBreak height={3} />
-			<div
-				className="searchBar"
-				style={{ marginInline: "auto" }}
-			>
+			<div className="searchBar" style={{ marginInline: "auto" }}>
 				<svg
 					height="24"
 					viewBox="0 0 64 64"
@@ -66,9 +57,7 @@ function Search() {
 				<input
 					type="text"
 					value={query}
-					onChange={(e) =>
-						setQuery(e.target.value)
-					}
+					onChange={(e) => setQuery(e.target.value)}
 					placeholder="Search"
 				/>
 			</div>

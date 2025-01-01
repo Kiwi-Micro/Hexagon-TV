@@ -21,11 +21,7 @@ function CustomBreak({
 			tags += "<br />";
 		}
 	}
-	return (
-		<span
-			dangerouslySetInnerHTML={{ __html: tags }}
-		></span>
-	);
+	return <span dangerouslySetInnerHTML={{ __html: tags }}></span>;
 }
 
 export default CustomBreak;

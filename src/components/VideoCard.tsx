@@ -15,15 +15,9 @@ function videoCard({
 		return (
 			<div
 				className="searchCard"
-				onClick={() =>
-					(window.location.href = videoLink)
-				}
+				onClick={() => (window.location.href = videoLink)}
 			>
-				<img
-					src={thumbnailURL}
-					draggable="false"
-					alt={name}
-				/>
+				<img src={thumbnailURL} draggable="false" alt={name} />
 				<h2>{name}</h2>
 			</div>
 		);
@@ -31,15 +25,9 @@ function videoCard({
 	return (
 		<div
 			className="card"
-			onClick={() =>
-				(window.location.href = videoLink)
-			}
+			onClick={() => (window.location.href = videoLink)}
 		>
-			<img
-				src={thumbnailURL}
-				draggable="false"
-				alt={name}
-			/>
+			<img src={thumbnailURL} draggable="false" alt={name} />
 			<h3>{name}</h3>
 		</div>
 	);

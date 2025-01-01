@@ -21,20 +21,13 @@ function renderVideoCard(db: any) {
 		});
 }
 
-function VideoCarousel({
-	db,
-	title,
-}: VideoCarouselProps) {
+function VideoCarousel({ db, title }: VideoCarouselProps) {
 	return (
 		<div>
 			{db.length > 0 && db[0].id !== "0" ? (
 				<>
-					<h1 className="homePageVideosHeader">
-						{title}
-					</h1>
-					<div className="homePageVideosList">
-						{renderVideoCard(db)}
-					</div>
+					<h1 className="homePageVideosHeader">{title}</h1>
+					<div className="homePageVideosList">{renderVideoCard(db)}</div>
 				</>
 			) : null}
 		</div>
