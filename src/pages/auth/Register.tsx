@@ -22,7 +22,7 @@ function Register() {
 			}
 			try {
 				const data = await postJSONData(
-					`https://api.hexagon.kiwi-micro.com:8073/register`,
+					`https://api.hexagon.kiwi-micro.com:8081/register`,
 					{
 						username: username,
 						passwordCheckSum: password,

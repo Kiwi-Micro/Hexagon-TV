@@ -23,7 +23,7 @@ function ChangePassword() {
 			try {
 				const username = localStorage.getItem("username");
 				const data = await patchJSONData(
-					`https://api.hexagon.kiwi-micro.com:8073/changePassword`,
+					`https://api.hexagon.kiwi-micro.com:8081/changePassword`,
 					{
 						username: username,
 						newPassword: newPassword,

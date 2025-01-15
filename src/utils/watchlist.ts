@@ -10,7 +10,7 @@ async function addToWatchlist(
 	const sessionId = localStorage.getItem("sessionId") || "";
 	try {
 		const data = await postJSONData(
-			`https://api.hexagon.kiwi-micro.com:8072/addToWatchlist`,
+			`https://api.hexagon.kiwi-micro.com:8080/userAPI/addToWatchlist`,
 			{
 				name,
 				urlName,
@@ -39,7 +39,7 @@ async function removeFromWatchlist(
 	const sessionId = localStorage.getItem("sessionId") || "";
 	try {
 		const data = await deleteJSONData(
-			`https://api.hexagon.kiwi-micro.com:8072/removeFromWatchlist`,
+			`https://api.hexagon.kiwi-micro.com:8080/userAPI/removeFromWatchlist`,
 			{ urlName, username, sessionId },
 		);
 		if (data.status !== "success") {

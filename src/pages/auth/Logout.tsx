@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { postJSONData } from "../../utils/api";
+import { deleteJSONData } from "../../utils/api";
 
 interface LogoutProps {
 	all?: boolean;
@@ -18,8 +18,8 @@ function Logout({ all = false }: LogoutProps) {
 
 	useEffect(() => {
 		async function logOut() {
-			await postJSONData(
-				`https://api.hexagon.kiwi-micro.com:8073/logout`,
+			await deleteJSONData(
+				`https://api.hexagon.kiwi-micro.com:8080/userAPI/logout`,
 				{ username, sessionId, all },
 			);
 			setTimeout(() => {

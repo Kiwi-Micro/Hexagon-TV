@@ -36,7 +36,7 @@ function Search() {
 	async function handleSearch(searchQuery: string) {
 		if (!query) return;
 		const data = await getJSONData(
-			`https://api.hexagon.kiwi-micro.com:8082/search?query=${searchQuery}`,
+			`https://api.hexagon.kiwi-micro.com:8080/videoAPI/search?query=${searchQuery}`,
 		);
 		setResults(data as SearchResult[]);
 	}

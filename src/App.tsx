@@ -35,24 +35,25 @@ function App() {
 			if (username) {
 				watchlistData = formatVideoAPIData(
 					(await getJSONData(
-						`https://api.hexagon.kiwi-micro.com:8072/getWatchlist?username=${username}`,
+						"https://api.hexagon.kiwi-micro.com:8080/userAPI/getWatchlist?username=" +
+							username,
 					)) || [{ id: "0" }],
 				);
 			}
 
 			const moviesData = formatVideoAPIData(
 				(await getJSONData(
-					"https://api.hexagon.kiwi-micro.com:8082/movies",
+					"https://api.hexagon.kiwi-micro.com:8080/videoAPI/movies",
 				)) || [{ id: "0" }],
 			);
 			const documentariesData = formatVideoAPIData(
 				(await getJSONData(
-					"https://api.hexagon.kiwi-micro.com:8082/documentaries",
+					"https://api.hexagon.kiwi-micro.com:8080/videoAPI/documentaries",
 				)) || [{ id: "0" }],
 			);
 			const tvshowsData = formatVideoAPIData(
 				(await getJSONData(
-					"https://api.hexagon.kiwi-micro.com:8082/tvshows",
+					"https://api.hexagon.kiwi-micro.com:8080/videoAPI/tvshows",
 				)) || [{ id: "0" }],
 			);
 
@@ -135,7 +136,7 @@ function App() {
 							element={
 								<PasswordEntry
 									operationName="Login"
-									operationURL="https://api.hexagon.kiwi-micro.com:8073/auth"
+									operationURL="http://api.hexagon.kiwi-micro.com:8071/auth"
 									operationFailMessage="There was an error logging you in! Please try again later."
 									operationAPIType="post"
 									isLogin={true}
@@ -152,7 +153,7 @@ function App() {
 							element={
 								<PasswordEntry
 									operationName="Delete Account"
-									operationURL="https://api.hexagon.kiwi-micro.com:8073/delete"
+									operationURL="https://api.hexagon.kiwi-micro.com:8081/delete"
 									operationFailMessage="There was an error deleting your account! Please try again later."
 									isDangerous={true}
 									operationAPIType="delete"
@@ -164,7 +165,7 @@ function App() {
 							element={
 								<PasswordEntry
 									operationName="Wipe Data"
-									operationURL="https://api.hexagon.kiwi-micro.com:8073/wipe"
+									operationURL="https://api.hexagon.kiwi-micro.com:8081/wipe"
 									operationFailMessage="There was an error wiping your data! Please try again later."
 									isDangerous={true}
 									operationAPIType="delete"
