@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom/client";
 import { getJSONData, formatVideoAPIData } from "./utils/api";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -8,21 +7,19 @@ import {
 	VideoPage,
 	VideoViewer,
 	Search,
-	Account,
-	Register,
-	Logout,
-	ChangePassword,
-	PasswordEntry,
 	NotFound,
+	SignIn,
+	SignUp,
 } from "./utils/pages";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import setUserInfo from "./utils/userInfo";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
 import "./assets/account.css";
 
 function App() {
-	const username = localStorage.getItem("username");
+	setUserInfo();
 	const [watchlist, setWatchlistdb] = useState<Video[]>([]);
 	const [movies, setMoviesdb] = useState<Video[]>([]);
 	const [documentaries, setDocumentariesdb] = useState<Video[]>([]);
@@ -31,6 +28,7 @@ function App() {
 
 	useEffect(() => {
 		const fetchData = async () => {
+			const username = localStorage.getItem("username");
 			let watchlistData: any = [];
 			if (username) {
 				watchlistData = formatVideoAPIData(
@@ -131,50 +129,8 @@ function App() {
 							}
 						/>
 						<Route path="/search" element={<Search />} />
-						<Route
-							path="/login"
-							element={
-								<PasswordEntry
-									operationName="Login"
-									operationURL="http://api.hexagon.kiwi-micro.com:8071/auth"
-									operationFailMessage="There was an error logging you in! Please try again later."
-									operationAPIType="post"
-									isLogin={true}
-								/>
-							}
-						/>
-						<Route
-							path="/account"
-							element={<Account watchlist={watchlist} />}
-						/>
-						<Route path="/register" element={<Register />} />
-						<Route
-							path="/deleteAccount"
-							element={
-								<PasswordEntry
-									operationName="Delete Account"
-									operationURL="https://api.hexagon.kiwi-micro.com:8081/delete"
-									operationFailMessage="There was an error deleting your account! Please try again later."
-									isDangerous={true}
-									operationAPIType="delete"
-								/>
-							}
-						/>
-						<Route
-							path="/wipeData"
-							element={
-								<PasswordEntry
-									operationName="Wipe Data"
-									operationURL="https://api.hexagon.kiwi-micro.com:8081/wipe"
-									operationFailMessage="There was an error wiping your data! Please try again later."
-									isDangerous={true}
-									operationAPIType="delete"
-								/>
-							}
-						/>
-						<Route path="/logout" element={<Logout />} />
-						<Route path="/logoutAll" element={<Logout all={true} />} />
-						<Route path="/changePassword" element={<ChangePassword />} />
+						<Route path="/login" element={<SignIn />} />
+						<Route path="/signup" element={<SignUp />} />
 						{renderVideoRoutes(movies)}
 						{renderVideoRoutes(movies, true)}
 						{renderVideoRoutes(documentaries)}
@@ -189,6 +145,4 @@ function App() {
 	);
 }
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<App />,
-);
+export default App;
