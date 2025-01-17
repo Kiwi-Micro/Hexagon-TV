@@ -291,3 +291,11 @@ footer {
 	width: fit-content;
 	border: 0;
 }
+
+.aboutVideoItem {
+	border-radius: 15px;
+	padding: 10px;
+	width: 300px;
+	background-color: #65676b6c;
+	margin-inline: 10px;
+}

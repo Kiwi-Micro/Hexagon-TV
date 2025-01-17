@@ -1,28 +1,67 @@
 /* Video Page Styles */
 
-.aboutVideoItem {
-	border-radius: 15px;
-	padding: 10px;
-	width: 300px;
-	background-color: #65676b6c;
-	margin-inline: 10px;
-}
-
-.video {
+.videoPageVideo {
 	width: 100vw;
 	height: 100vh;
 	object-fit: contain;
 }
 
-.controls {
+.videoPageControls {
+	position: fixed;
 	display: flex;
-	gap: 10px;
-	margin-top: 10px;
+	flex-direction: row;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #1c1d1f7a;
+	backdrop-filter: blur(10px) saturate(1);
+	padding: 10px;
+	align-items: center;
 }
-.progress {
-	margin-left: auto;
+
+.videoPageControls p {
+	margin-bottom: 3px;
+	margin-left: 8px;
+	font-size: 20px;
+	color: #fff;
 }
-button {
-	padding: 8px 12px;
+
+.playbackBarContainer {
+	flex: 1;
+	height: 6px;
+	background-color: #2a2b2c;
+	margin: 0 12px;
+	border-radius: 3px;
+	position: relative;
 	cursor: pointer;
+}
+
+.playbackBar {
+	height: 100%;
+	background-color: #ff8900;
+	border-radius: 3px;
+}
+
+.videoPageBackButtonDiv {
+	position: fixed;
+	display: flex;
+	flex-direction: row;
+	top: 10px;
+	left: 10px;
+	align-items: center;
+	justify-content: center;
+	background-color: #1c1d1f7a;
+	backdrop-filter: blur(10px) saturate(1);
+	padding: 10px;
+	border-radius: 20px;
+}
+
+.videoPageBackButtonDiv h3 {
+	margin-left: 10px;
+}
+
+.videoPageBackButton {
+	width: 30px;
+	height: 30px;
+	fill: #ffffff;
 }
