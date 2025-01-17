@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { getJSONData } from "../utils/api";
 import { Video as Videos } from "../utils/types";
-import {
-	SignedIn,
-	SignedOut,
-	SignInButton,
-	UserButton,
-} from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import VideoCard from "../components/VideoCard";
 import logo from "../assets/img/logo.png";
 
