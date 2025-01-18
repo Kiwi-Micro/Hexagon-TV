@@ -8,8 +8,6 @@ import {
 	VideoViewer,
 	Search,
 	NotFound,
-	SignIn,
-	SignUp,
 } from "./utils/pages";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import setUserInfo from "./utils/userInfo";
@@ -129,8 +127,6 @@ function App() {
 							}
 						/>
 						<Route path="/search" element={<Search />} />
-						<Route path="/login" element={<SignIn />} />
-						<Route path="/signup" element={<SignUp />} />
 						{renderVideoRoutes(movies)}
 						{renderVideoRoutes(movies, true)}
 						{renderVideoRoutes(documentaries)}
