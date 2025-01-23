@@ -1,5 +1,3 @@
-# NOTE: We Are In INDEV
-
 # Hexagon TV
 
 Hexagon TV is an open-source streaming service designed to deliver high-quality video content seamlessly. Built with reliability, and customization in mind.

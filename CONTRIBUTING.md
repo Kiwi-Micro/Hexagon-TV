@@ -6,18 +6,18 @@ If you wish to contribute, please make sure you follow the guidelines set below.
 
 ## Documentation
 
-Comming Soon!
+Please read the [DOCUMENTATION.md](DOCUMENTATION.md).
 
 ---
 
 ## Tech Stack
 
-- **Backend**: Python, Flask
+- **Backend**: Python, Flask, SQLite, TypeScript, Express, Clerk
 - **Frontend**: React, TypeScript, CSS
-- **Database**: MariaDB (Via the Python API)
+- **Database**: SQL Lite (Via the Typscript - Turso API)
 - **CDN**: Apache
-- **Hosting**: Linode (CDN, API, Database), Vercel (Site)
-- **Authentication**: Python, Flask
+- **Hosting**: Linode (CDN, API), Vercel (Site), Turso (Database)
+- **Authentication**: TypeScript, Express, Clerk
 
 ---
 

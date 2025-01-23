@@ -10,9 +10,15 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
 	color: #e1e1e1;
+	font-family: "Ubuntu", sans-serif;
+}
+
+p,
+a {
+	color: #e1e1e1;
+	font-family: "Roboto", sans-serif;
 }
 
 html {
@@ -21,7 +27,6 @@ html {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	scroll-behavior: smooth;
-	font-family: "Ubuntu", sans-serif;
 }
 
 body {
@@ -94,34 +99,6 @@ footer {
 	.successMessage {
 		width: calc(100% - 55px);
 	}
-}
-
-/* Card Styles */
-
-.cards {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: stretch;
-}
-
-.card {
-	display: flex;
-	flex-direction: column;
-	margin: 10px;
-	flex: 0 0 auto;
-}
-
-.card h3 {
-	max-width: 250px;
-}
-
-.card img {
-	width: 250px;
-	height: 130px;
-	border-radius: 12px;
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-	transform: translateY(-10px);
 }
 
 /* Home Page Styles */
@@ -224,15 +201,6 @@ footer {
 
 /* Search Page Styles */
 
-.searchPageVideosList {
-	display: flex;
-	scrollbar-width: none;
-	flex-wrap: wrap;
-	justify-content: left;
-	overflow-x: auto;
-	padding: 10px 0;
-}
-
 .searchBar {
 	display: flex;
 	flex-direction: row;
@@ -243,22 +211,6 @@ footer {
 	border: solid 2px #ffffff;
 	background-color: #1c1d1f;
 	border-radius: 5px;
-}
-
-@media screen and (max-width: 740px) {
-	.searchBar {
-		width: 90%;
-	}
-	.searchPageVideosList {
-		justify-content: center;
-	}
-	.searchPageVideosList div img {
-		width: 90vw;
-		height: calc(90vw / 16 * 9);
-	}
-	.searchPageVideosList h3 {
-		margin-left: calc(100vw / 2.6);
-	}
 }
 
 .searchBar svg {
