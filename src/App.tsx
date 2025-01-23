@@ -14,7 +14,6 @@ import setUserInfo from "./utils/userInfo";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
-import "./assets/account.css";
 import "./assets/cards.css";
 
 function App() {
