@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import "../assets/video.css";
 
-interface ProductProps {
+interface VideoProps {
 	name: string;
 	videoURL: string;
 	previousPage: string;
 }
 
-function VideoViewer({ name, videoURL, previousPage }: ProductProps) {
+function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 	document.title = "Hexagon TV | Watching " + name;
 	const videoRef = useRef<HTMLVideoElement | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
