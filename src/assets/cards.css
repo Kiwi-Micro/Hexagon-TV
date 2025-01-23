@@ -1,0 +1,52 @@
+/* Card Styles */
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	flex: 0 0 auto;
+}
+
+.card h3 {
+	margin-left: 10px;
+}
+
+.card img {
+	width: 250px;
+	height: 130px;
+	border-radius: 12px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+	transform: translateY(-10px);
+}
+
+.searchPageVideosList {
+	display: flex;
+	scrollbar-width: none;
+	flex-wrap: wrap;
+	justify-content: left;
+	overflow-x: auto;
+	padding: 10px 0;
+}
+
+@media screen and (max-width: 540px) {
+	.searchBar {
+		width: 90%;
+	}
+	.searchPageVideosList {
+		justify-content: center;
+	}
+	.searchPageVideosList div img {
+		width: 90vw;
+		height: calc(90vw / 16 * 9);
+	}
+	.searchPageVideosList h3 {
+		text-align: center;
+	}
+}

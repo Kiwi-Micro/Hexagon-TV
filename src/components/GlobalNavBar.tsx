@@ -26,10 +26,7 @@ function GlobalNavBar() {
 
 	useEffect(() => {
 		setIsMobile(window.innerWidth < 740 ? true : false);
-		setShouldShowSearchBar(
-			window.location.href === "/search" ||
-				window.location.href === "/login",
-		);
+		setShouldShowSearchBar(window.location.href.includes("/search"));
 	}, []);
 
 	function handleSearchChange(e: any) {
