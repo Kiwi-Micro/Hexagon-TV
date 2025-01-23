@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import "../assets/video.css";
-import backButton from "../assets/img/backArrow.png";
 
 interface ProductProps {
 	name: string;
@@ -112,12 +111,22 @@ function VideoViewer({ name, videoURL, previousPage }: ProductProps) {
 				style={{ display: active ? "flex" : "none" }}
 				onClick={() => (window.location.href = previousPage)}
 			>
-				<img
-					src={backButton}
-					className="videoPageBackButton"
-					alt="back button"
-					draggable="false"
-				/>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="48"
+					height="48"
+					viewBox="0 0 24 24"
+				>
+					<path
+						d="M20 12H3m0 0l6-6m-6 6l6 6"
+						fill="none"
+						stroke="white"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/>
+				</svg>
+
 				<h3>Back</h3>
 			</div>
 			<video
