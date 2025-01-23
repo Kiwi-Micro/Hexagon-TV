@@ -10,6 +10,8 @@ interface VideoProps {
 function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 	document.title = "Hexagon TV | Watching " + name;
 	const videoRef = useRef<HTMLVideoElement | null>(null);
+	const containerRef = useRef<HTMLDivElement | null>(null);
+	const [isFullscreen, setIsFullscreen] = useState(true);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentTime, setCurrentTime] = useState(0);
 	const [duration, setDuration] = useState(0);
@@ -76,7 +78,6 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		return () => {
 			clearTimeout(hideControlsTimeout);
 			document.removeEventListener("mousemove", handleMouseMove);
-			clearTimeout(hideControlsTimeout);
 
 			window.removeEventListener("keydown", handleKeyDown);
 		};
@@ -104,8 +105,18 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		setCurrentTime(seekTime);
 	}
 
+	function toggleFullscreen() {
+		if (!containerRef.current) return;
+		if (!document.fullscreenElement) {
+			containerRef.current.requestFullscreen();
+		} else {
+			document.exitFullscreen();
+		}
+		setIsFullscreen(!isFullscreen);
+	}
+
 	return (
-		<div className="videoPage main">
+		<div className="videoPage main" ref={containerRef}>
 			<div
 				className="videoPageBackButtonDiv"
 				style={{ display: active ? "flex" : "none" }}
@@ -187,6 +198,31 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 					/>
 				</div>
 				<p>{formatTime(currentTime)}</p>
+				<svg
+					viewBox="0 0 50 50"
+					width="50"
+					height="50"
+					style={{ marginTop: "10px" }}
+					fill="white"
+					xmlns="http://www.w3.org/2000/svg"
+					onClick={toggleFullscreen}
+				>
+					{isFullscreen ? (
+						<>
+							<path d="m 10,16 2,0 0,-4 4,0 0,-2 L 10,10 l 0,6 0,0 z" />
+							<path d="m 20,10 0,2 4,0 0,4 2,0 L 26,10 l -6,0 0,0 z" />
+							<path d="m 24,24 -4,0 0,2 L 26,26 l 0,-6 -2,0 0,4 0,0 z" />
+							<path d="M 12,20 10,20 10,26 l 6,0 0,-2 -4,0 0,-4 0,0 z" />
+						</>
+					) : (
+						<>
+							<path d="m 14,14 -4,0 0,2 6,0 0,-6 -2,0 0,4 0,0 z" />
+							<path d="m 22,14 0,-4 -2,0 0,6 6,0 0,-2 -4,0 0,0 z" />
+							<path d="m 20,26 2,0 0,-4 4,0 0,-2 -6,0 0,6 0,0 z" />
+							<path d="m 10,22 4,0 0,4 2,0 0,-6 -6,0 0,2 0,0 z" />
+						</>
+					)}
+				</svg>
 			</div>
 		</div>
 	);
