@@ -17,6 +17,8 @@
 	backdrop-filter: blur(10px) saturate(1);
 	padding: 10px;
 	align-items: center;
+	height: 30px;
+	justify-content: center;
 }
 
 .videoPageControls p {

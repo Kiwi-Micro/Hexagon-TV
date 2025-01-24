@@ -17,6 +17,9 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 	const [duration, setDuration] = useState(0);
 	const [active, setActive] = useState(true);
 
+	const hideControlsDelay = 3000;
+	let hideControlsTimeout: any;
+
 	function formatTime(seconds: number): string {
 		const hours = Math.floor(seconds / 3600);
 		const minutes = Math.floor((seconds % 3600) / 60);
@@ -31,17 +34,10 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		}
 	}
 
-	const hideControlsDelay = 3000;
-	let hideControlsTimeout: any;
-
-	function hideControls() {
-		setActive(false);
-	}
-
 	function handleMouseMove() {
 		setActive(true);
 		clearTimeout(hideControlsTimeout);
-		hideControlsTimeout = setTimeout(hideControls, hideControlsDelay);
+		hideControlsTimeout = setTimeout(() => setActive(false), hideControlsDelay);
 	}
 
 	function playPauseVideo() {
@@ -54,7 +50,7 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		setIsPlaying(!isPlaying);
 	}
 
-	const handleKeyDown = (e: KeyboardEvent) => {
+	function handleKeyDown(e: KeyboardEvent) {
 		if (!videoRef.current) return;
 		if (e.key === "ArrowLeft") {
 			videoRef.current.currentTime -= 5;
@@ -65,21 +61,7 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		} else if (e.key === " ") {
 			playPauseVideo();
 		}
-	};
-
-	useEffect(() => {
-		window.addEventListener("keydown", handleKeyDown);
-
-		hideControlsTimeout = setTimeout(hideControls, hideControlsDelay);
-		document.addEventListener("mousemove", handleMouseMove);
-
-		return () => {
-			clearTimeout(hideControlsTimeout);
-			document.removeEventListener("mousemove", handleMouseMove);
-
-			window.removeEventListener("keydown", handleKeyDown);
-		};
-	}, []);
+	}
 
 	function handleTimeUpdate() {
 		if (!videoRef.current) return;
@@ -110,8 +92,26 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		setIsFullscreen(!isFullscreen);
 	}
 
+	useEffect(() => {
+		window.addEventListener("keydown", handleKeyDown);
+
+		hideControlsTimeout = setTimeout(() => setActive(false), hideControlsDelay);
+		document.addEventListener("mousemove", handleMouseMove);
+
+		return () => {
+			clearTimeout(hideControlsTimeout);
+			document.removeEventListener("mousemove", handleMouseMove);
+
+			window.removeEventListener("keydown", handleKeyDown);
+		};
+	}, []);
+
 	return (
-		<div className="videoPage main" ref={containerRef}>
+		<div
+			className="videoPage main"
+			ref={containerRef}
+			style={{ backgroundColor: "#000000" }}
+		>
 			<div
 				className="videoPageBackButtonDiv"
 				style={{ display: active ? "flex" : "none" }}
@@ -178,31 +178,32 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 					/>
 				</div>
 				<p>{formatTime(currentTime)}</p>
-				<svg
-					viewBox="0 0 50 50"
-					width="50"
-					height="50"
-					style={{ marginTop: "10px" }}
-					fill="white"
-					xmlns="http://www.w3.org/2000/svg"
-					onClick={toggleFullscreen}
-				>
-					{isFullscreen ? (
-						<>
-							<path d="m 10,16 2,0 0,-4 4,0 0,-2 L 10,10 l 0,6 0,0 z" />
-							<path d="m 20,10 0,2 4,0 0,4 2,0 L 26,10 l -6,0 0,0 z" />
-							<path d="m 24,24 -4,0 0,2 L 26,26 l 0,-6 -2,0 0,4 0,0 z" />
-							<path d="M 12,20 10,20 10,26 l 6,0 0,-2 -4,0 0,-4 0,0 z" />
-						</>
-					) : (
-						<>
-							<path d="m 14,14 -4,0 0,2 6,0 0,-6 -2,0 0,4 0,0 z" />
-							<path d="m 22,14 0,-4 -2,0 0,6 6,0 0,-2 -4,0 0,0 z" />
-							<path d="m 20,26 2,0 0,-4 4,0 0,-2 -6,0 0,6 0,0 z" />
-							<path d="m 10,22 4,0 0,4 2,0 0,-6 -6,0 0,2 0,0 z" />
-						</>
-					)}
-				</svg>
+				<div onClick={toggleFullscreen}>
+					<svg
+						viewBox="0 0 50 50"
+						width="55"
+						height="55"
+						style={{ marginTop: "15px" }}
+						fill="white"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						{isFullscreen ? (
+							<>
+								<path d="m 10,16 2,0 0,-4 4,0 0,-2 L 10,10 l 0,6 0,0 z" />
+								<path d="m 20,10 0,2 4,0 0,4 2,0 L 26,10 l -6,0 0,0 z" />
+								<path d="m 24,24 -4,0 0,2 L 26,26 l 0,-6 -2,0 0,4 0,0 z" />
+								<path d="M 12,20 10,20 10,26 l 6,0 0,-2 -4,0 0,-4 0,0 z" />
+							</>
+						) : (
+							<>
+								<path d="m 14,14 -4,0 0,2 6,0 0,-6 -2,0 0,4 0,0 z" />
+								<path d="m 22,14 0,-4 -2,0 0,6 6,0 0,-2 -4,0 0,0 z" />
+								<path d="m 20,26 2,0 0,-4 4,0 0,-2 -6,0 0,6 0,0 z" />
+								<path d="m 10,22 4,0 0,4 2,0 0,-6 -6,0 0,2 0,0 z" />
+							</>
+						)}
+					</svg>
+				</div>
 			</div>
 		</div>
 	);
