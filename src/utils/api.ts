@@ -48,24 +48,6 @@ async function deleteJSONData(url: string, data: any) {
 	}
 }
 
-async function patchJSONData(url: string, data: any) {
-	try {
-		const response = await fetch(url, {
-			method: "PATCH",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data),
-		});
-		if (!response.ok) {
-			throw new Error(`HTTP error! Status: ${response.status}`);
-		}
-		return await response.json();
-	} catch (error) {
-		throw new Error(`Failed to patch data: ${error}`);
-	}
-}
-
 function formatVideoAPIData(db: Video[]) {
 	return db.map((video: Video) => ({
 		category: video.category,
@@ -80,24 +62,4 @@ function formatVideoAPIData(db: Video[]) {
 	}));
 }
 
-function callAPI(url: string, data: any, type?: string) {
-	if (type === "post") {
-		return postJSONData(url, data);
-	} else if (type === "patch") {
-		return patchJSONData(url, data);
-	} else if (type === "delete") {
-		return deleteJSONData(url, data);
-	} else if (type === "get") {
-		return getJSONData(url);
-	}
-	return getJSONData(url);
-}
-
-export {
-	getJSONData,
-	postJSONData,
-	deleteJSONData,
-	patchJSONData,
-	formatVideoAPIData,
-	callAPI,
-};
+export { getJSONData, postJSONData, deleteJSONData, formatVideoAPIData };

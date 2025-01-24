@@ -2,15 +2,13 @@ import { getJSONData, formatVideoAPIData } from "./utils/api";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Video } from "./utils/types";
-import {
-	Index,
-	VideoPage,
-	VideoViewer,
-	Search,
-	NotFound,
-} from "./utils/pages";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import setUserInfo from "./utils/userInfo";
+import Index from "./pages/Index";
+import VideoPage from "./pages/Video";
+import VideoViewer from "./pages/VideoViewer";
+import Search from "./pages/Search";
+import NotFound from "./pages/404";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
