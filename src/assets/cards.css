@@ -35,18 +35,22 @@
 	padding: 10px 0;
 }
 
-@media screen and (max-width: 540px) {
-	.searchBar {
-		width: 90%;
-	}
-	.searchPageVideosList {
-		justify-content: center;
-	}
-	.searchPageVideosList div img {
-		width: 90vw;
-		height: calc(90vw / 16 * 9);
-	}
-	.searchPageVideosList h3 {
-		text-align: center;
-	}
+.navSearchCard {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 10px;
+	flex: 0 0 auto;
+}
+
+.navSearchCard h2 {
+	margin-left: 10px;
+	max-width: 250px;
+}
+
+.navSearchCard img {
+	width: 130px;
+	height: 70px;
+	border-radius: 12px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 }

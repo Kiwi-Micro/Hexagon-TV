@@ -1,20 +1,16 @@
-import { getJSONData, formatVideoAPIData } from "./utils/api";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Video } from "./utils/types";
-import {
-	Index,
-	VideoPage,
-	VideoViewer,
-	Search,
-	NotFound,
-} from "./utils/pages";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { renderVideoRoutes } from "./utils/renders";
+import { fetchData } from "./utils/api";
 import setUserInfo from "./utils/userInfo";
+import Index from "./pages/Index";
+import Search from "./pages/Search";
+import NotFound from "./pages/404";
 import "./assets/main.css";
 import "./assets/nav.css";
 import "./assets/video.css";
-import "./assets/account.css";
 import "./assets/cards.css";
 
 function App() {
@@ -26,76 +22,8 @@ function App() {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const username = localStorage.getItem("username");
-			let watchlistData: any = [];
-			if (username) {
-				watchlistData = formatVideoAPIData(
-					(await getJSONData(
-						"https://api.hexagon.kiwi-micro.com:8080/userAPI/getWatchlist?username=" +
-							username,
-					)) || [{ id: "0" }],
-				);
-			}
-
-			const moviesData = formatVideoAPIData(
-				(await getJSONData(
-					"https://api.hexagon.kiwi-micro.com:8080/videoAPI/movies",
-				)) || [{ id: "0" }],
-			);
-			const documentariesData = formatVideoAPIData(
-				(await getJSONData(
-					"https://api.hexagon.kiwi-micro.com:8080/videoAPI/documentaries",
-				)) || [{ id: "0" }],
-			);
-			const tvshowsData = formatVideoAPIData(
-				(await getJSONData(
-					"https://api.hexagon.kiwi-micro.com:8080/videoAPI/tvshows",
-				)) || [{ id: "0" }],
-			);
-
-			setWatchlistdb(watchlistData);
-			setMoviesdb(moviesData);
-			setDocumentariesdb(documentariesData);
-			setTvShowsdb(tvshowsData);
-			setLoading(false);
-		};
-
-		fetchData();
+		fetchData(setWatchlistdb, setMoviesdb, setDocumentariesdb, setTvShowsdb, setLoading);
 	}, []);
-
-	function renderVideoRoutes(db: Video[], isViewer?: boolean) {
-		if (isViewer) {
-			return db.map((video: Video) => (
-				<Route
-					key={video.urlName}
-					path={`/watch/${video.urlName}.html`}
-					element={
-						<VideoViewer
-							key={video.urlName}
-							name={video.name}
-							videoURL={video.videoURL}
-							previousPage={`/${video.urlName}.html`}
-						/>
-					}
-				/>
-			));
-		}
-		return db.map((video: Video) => (
-			<Route
-				key={video.urlName}
-				path={`/${video.urlName}.html`}
-				element={
-					<VideoPage
-						key={video.urlName}
-						videoInfo={video}
-						db={db}
-						watchlist={watchlist}
-					/>
-				}
-			/>
-		));
-	}
 
 	return (
 		<div>
@@ -128,11 +56,11 @@ function App() {
 							}
 						/>
 						<Route path="/search" element={<Search />} />
-						{renderVideoRoutes(movies)}
+						{renderVideoRoutes(movies, false, watchlist)}
 						{renderVideoRoutes(movies, true)}
-						{renderVideoRoutes(documentaries)}
+						{renderVideoRoutes(documentaries, false, watchlist)}
 						{renderVideoRoutes(documentaries, true)}
-						{renderVideoRoutes(tvshows)}
+						{renderVideoRoutes(tvshows, false, watchlist)}
 						{renderVideoRoutes(tvshows, true)}
 						<Route path="/*" element={<NotFound />} />
 					</Routes>

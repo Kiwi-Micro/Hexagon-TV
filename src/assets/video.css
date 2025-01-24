@@ -17,6 +17,8 @@
 	backdrop-filter: blur(10px) saturate(1);
 	padding: 10px;
 	align-items: center;
+	height: 30px;
+	justify-content: center;
 }
 
 .videoPageControls p {
@@ -60,8 +62,10 @@
 	margin-left: 10px;
 }
 
-.videoPageBackButton {
-	width: 30px;
-	height: 30px;
-	fill: #ffffff;
+.aboutVideoItem {
+	border-radius: 15px;
+	padding: 10px;
+	width: 300px;
+	background-color: #65676b6c;
+	margin-inline: 10px;
 }

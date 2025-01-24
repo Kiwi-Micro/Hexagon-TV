@@ -16,13 +16,13 @@ nav {
 	box-sizing: border-box;
 }
 
-.navLinkList {
+nav ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.navLink {
+nav ul li {
 	font-size: 15px;
 	display: flex;
 	align-items: center;
@@ -31,7 +31,7 @@ nav {
 	text-decoration: none;
 }
 
-.navSearchVideosList {
+.navVideoList {
 	position: fixed;
 	top: 50px;
 	right: 60px;
@@ -46,79 +46,4 @@ nav {
 	background-color: #0000006f;
 	backdrop-filter: blur(20px) saturate(1);
 	padding: 10px;
-}
-
-.navAccountOptions {
-	position: fixed;
-	top: 50px;
-	right: 10px;
-	display: flex;
-	flex-direction: column;
-	scrollbar-width: none;
-	flex-wrap: wrap;
-	justify-content: left;
-	overflow-x: auto;
-	border: #ffffff 2px solid;
-	border-radius: 15px;
-	background-color: #0000006f;
-	backdrop-filter: blur(20px) saturate(1);
-	padding: 10px;
-}
-
-.navSearchBar {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: fit-content;
-	height: fit-content;
-	border: solid 2px #ffffff;
-	background-color: #00000000;
-	border-radius: 5px;
-}
-
-.navSearchBar svg {
-	margin-right: 10px;
-	margin: 5px;
-	fill: #ffffff;
-}
-
-.navSearchBar input {
-	border: 0;
-	outline: 0;
-	background-color: #00000000;
-	color: #ffffff;
-	width: 80px;
-	height: 5px;
-	padding: 10px;
-}
-
-@media screen and (max-width: 740px) {
-	.navSearchBar input {
-		display: none;
-	}
-	.navSearchBar {
-		border: 0;
-	}
-}
-
-.searchCard {
-	display: flex;
-	flex-direction: row;
-	margin-top: 10px;
-	flex: 0 0 auto;
-}
-
-.searchCard h2 {
-	margin-left: 10px;
-	margin-top: 5px;
-	max-width: 250px;
-}
-
-.searchCard img {
-	width: 130px;
-	height: 70px;
-	border-radius: 12px;
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-	transform: translateY(-10px);
 }

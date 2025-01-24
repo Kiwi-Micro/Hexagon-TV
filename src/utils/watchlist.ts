@@ -34,10 +34,7 @@ async function addToWatchlist(
 	}
 }
 
-async function removeFromWatchlist(
-	urlName: string,
-	setIsInWatchlist: any,
-) {
+async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
 	setIsInWatchlist(false);
 	const username = localStorage.getItem("username") || "";
 	const sessionId = localStorage.getItem("sessionId") || "";

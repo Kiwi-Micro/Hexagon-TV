@@ -1,0 +1,52 @@
+import VideoCard from "../components/VideoCard";
+import { Video } from "./types";
+import VideoPage from "../pages/Video";
+import VideoViewer from "../pages/VideoViewer";
+import { Route } from "react-router-dom";
+
+function renderVideoCard(db: any) {
+	return db
+		.slice()
+		.reverse()
+		.map((video: any) => {
+			return (
+				<VideoCard
+					key={video.urlName}
+					id={video.id}
+					name={video.name}
+					videoLink={`${video.urlName}.html`}
+					thumbnailURL={video.thumbnailURL}
+				/>
+			);
+		});
+}
+
+function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
+	if (isViewer) {
+		return db.map((video: Video) => (
+			<Route
+				key={video.urlName}
+				path={`/watch/${video.urlName}.html`}
+				element={
+					<VideoViewer
+						key={video.urlName}
+						name={video.name}
+						videoURL={video.videoURL}
+						previousPage={`/${video.urlName}.html`}
+					/>
+				}
+			/>
+		));
+	}
+	return db.map((video: Video) => (
+		<Route
+			key={video.urlName}
+			path={`/${video.urlName}.html`}
+			element={
+				<VideoPage key={video.urlName} videoInfo={video} db={db} watchlist={watchlist} />
+			}
+		/>
+	));
+}
+
+export { renderVideoCard, renderVideoRoutes };

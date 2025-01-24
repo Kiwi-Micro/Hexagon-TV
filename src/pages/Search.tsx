@@ -66,6 +66,7 @@ function Search() {
 					{results.map((video: SearchResult) => (
 						<VideoCard
 							key={video.urlName}
+							id={Number(video.id)}
 							name={video.name}
 							videoLink={`${video.urlName}.html`}
 							thumbnailURL={video.thumbnailURL}

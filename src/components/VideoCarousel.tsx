@@ -1,24 +1,8 @@
-import VideoCard from "./VideoCard";
+import { renderVideoCard } from "../utils/renders";
 
 interface VideoCarouselProps {
 	db: any;
 	title: string;
-}
-
-function renderVideoCard(db: any) {
-	return db
-		.slice()
-		.reverse()
-		.map((video: any) => {
-			return (
-				<VideoCard
-					key={video.urlName}
-					name={video.name}
-					videoLink={`${video.urlName}.html`}
-					thumbnailURL={video.thumbnailURL}
-				/>
-			);
-		});
 }
 
 function VideoCarousel({ db, title }: VideoCarouselProps) {

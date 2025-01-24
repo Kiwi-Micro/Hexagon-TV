@@ -11,14 +11,7 @@ h3,
 h4,
 h5,
 h6 {
-	color: #e1e1e1;
 	font-family: "Ubuntu", sans-serif;
-}
-
-p,
-a {
-	color: #e1e1e1;
-	font-family: "Roboto", sans-serif;
 }
 
 html {
@@ -27,6 +20,8 @@ html {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	scroll-behavior: smooth;
+	color: #e1e1e1;
+	font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -49,56 +44,6 @@ footer {
 .main {
 	max-width: 1900px;
 	margin-inline: auto;
-}
-
-.hasFailed {
-	width: 290px;
-	color: #ffffff;
-	background-color: #ff000086;
-	border: #ff0000 2px solid;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	border-radius: 5px;
-	padding: 10px;
-	margin-bottom: 10px;
-	max-width: 100%;
-}
-
-@media screen and (max-width: 400px) {
-	.hasFailed {
-		width: calc(100% - 55px);
-	}
-}
-
-.successMessage {
-	background-color: #00ff0086;
-	border: #00ff00 2px solid;
-}
-
-.failMessage {
-	background-color: #ff000086;
-	border: #ff0000 2px solid;
-}
-
-.failMessage,
-.successMessage {
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	border-radius: 5px;
-	padding: 10px;
-	margin-bottom: 10px;
-	max-width: 100%;
-	width: 290px;
-	color: #ffffff;
-}
-
-@media screen and (max-width: 400px) {
-	.failMessage,
-	.successMessage {
-		width: calc(100% - 55px);
-	}
 }
 
 /* Home Page Styles */
@@ -148,9 +93,7 @@ footer {
 
 .homePageHero {
 	margin-top: 45px;
-	max-width: 1900px;
 	width: 100vw;
-	height: calc(100vh - 45px);
 	object-fit: cover;
 }
 
@@ -229,25 +172,18 @@ footer {
 	padding: 10px;
 }
 
-/* Misc Styles */
-
-.btn {
-	background: #007aff;
-	border-radius: 15px;
-	display: inline-block;
-	padding: 10px 20px;
-	color: #ffffff;
-	text-decoration: none;
-	font-size: 1em;
-	z-index: 2;
-	width: fit-content;
-	border: 0;
-}
-
-.aboutVideoItem {
-	border-radius: 15px;
-	padding: 10px;
-	width: 300px;
-	background-color: #65676b6c;
-	margin-inline: 10px;
+@media screen and (max-width: 540px) {
+	.searchBar {
+		width: 90%;
+	}
+	.searchPageVideosList {
+		justify-content: center;
+	}
+	.searchPageVideosList div img {
+		width: 90vw;
+		height: calc(90vw / 16 * 9);
+	}
+	.searchPageVideosList h3 {
+		text-align: center;
+	}
 }
