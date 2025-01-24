@@ -1,5 +1,7 @@
 # Hexagon TV API Documentation
 
+# NOTE THIS IS THE DOCS FOR THE API. WE ARE WORKING ON THE FRONTEND DOCS.
+
 ## Contents
 
 - [Endpoints](#endpoints)
