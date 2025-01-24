@@ -144,4 +144,3 @@ function Video({ videoInfo, db, watchlist }: ProductProps) {
 }
 
 export default Video;
-//export { setIsInWatchlist };
