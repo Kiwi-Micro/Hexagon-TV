@@ -52,14 +52,13 @@ function GlobalNavBar() {
 
 	return (
 		<nav>
-			<ul className="navLinkList">
-				<li className="navLink">
+			<ul>
+				<li>
 					<a href="/">
 						<img src={logo} alt="Logo" height="40px" />
 					</a>
 				</li>
 				<li
-					className="navLink"
 					style={{
 						position: "fixed",
 						right: "10px",
@@ -67,10 +66,7 @@ function GlobalNavBar() {
 				>
 					{!shouldShowSearchBar && (
 						<>
-							<div
-								className="navSearchBar"
-								style={{ marginInline: "auto" }}
-							>
+							<div className="searchBar">
 								{/* Search Button */}
 								<svg
 									height="24"
@@ -88,6 +84,7 @@ function GlobalNavBar() {
 								<input
 									type="text"
 									value={query}
+									style={{ width: "80px" }}
 									onChange={(e) => handleSearchChange(e)}
 									onClick={
 										query.length != 0
@@ -111,7 +108,7 @@ function GlobalNavBar() {
 								</svg>
 							</div>
 							<div
-								className="navSearchVideosList"
+								className="navVideoList"
 								style={
 									results.length == 0 || shouldShowResults == false
 										? { display: "none" }
@@ -121,6 +118,7 @@ function GlobalNavBar() {
 								{results.slice(0, 3).map((video: Videos) => (
 									<VideoCard
 										key={video.urlName}
+										id={video.id}
 										name={video.name}
 										videoLink={`${video.urlName}.html`}
 										thumbnailURL={video.thumbnailURL}
