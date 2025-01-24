@@ -4,11 +4,7 @@ interface CustomBreakProps {
 	paddBothSides?: boolean;
 }
 
-function CustomBreak({
-	height,
-	hasHR = false,
-	paddBothSides = false,
-}: CustomBreakProps) {
+function CustomBreak({ height, hasHR = false, paddBothSides = false }: CustomBreakProps) {
 	let tags = "";
 	for (let i = 0; i < height; i++) {
 		tags += "<br />";

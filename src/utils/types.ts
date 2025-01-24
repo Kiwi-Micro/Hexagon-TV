@@ -1,4 +1,4 @@
-interface Video {
+type Video = {
 	id: number;
 	name: string;
 	description: string;
@@ -8,6 +8,6 @@ interface Video {
 	date: string;
 	rating: string;
 	urlName: string;
-}
+};
 
 export type { Video };

@@ -62,4 +62,45 @@ function formatVideoAPIData(db: Video[]) {
 	}));
 }
 
-export { getJSONData, postJSONData, deleteJSONData, formatVideoAPIData };
+async function fetchData(
+	setWatchlistdb: any,
+	setMoviesdb: any,
+	setDocumentariesdb: any,
+	setTvShowsdb: any,
+	setLoading: any,
+) {
+	const username = localStorage.getItem("username");
+	let watchlistData: any = [];
+	if (username) {
+		watchlistData = formatVideoAPIData(
+			(await getJSONData(
+				"https://api.hexagon.kiwi-micro.com:8080/userAPI/getWatchlist?username=" +
+					username,
+			)) || [{ id: "0" }],
+		);
+	}
+
+	const moviesData = formatVideoAPIData(
+		(await getJSONData("https://api.hexagon.kiwi-micro.com:8080/videoAPI/movies")) || [
+			{ id: "0" },
+		],
+	);
+	const documentariesData = formatVideoAPIData(
+		(await getJSONData(
+			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/documentaries",
+		)) || [{ id: "0" }],
+	);
+	const tvshowsData = formatVideoAPIData(
+		(await getJSONData("https://api.hexagon.kiwi-micro.com:8080/videoAPI/tvshows")) || [
+			{ id: "0" },
+		],
+	);
+
+	setWatchlistdb(watchlistData);
+	setMoviesdb(moviesData);
+	setDocumentariesdb(documentariesData);
+	setTvShowsdb(tvshowsData);
+	setLoading(false);
+}
+
+export { getJSONData, postJSONData, deleteJSONData, formatVideoAPIData, fetchData };

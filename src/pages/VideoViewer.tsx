@@ -23,9 +23,7 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		const remainingSeconds = Math.floor(seconds % 60);
 
 		if (hours > 0) {
-			return `${hours}:${minutes
-				.toString()
-				.padStart(2, "0")}:${remainingSeconds
+			return `${hours}:${minutes.toString().padStart(2, "0")}:${remainingSeconds
 				.toString()
 				.padStart(2, "0")}`;
 		} else {
@@ -93,14 +91,11 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 		setDuration(videoRef.current.duration);
 	}
 
-	function handleSeek(
-		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-	) {
+	function handleSeek(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		if (!videoRef.current) return;
 		const rect = event.currentTarget.getBoundingClientRect();
 		const seekTime =
-			((event.clientX - rect.left) / rect.width) *
-			videoRef.current.duration;
+			((event.clientX - rect.left) / rect.width) * videoRef.current.duration;
 		videoRef.current.currentTime = seekTime;
 		setCurrentTime(seekTime);
 	}
@@ -149,10 +144,7 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 				onTimeUpdate={handleTimeUpdate}
 				onLoadedMetadata={handleLoadedMetadata}
 			/>
-			<div
-				className="videoPageControls"
-				style={{ display: active ? "flex" : "none" }}
-			>
+			<div className="videoPageControls" style={{ display: active ? "flex" : "none" }}>
 				<svg
 					viewBox="0 0 100 100"
 					width="32"
@@ -165,20 +157,8 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 				>
 					{isPlaying ? (
 						<>
-							<rect
-								x="30"
-								y="20"
-								width="15"
-								height="60"
-								fill="currentColor"
-							/>
-							<rect
-								x="55"
-								y="20"
-								width="15"
-								height="60"
-								fill="currentColor"
-							/>
+							<rect x="30" y="20" width="15" height="60" fill="currentColor" />
+							<rect x="55" y="20" width="15" height="60" fill="currentColor" />
 						</>
 					) : (
 						<polygon points="30,20 80,50 30,80" fill="currentColor" />

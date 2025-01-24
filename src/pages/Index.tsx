@@ -22,8 +22,8 @@ function Index({ watchlist, movies, documentaries, tvshows }: IndexProps) {
 				<div className="homePageHeroInfo">
 					<h1>Cool New Shows Coming To You!</h1>
 					<p>
-						How can we keep this free? Well that is a good question, We do
-						not know either.
+						How can we keep this free? Well that is a good question, We do not know
+						either.
 					</p>
 					<a className="homePageViewButton" href="#videos">
 						View Shows
