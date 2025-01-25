@@ -1,5 +1,4 @@
 interface videoCardProps {
-	id: number;
 	name: string;
 	videoLink: string;
 	thumbnailURL: string;
@@ -7,7 +6,6 @@ interface videoCardProps {
 }
 
 function videoCard({
-	id,
 	name,
 	videoLink,
 	thumbnailURL,
@@ -16,7 +14,6 @@ function videoCard({
 	return (
 		<div
 			className={isASearchResult ? "navSearchCard" : "card"}
-			style={isASearchResult && id == 1 ? { marginTop: "0px" } : {}}
 			onClick={() => (window.location.href = videoLink)}
 		>
 			<img src={thumbnailURL} draggable="false" alt={name} />

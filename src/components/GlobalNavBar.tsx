@@ -89,7 +89,6 @@ function GlobalNavBar() {
 									onClick={
 										query.length != 0 ? () => setShouldShowResults(true) : undefined
 									}
-									onBlur={() => handleClearSearch(false)}
 									onKeyDown={(e) => handleKeyDown(e)}
 									placeholder="Search"
 								/>
@@ -116,7 +115,6 @@ function GlobalNavBar() {
 								{results.slice(0, 3).map((video: Videos) => (
 									<VideoCard
 										key={video.urlName}
-										id={video.id}
 										name={video.name}
 										videoLink={`${video.urlName}.html`}
 										thumbnailURL={video.thumbnailURL}

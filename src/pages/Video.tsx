@@ -98,7 +98,6 @@ function Video({ videoInfo, db, watchlist }: ProductProps) {
 						return (
 							<VideoCard
 								key={video.urlName}
-								id={video.id}
 								name={video.name}
 								videoLink={`${video.urlName}.html`}
 								thumbnailURL={video.thumbnailURL}

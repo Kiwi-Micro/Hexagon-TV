@@ -43,6 +43,10 @@
 	flex: 0 0 auto;
 }
 
+.navSearchCard:nth-child(1) {
+	margin-top: 0px;
+}
+
 .navSearchCard h2 {
 	margin-left: 10px;
 	max-width: 250px;
