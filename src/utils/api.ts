@@ -50,15 +50,16 @@ async function deleteJSONData(url: string, data: any) {
 
 function formatVideoAPIData(db: Video[]) {
 	return db.map((video: Video) => ({
-		category: video.category,
-		date: video.date,
-		description: video.description,
 		id: video.id,
 		name: video.name,
-		rating: video.rating,
+		description: video.description,
+		category: video.category,
 		thumbnailURL: video.thumbnailURL,
-		urlName: video.urlName,
 		videoURL: video.videoURL,
+		date: video.date,
+		rating: video.rating,
+		ratingInfo: video.ratingInfo,
+		urlName: video.urlName,
 	}));
 }
 

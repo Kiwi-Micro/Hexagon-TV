@@ -7,6 +7,7 @@ type Video = {
 	videoURL: string;
 	date: string;
 	rating: string;
+	ratingInfo: string;
 	urlName: string;
 };
 

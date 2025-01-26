@@ -14,16 +14,8 @@ interface ProductProps {
 }
 
 function Video({ videoInfo, db, watchlist }: ProductProps) {
+	document.title = "Hexagon TV | " + videoInfo.name;
 	const [isInWatchlist, setIsInWatchlist] = useState(false);
-
-	const ratings = {
-		G: "Suitable for all ages",
-		PG: "Some material may not be suitable for children",
-		CTC: "Check the classification closer to its release date",
-	};
-	type RatingKey = keyof typeof ratings;
-
-	const ratingInfo: string = ratings[videoInfo.rating as RatingKey] || "Rating not found";
 
 	useEffect(() => {
 		const isInWatchlist = watchlist.find(
@@ -33,7 +25,6 @@ function Video({ videoInfo, db, watchlist }: ProductProps) {
 		setIsInWatchlist(isInWatchlist ? true : false);
 	}, []);
 
-	document.title = "Hexagon TV | " + videoInfo.name;
 	return (
 		<div className="main">
 			<GlobalNavBar />
@@ -116,7 +107,7 @@ function Video({ videoInfo, db, watchlist }: ProductProps) {
 					<div className="aboutVideoItem">
 						<h3>{videoInfo.name} Age Rating:</h3>
 						<h4>{videoInfo.rating}</h4>
-						<p>{ratingInfo}</p>
+						<p>{videoInfo.ratingInfo}</p>
 					</div>
 				</div>
 			</div>
