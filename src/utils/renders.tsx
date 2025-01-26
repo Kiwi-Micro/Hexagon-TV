@@ -12,7 +12,6 @@ function renderVideoCard(db: any) {
 			return (
 				<VideoCard
 					key={video.urlName}
-					id={video.id}
 					name={video.name}
 					videoLink={`${video.urlName}.html`}
 					thumbnailURL={video.thumbnailURL}
