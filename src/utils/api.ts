@@ -82,19 +82,19 @@ async function fetchData(
 	}
 
 	const moviesData = formatVideoAPIData(
-		(await getJSONData("https://api.hexagon.kiwi-micro.com:8080/videoAPI/movies")) || [
-			{ id: "0" },
-		],
+		(await getJSONData(
+			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=movies",
+		)) || [{ id: "0" }],
 	);
 	const documentariesData = formatVideoAPIData(
 		(await getJSONData(
-			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/documentaries",
+			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=documentaries",
 		)) || [{ id: "0" }],
 	);
 	const tvshowsData = formatVideoAPIData(
-		(await getJSONData("https://api.hexagon.kiwi-micro.com:8080/videoAPI/tvshows")) || [
-			{ id: "0" },
-		],
+		(await getJSONData(
+			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=tvshows",
+		)) || [{ id: "0" }],
 	);
 
 	setWatchlistdb(watchlistData);
