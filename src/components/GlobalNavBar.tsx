@@ -66,7 +66,7 @@ function GlobalNavBar() {
 				>
 					{!shouldShowSearchBar && (
 						<>
-							<div className="searchBar">
+							<div className="navSearchBar">
 								{/* Search Button */}
 								<svg
 									height="24"

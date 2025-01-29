@@ -47,3 +47,37 @@ nav ul li {
 	backdrop-filter: blur(20px) saturate(1);
 	padding: 10px;
 }
+
+.navSearchBar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	height: fit-content;
+	border: solid 2px #ffffff;
+	background-color: #00000000;
+	border-radius: 5px;
+}
+.navSearchBar svg {
+	margin-right: 10px;
+	margin: 5px;
+	fill: #ffffff;
+}
+.navSearchBar input {
+	border: 0;
+	outline: 0;
+	background-color: #00000000;
+	color: #ffffff;
+	width: 80px;
+	height: 5px;
+	padding: 10px;
+}
+@media screen and (max-width: 740px) {
+	.navSearchBar input {
+		display: none;
+	}
+	.navSearchBar {
+		border: 0;
+	}
+}
