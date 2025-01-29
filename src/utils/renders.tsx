@@ -13,7 +13,7 @@ function renderVideoCard(db: any) {
 				<VideoCard
 					key={video.urlName}
 					name={video.name}
-					videoLink={`${video.urlName}.html`}
+					videoLink={`${video.urlName}`}
 					thumbnailURL={video.thumbnailURL}
 				/>
 			);
@@ -25,13 +25,13 @@ function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
 		return db.map((video: Video) => (
 			<Route
 				key={video.urlName}
-				path={`/watch/${video.urlName}.html`}
+				path={`/watch/${video.urlName}`}
 				element={
 					<VideoViewer
 						key={video.urlName}
 						name={video.name}
 						videoURL={video.videoURL}
-						previousPage={`/${video.urlName}.html`}
+						previousPage={`/${video.urlName}`}
 					/>
 				}
 			/>
@@ -40,7 +40,7 @@ function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
 	return db.map((video: Video) => (
 		<Route
 			key={video.urlName}
-			path={`/${video.urlName}.html`}
+			path={`/${video.urlName}`}
 			element={
 				<VideoPage key={video.urlName} videoInfo={video} db={db} watchlist={watchlist} />
 			}

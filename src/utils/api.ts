@@ -68,6 +68,7 @@ async function fetchData(
 	setMoviesdb: any,
 	setDocumentariesdb: any,
 	setTvShowsdb: any,
+	setVideosdb: any,
 	setLoading: any,
 ) {
 	const username = localStorage.getItem("username");
@@ -97,10 +98,16 @@ async function fetchData(
 		)) || [{ id: "0" }],
 	);
 
+	const videosData = [];
+	videosData.push(...moviesData);
+	videosData.push(...documentariesData);
+	videosData.push(...tvshowsData);
+
 	setWatchlistdb(watchlistData);
 	setMoviesdb(moviesData);
 	setDocumentariesdb(documentariesData);
 	setTvShowsdb(tvshowsData);
+	setVideosdb(videosData);
 	setLoading(false);
 }
 

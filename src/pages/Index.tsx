@@ -3,7 +3,6 @@ import GlobalFooter from "../components/GlobalFooter";
 import CustomBreak from "../components/CustomBreak";
 import VideoCarousel from "../components/VideoCarousel";
 import hero from "../assets/hero.mp4";
-import "../assets/main.css";
 
 interface IndexProps {
 	watchlist: any;

@@ -16,13 +16,21 @@ import "./assets/cards.css";
 function App() {
 	setUserInfo();
 	const [watchlist, setWatchlistdb] = useState<Video[]>([]);
+	const [videos, setVideosdb] = useState<Video[]>([]);
 	const [movies, setMoviesdb] = useState<Video[]>([]);
 	const [documentaries, setDocumentariesdb] = useState<Video[]>([]);
 	const [tvshows, setTvShowsdb] = useState<Video[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		fetchData(setWatchlistdb, setMoviesdb, setDocumentariesdb, setTvShowsdb, setLoading);
+		fetchData(
+			setWatchlistdb,
+			setMoviesdb,
+			setDocumentariesdb,
+			setTvShowsdb,
+			setVideosdb,
+			setLoading,
+		);
 	}, []);
 
 	return (
@@ -30,16 +38,7 @@ function App() {
 			<SpeedInsights />
 			<Router>
 				{loading ? (
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "column",
-							alignItems: "center",
-							justifyContent: "center",
-							height: "100vh",
-							width: "100vw",
-						}}
-					>
+					<div className="center">
 						<h1>Loading...</h1>
 					</div>
 				) : (
@@ -56,12 +55,8 @@ function App() {
 							}
 						/>
 						<Route path="/search" element={<Search />} />
-						{renderVideoRoutes(movies, false, watchlist)}
-						{renderVideoRoutes(movies, true)}
-						{renderVideoRoutes(documentaries, false, watchlist)}
-						{renderVideoRoutes(documentaries, true)}
-						{renderVideoRoutes(tvshows, false, watchlist)}
-						{renderVideoRoutes(tvshows, true)}
+						{renderVideoRoutes(videos, false, watchlist)}
+						{renderVideoRoutes(videos, true)}
 						<Route path="/*" element={<NotFound />} />
 					</Routes>
 				)}

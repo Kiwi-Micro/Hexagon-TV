@@ -8,17 +8,7 @@ function NotFound() {
 	return (
 		<div className="main">
 			<GlobalNavBar />
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-					justifyContent: "center",
-					textAlign: "center",
-					height: "100vh",
-					width: "100vw",
-				}}
-			>
+			<div className="center">
 				<img src={logo} width="200px" height="200px" alt="Logo" />
 				<h1
 					style={{

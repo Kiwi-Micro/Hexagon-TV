@@ -33,7 +33,7 @@ function Video({ videoInfo, db, watchlist }: ProductProps) {
 				<div className="homePageHeroInfo">
 					<h1>{videoInfo.name}</h1>
 					<p>{videoInfo.description}</p>
-					<a className="homePageViewButton" href={`/watch/${videoInfo.urlName}.html`}>
+					<a className="homePageViewButton" href={`/watch/${videoInfo.urlName}`}>
 						Watch
 					</a>
 					{isInWatchlist ? (
@@ -90,7 +90,7 @@ function Video({ videoInfo, db, watchlist }: ProductProps) {
 							<VideoCard
 								key={video.urlName}
 								name={video.name}
-								videoLink={`${video.urlName}.html`}
+								videoLink={`${video.urlName}`}
 								thumbnailURL={video.thumbnailURL}
 							/>
 						);
