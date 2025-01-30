@@ -35,6 +35,15 @@
 	padding: 10px 0;
 }
 
+.accountMenuVideosList {
+	display: flex;
+	scrollbar-width: none;
+	flex-wrap: wrap;
+	justify-content: left;
+	overflow-x: auto;
+	padding: 10px 0;
+}
+
 .navSearchCard {
 	display: flex;
 	flex-direction: row;

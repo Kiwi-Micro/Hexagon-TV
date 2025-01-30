@@ -1,4 +1,5 @@
 import { Video } from "./types";
+import { setWatchlist } from "./userInfo";
 
 async function getJSONData(url: string) {
 	try {
@@ -104,6 +105,7 @@ async function fetchData(
 	videosData.push(...tvshowsData);
 
 	setWatchlistdb(watchlistData);
+	setWatchlist(watchlistData);
 	setMoviesdb(moviesData);
 	setDocumentariesdb(documentariesData);
 	setTvShowsdb(tvshowsData);
