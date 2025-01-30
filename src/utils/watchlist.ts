@@ -1,4 +1,4 @@
-import { postJSONData, deleteJSONData } from "./api";
+import { postJSONData, deleteJSONData, fetchData } from "./api";
 
 async function addToWatchlist(
 	name: string,
@@ -26,6 +26,7 @@ async function addToWatchlist(
 			window.location.href = import.meta.env.VITE_SIGNIN_URL;
 			return;
 		}
+		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(false);
 		console.log(error);
@@ -48,6 +49,7 @@ async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
 			window.location.href = import.meta.env.VITE_SIGNIN_URL;
 			return;
 		}
+		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(true);
 		console.log(error);

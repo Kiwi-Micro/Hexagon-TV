@@ -24,6 +24,7 @@ function App() {
 
 	useEffect(() => {
 		fetchData(
+			true,
 			setWatchlistdb,
 			setMoviesdb,
 			setDocumentariesdb,
