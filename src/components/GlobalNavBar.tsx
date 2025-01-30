@@ -91,6 +91,7 @@ function GlobalNavBar() {
 										query.length != 0 ? () => setShouldShowResults(true) : undefined
 									}
 									onKeyDown={(e) => handleKeyDown(e)}
+									onBlur={() => handleClearSearch(false)}
 									placeholder="Search"
 								/>
 								{/* Clear Search Button */}
