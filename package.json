@@ -8,6 +8,7 @@
 		"build": "tsc -b && vite build",
 		"lint": "npx eslint .",
 		"lint:fix": "npx eslint . --fix",
+		"typecheck": "npx tsc --noEmit",
 		"preview": "vite preview"
 	},
 	"dependencies": {
