@@ -127,9 +127,9 @@ function VideoViewer({ name, videoURL, previousPage }: VideoProps) {
 						d="M20 12H3m0 0l6-6m-6 6l6 6"
 						fill="none"
 						stroke="white"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
 					/>
 				</svg>
 
