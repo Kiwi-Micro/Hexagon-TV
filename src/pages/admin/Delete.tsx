@@ -14,19 +14,17 @@ function handleCancel() {
 }
 
 async function handleRemove(urlName: string, setStatus: any) {
+	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
 	/* TODO: Fix the API Call */
 	const userId = localStorage.getItem("userId");
 	const sessionId = localStorage.getItem("sessionId");
 	setStatus("Removing...");
 	try {
-		const responce = await deleteJSONData(
-			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/delete",
-			{
-				urlName: urlName,
-				userId: userId,
-				sessionId: sessionId,
-			},
-		);
+		const responce = await deleteJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/delete`, {
+			urlName: urlName,
+			userId: userId,
+			sessionId: sessionId,
+		});
 		if (responce.status === "success") {
 			window.location.href = "/";
 		} else {
