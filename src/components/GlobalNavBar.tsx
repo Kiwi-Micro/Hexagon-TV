@@ -13,11 +13,13 @@ function GlobalNavBar() {
 	const [isMobile, setIsMobile] = useState(false);
 	const [shouldShowSearchBar, setShouldShowSearchBar] = useState(false);
 
+	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
+
 	useEffect(() => {
 		async function handleSearch(searchQuery: string) {
 			if (!searchQuery) return;
 			const data = await getJSONData(
-				`https://api.hexagon.kiwi-micro.com:8080/videoAPI/search?query=${searchQuery}`,
+				`${VITE_PUBLIC_API_URL}/videoAPI/search?query=${searchQuery}`,
 			);
 			setResults(data as Videos[]);
 		}

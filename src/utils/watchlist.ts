@@ -1,5 +1,8 @@
 import { postJSONData, deleteJSONData, fetchData } from "./api";
 
+const VITE_PUBLIC_CLERK_SIGN_IN_URL = import.meta.env.VITE_PUBLIC_CLERK_SIGN_IN_URL;
+const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
+
 async function addToWatchlist(
 	name: string,
 	urlName: string,
@@ -11,26 +14,23 @@ async function addToWatchlist(
 	const sessionId = localStorage.getItem("sessionId") || "";
 	const userId = localStorage.getItem("userId") || "";
 	try {
-		const data = await postJSONData(
-			`https://api.hexagon.kiwi-micro.com:8080/userAPI/addToWatchlist`,
-			{
-				name,
-				urlName,
-				thumbnailURL,
-				username,
-				sessionId,
-				userId,
-			},
-		);
+		const data = await postJSONData(`${VITE_PUBLIC_API_URL}/userAPI/addToWatchlist`, {
+			name,
+			urlName,
+			thumbnailURL,
+			username,
+			sessionId,
+			userId,
+		});
 		if (data.status !== "success") {
-			window.location.href = import.meta.env.VITE_SIGNIN_URL;
+			window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
 			return;
 		}
 		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(false);
 		console.log(error);
-		window.location.href = import.meta.env.VITE_SIGNIN_URL;
+		window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
 		return;
 	}
 }
@@ -42,18 +42,18 @@ async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
 	const userId = localStorage.getItem("userId") || "";
 	try {
 		const data = await deleteJSONData(
-			`https://api.hexagon.kiwi-micro.com:8080/userAPI/deleteFromWatchlist`,
+			`${VITE_PUBLIC_API_URL}/userAPI/deleteFromWatchlist`,
 			{ urlName, username, sessionId, userId },
 		);
 		if (data.status !== "success") {
-			window.location.href = import.meta.env.VITE_SIGNIN_URL;
+			window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
 			return;
 		}
 		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(true);
 		console.log(error);
-		window.location.href = import.meta.env.VITE_SIGNIN_URL;
+		window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
 		return;
 	}
 }
