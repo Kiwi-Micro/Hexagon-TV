@@ -5,10 +5,10 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc -b && vite build",
-		"lint": "npx eslint .",
-		"lint:fix": "npx eslint . --fix",
-		"typecheck": "npx tsc --noEmit",
+		"build": "bunx tsc -b && vite build",
+		"lint": "bunx eslint .",
+		"lint:fix": "bunx eslint . --fix",
+		"typecheck": "bunx tsc --noEmit",
 		"preview": "vite preview"
 	},
 	"dependencies": {
