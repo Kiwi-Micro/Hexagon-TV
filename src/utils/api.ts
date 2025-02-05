@@ -1,4 +1,5 @@
 import { Video } from "./types";
+import { setWatchlist } from "./userInfo";
 
 async function getJSONData(url: string) {
 	try {
@@ -64,12 +65,13 @@ function formatVideoAPIData(db: Video[]) {
 }
 
 async function fetchData(
-	setWatchlistdb: any,
-	setMoviesdb: any,
-	setDocumentariesdb: any,
-	setTvShowsdb: any,
-	setVideosdb: any,
-	setLoading: any,
+	shouldTrySetVideoData: boolean,
+	setWatchlistdb?: any,
+	setMoviesdb?: any,
+	setDocumentariesdb?: any,
+	setTvShowsdb?: any,
+	setVideosdb?: any,
+	setLoading?: any,
 ) {
 	const username = localStorage.getItem("username");
 	let watchlistData: any = [];
@@ -82,33 +84,37 @@ async function fetchData(
 		);
 	}
 
-	const moviesData = formatVideoAPIData(
-		(await getJSONData(
-			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=movies",
-		)) || [{ id: "0" }],
-	);
-	const documentariesData = formatVideoAPIData(
-		(await getJSONData(
-			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=documentaries",
-		)) || [{ id: "0" }],
-	);
-	const tvshowsData = formatVideoAPIData(
-		(await getJSONData(
-			"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=tvshows",
-		)) || [{ id: "0" }],
-	);
+	if (shouldTrySetVideoData) {
+		const moviesData = formatVideoAPIData(
+			(await getJSONData(
+				"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=movies",
+			)) || [{ id: "0" }],
+		);
+		const documentariesData = formatVideoAPIData(
+			(await getJSONData(
+				"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=documentaries",
+			)) || [{ id: "0" }],
+		);
+		const tvshowsData = formatVideoAPIData(
+			(await getJSONData(
+				"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=tvshows",
+			)) || [{ id: "0" }],
+		);
 
-	const videosData = [];
-	videosData.push(...moviesData);
-	videosData.push(...documentariesData);
-	videosData.push(...tvshowsData);
+		const videosData = [];
+		videosData.push(...moviesData);
+		videosData.push(...documentariesData);
+		videosData.push(...tvshowsData);
 
-	setWatchlistdb(watchlistData);
-	setMoviesdb(moviesData);
-	setDocumentariesdb(documentariesData);
-	setTvShowsdb(tvshowsData);
-	setVideosdb(videosData);
-	setLoading(false);
+		setWatchlistdb(watchlistData);
+		setMoviesdb(moviesData);
+		setDocumentariesdb(documentariesData);
+		setTvShowsdb(tvshowsData);
+		setVideosdb(videosData);
+		setLoading(false);
+	}
+
+	setWatchlist(watchlistData);
 }
 
 export { getJSONData, postJSONData, deleteJSONData, formatVideoAPIData, fetchData };

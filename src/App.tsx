@@ -8,7 +8,7 @@ import {
 	renderAdminEditPages,
 } from "./utils/renders";
 import { fetchData } from "./utils/api";
-import setUserInfo from "./utils/userInfo";
+import { setUserInfo } from "./utils/userInfo";
 import Index from "./pages/Index";
 import Search from "./pages/Search";
 import NotFound from "./pages/404";
@@ -31,6 +31,7 @@ function App() {
 
 	useEffect(() => {
 		fetchData(
+			true,
 			setWatchlistdb,
 			setMoviesdb,
 			setDocumentariesdb,
@@ -53,12 +54,7 @@ function App() {
 						<Route
 							path="/"
 							element={
-								<Index
-									watchlist={watchlist}
-									movies={movies}
-									documentaries={documentaries}
-									tvshows={tvshows}
-								/>
+								<Index movies={movies} documentaries={documentaries} tvshows={tvshows} />
 							}
 						/>
 						<Route path="/search" element={<Search />} />

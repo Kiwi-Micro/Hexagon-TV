@@ -12,11 +12,12 @@ Please read the [DOCUMENTATION.md](DOCUMENTATION.md).
 
 ## Tech Stack
 
-- **Backend**: Python, Flask, SQLite, TypeScript, Express, Clerk
+## Tech Stack
+
 - **Frontend**: React, TypeScript, CSS
+- **Backend**: TypeScript, Express, Clerk, Turso
 - **Database**: SQL Lite (Via the Typscript - Turso API)
-- **CDN**: Apache
-- **Hosting**: Linode (CDN, API), Vercel (Site), Turso (Database)
+- **Hosting**: Linode (API), Vercel (Site), Turso (Database), Uploadthing (CDN)
 - **Authentication**: TypeScript, Express, Clerk
 
 ---
@@ -26,7 +27,7 @@ Please read the [DOCUMENTATION.md](DOCUMENTATION.md).
 - Write clear, concise commit messages.
 - Ensure all tests pass before submitting a pull request.
 - Make sure any changes you submit are tested properly!
-- Our IDE of choice for this project is VS Code. If you use another IDE, do not include any of the project settings with your commits, unless they are urgent!
+- Our IDE of choice for this project is VS Code. If you use another IDE, do not include any of the project settings with your commits.
 - If you are fixing a bug please make sure there is an issue open in the correct project regarding the bug you are working on.
 
 ---

@@ -16,6 +16,7 @@
 
 .card h3 {
 	margin-left: 10px;
+	max-width: 24ch;
 }
 
 .card img {
@@ -27,6 +28,15 @@
 }
 
 .searchPageVideosList {
+	display: flex;
+	scrollbar-width: none;
+	flex-wrap: wrap;
+	justify-content: left;
+	overflow-x: auto;
+	padding: 10px 0;
+}
+
+.accountMenuVideosList {
 	display: flex;
 	scrollbar-width: none;
 	flex-wrap: wrap;
@@ -49,7 +59,7 @@
 
 .navSearchCard h2 {
 	margin-left: 10px;
-	max-width: 250px;
+	max-width: 20ch;
 }
 
 .navSearchCard img {

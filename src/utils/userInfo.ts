@@ -1,4 +1,5 @@
 import { useUser, useSession } from "@clerk/clerk-react";
+import { Video } from "./types";
 
 function setUserInfo() {
 	const { isSignedIn: isUserSignedIn, user, isLoaded: isUserLoaded } = useUser();
@@ -21,4 +22,14 @@ function setUserInfo() {
 	return true;
 }
 
-export default setUserInfo;
+let watchlist: Video[] = [];
+
+function setWatchlist(watchlistData: Video[]) {
+	watchlist = watchlistData;
+}
+
+function getUserWatchlist() {
+	return watchlist;
+}
+
+export { setUserInfo, setWatchlist, getUserWatchlist };

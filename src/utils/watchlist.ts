@@ -1,4 +1,4 @@
-import { postJSONData, deleteJSONData } from "./api";
+import { postJSONData, deleteJSONData, fetchData } from "./api";
 
 async function addToWatchlist(
 	name: string,
@@ -23,13 +23,14 @@ async function addToWatchlist(
 			},
 		);
 		if (data.status !== "success") {
-			window.location.href = "/login";
+			window.location.href = import.meta.env.VITE_SIGNIN_URL;
 			return;
 		}
+		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(false);
 		console.log(error);
-		window.location.href = "/login";
+		window.location.href = import.meta.env.VITE_SIGNIN_URL;
 		return;
 	}
 }
@@ -45,13 +46,14 @@ async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
 			{ urlName, username, sessionId, userId },
 		);
 		if (data.status !== "success") {
-			window.location.href = "/login";
+			window.location.href = import.meta.env.VITE_SIGNIN_URL;
 			return;
 		}
+		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(true);
 		console.log(error);
-		window.location.href = "/login";
+		window.location.href = import.meta.env.VITE_SIGNIN_URL;
 		return;
 	}
 }
