@@ -24,24 +24,24 @@ function Search() {
 
 	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
 
+	async function handleSearch(query: string) {
+		if (!query) return;
+		const data = await getJSONData(
+			`${VITE_PUBLIC_API_URL}/videoAPI/search?query=${query}`,
+		);
+		setResults(data as SearchResult[]);
+	}
+
 	useEffect(() => {
-		if (queryParam && query !== queryParam) {
+		if (queryParam) {
 			setQuery(queryParam);
 			handleSearch(queryParam);
 		}
-	}, [queryParam]);
+	}, []);
 
 	useEffect(() => {
 		handleSearch(query);
 	}, [query]);
-
-	async function handleSearch(searchQuery: string) {
-		if (!query) return;
-		const data = await getJSONData(
-			`${VITE_PUBLIC_API_URL}/videoAPI/search?query=${searchQuery}`,
-		);
-		setResults(data as SearchResult[]);
-	}
 
 	return (
 		<div>
