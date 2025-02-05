@@ -4,6 +4,7 @@ import CustomBreak from "../components/CustomBreak";
 import VideoCarousel from "../components/VideoCarousel";
 import { Video } from "../utils/types";
 import hero from "../assets/hero.mp4";
+import heroPlaceholderImage from "../assets/img/heroPlaceholder.png";
 import { getUserWatchlist } from "../utils/userInfo";
 
 interface IndexProps {
@@ -20,7 +21,14 @@ function Index({ movies, documentaries, tvshows }: IndexProps) {
 		<div className="main">
 			<GlobalNavBar />
 			<div className="heroContainer">
-				<video src={hero} muted autoPlay loop className="homePageHero" />
+				<video
+					src={hero}
+					muted
+					autoPlay
+					loop
+					className="homePageHero"
+					poster={heroPlaceholderImage}
+				/>
 				<div className="homePageHeroInfo">
 					<h1>Cool New Shows Coming To You!</h1>
 					<p>Well Some Day...</p>
