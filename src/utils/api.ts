@@ -73,13 +73,13 @@ async function fetchData(
 	setVideosdb?: any,
 	setLoading?: any,
 ) {
+	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
 	const username = localStorage.getItem("username");
 	let watchlistData: any = [];
 	if (username) {
 		watchlistData = formatVideoAPIData(
 			(await getJSONData(
-				"https://api.hexagon.kiwi-micro.com:8080/userAPI/getWatchlist?username=" +
-					username,
+				`${VITE_PUBLIC_API_URL}/userAPI/getWatchlist?username=` + username,
 			)) || [{ id: "0" }],
 		);
 	}
@@ -87,17 +87,17 @@ async function fetchData(
 	if (shouldTrySetVideoData) {
 		const moviesData = formatVideoAPIData(
 			(await getJSONData(
-				"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=movies",
+				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=movies`,
 			)) || [{ id: "0" }],
 		);
 		const documentariesData = formatVideoAPIData(
 			(await getJSONData(
-				"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=documentaries",
+				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=documentaries`,
 			)) || [{ id: "0" }],
 		);
 		const tvshowsData = formatVideoAPIData(
 			(await getJSONData(
-				"https://api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData?category=tvshows",
+				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=tvshows`,
 			)) || [{ id: "0" }],
 		);
 

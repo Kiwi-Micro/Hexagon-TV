@@ -1,45 +1,36 @@
 import { useState, useEffect } from "react";
 import { getJSONData } from "../utils/api";
+import { Video } from "../utils/types";
 import VideoCard from "../components/VideoCard";
 import GlobalNavBar from "../components/GlobalNavBar";
 import CustomBreak from "../components/CustomBreak";
 
-interface SearchResult {
-	category: string;
-	date: string;
-	description: string;
-	id: string;
-	name: string;
-	rating: string;
-	thumbnailURL: string;
-	urlName: string;
-	videoURL: string;
-}
-
 function Search() {
 	const [query, setQuery] = useState("");
-	const [results, setResults] = useState<SearchResult[]>([]);
+	const [results, setResults] = useState<Video[]>([]);
 	const urlParams = new URLSearchParams(window.location.search);
 	const queryParam = urlParams.get("query");
 
+	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
+
+	async function handleSearch(query: string) {
+		if (!query) return;
+		const data = await getJSONData(
+			`${VITE_PUBLIC_API_URL}/videoAPI/search?query=${query}`,
+		);
+		setResults(data as Video[]);
+	}
+
 	useEffect(() => {
-		if (queryParam && query !== queryParam) {
+		if (queryParam) {
 			setQuery(queryParam);
 			handleSearch(queryParam);
 		}
-	}, [queryParam]);
+	}, []);
 
 	useEffect(() => {
 		handleSearch(query);
 	}, [query]);
-
-	async function handleSearch(searchQuery: string) {
-		if (!query) return;
-		const data = await getJSONData(
-			`https://api.hexagon.kiwi-micro.com:8080/videoAPI/search?query=${searchQuery}`,
-		);
-		setResults(data as SearchResult[]);
-	}
 
 	return (
 		<div>
@@ -63,7 +54,7 @@ function Search() {
 			</div>
 			<div>
 				<div className="searchPageVideosList">
-					{results.map((video: SearchResult) => (
+					{results.map((video: Video) => (
 						<VideoCard
 							key={video.urlName}
 							name={video.name}
