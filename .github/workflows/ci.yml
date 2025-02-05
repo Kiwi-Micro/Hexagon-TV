@@ -9,15 +9,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup Bun
+        uses: curl -fsSL https://bun.sh/install | bash
+
       - name: Install Dependencies
-        run: npm install
+        run: bun install
 
       - name: Copy .env.example files
         shell: bash
         run: find . -type f -name ".env.example" -exec sh -c 'cp "$1" "${1%.*}"' _ {} \;
 
       - name: Typecheck
-        run: npm run typecheck
+        run: bun typecheck
 
       - name: Lint
-        run: npm run lint
+        run: bun lint
