@@ -22,18 +22,10 @@ List:
   - api.hexagon.kiwi-micro.com:8080/userAPI/getWatchlist
   - api.hexagon.kiwi-micro.com:8080/userAPI/addToWatchlist
   - api.hexagon.kiwi-micro.com:8080/userAPI/removeFromWatchlist
-  - api.hexagon.kiwi-micro.com:8080/videoAPI/movies
-  - api.hexagon.kiwi-micro.com:8080/videoAPI/tvshows
-  - api.hexagon.kiwi-micro.com:8080/videoAPI/documentaries
+  - api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData
   - api.hexagon.kiwi-micro.com:8080/videoAPI/search
   - api.hexagon.kiwi-micro.com:8080/videoAPI/deleteVideo
   - api.hexagon.kiwi-micro.com:8080/videoAPI/addVideo
-
-### V1 Endpoints
-
-Comming Soon
-
-### V2 Endpoints
 
 #### api.hexagon.kiwi-micro.com:8080/userAPI/getWatchlist
 
@@ -93,21 +85,15 @@ Response:
 }
 ```
 
-#### api.hexagon.kiwi-micro.com:8080/videoAPI/movies
+#### api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData
 
-#### api.hexagon.kiwi-micro.com:8080/videoAPI/tvshows
-
-#### api.hexagon.kiwi-micro.com:8080/videoAPI/documentaries
-
-URL: `api.hexagon.kiwi-micro.com:8080/videoAPI/movies`
-URL: `api.hexagon.kiwi-micro.com:8080/videoAPI/tvshows`
-URL: `api.hexagon.kiwi-micro.com:8080/videoAPI/documentaries`
+URL: `api.hexagon.kiwi-micro.com:8080/videoAPI/getVideoData`
 
 Method: `GET`
 
 URL Params:
 
-- None
+- category: The category of the video
 
 Body:
 
