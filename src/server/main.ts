@@ -14,12 +14,12 @@ Bun.serve({
 	static: {
 		"/": index,
 		"/search": index,
-		"/admin": index,
-		"/admin/add": index,
 		"/video/*": index,
 		"/watch/*": index,
-		"/edit/*": index,
-		"/delete/*": index,
+		"/admin/": index,
+		"/admin/add": index,
+		"/admin/edit/*": index,
+		"/admin/delete/*": index,
 	},
 
 	async fetch(req) {
