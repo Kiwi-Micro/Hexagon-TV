@@ -15,18 +15,14 @@ function renderVideoCard(db: any) {
 				<VideoCard
 					key={video.urlName}
 					name={video.name}
-					videoLink={`${video.urlName}`}
+					videoLink={`/video/${video.urlName}`}
 					thumbnailURL={video.thumbnailURL}
 				/>
 			);
 		});
 }
 
-function renderVideoRoutes(
-	db: Video[],
-	isViewer?: boolean,
-	watchlist?: any,
-) {
+function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
 	if (isViewer) {
 		return db.map((video: Video) => (
 			<Route
@@ -37,7 +33,7 @@ function renderVideoRoutes(
 						key={video.urlName}
 						name={video.name}
 						videoURL={video.videoURL}
-						previousPage={`/${video.urlName}`}
+						previousPage={`/video/${video.urlName}`}
 					/>
 				}
 			/>
@@ -46,14 +42,9 @@ function renderVideoRoutes(
 	return db.map((video: Video) => (
 		<Route
 			key={video.urlName}
-			path={`/${video.urlName}`}
+			path={`/video/${video.urlName}`}
 			element={
-				<VideoPage
-					key={video.urlName}
-					videoInfo={video}
-					db={db}
-					watchlist={watchlist}
-				/>
+				<VideoPage key={video.urlName} videoInfo={video} db={db} watchlist={watchlist} />
 			}
 		/>
 	));

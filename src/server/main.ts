@@ -1,4 +1,4 @@
-import dashboard from "../../index.html";
+import index from "../../index.html";
 import getWatchlistEndpoint from "./routes/userAPI/GET/watchlist";
 import addToWatchlistEndpoint from "./routes/userAPI/POST/addToWatchlist";
 import deleteFromWatchlistEndpoint from "./routes/userAPI/POST/removeToWatchlist";
@@ -12,7 +12,14 @@ const BUN_PUBLIC_CLERK_PUBLISHABLE_KEY =
 
 Bun.serve({
 	static: {
-		"/": dashboard,
+		"/": index,
+		"/search": index,
+		"/admin": index,
+		"/admin/add": index,
+		"/video/*": index,
+		"/watch/*": index,
+		"/edit/*": index,
+		"/delete/*": index,
 	},
 
 	async fetch(req) {
