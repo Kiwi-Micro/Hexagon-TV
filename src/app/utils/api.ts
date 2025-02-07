@@ -77,33 +77,35 @@ async function fetchData(
 	let watchlistData: any = [];
 	if (username) {
 		watchlistData = formatVideoAPIData(
-			(await getJSONData(
-				`/API/userAPI/getWatchlist?username=` + username,
-			)) || [{ id: "0" }],
+			(await getJSONData(`/API/userAPI/getWatchlist?username=` + username)) || [
+				{ id: "0" },
+			],
 		);
 	}
 
 	if (shouldTrySetVideoData) {
-		const moviesData = formatVideoAPIData(
-			(await getJSONData(
-				`/API/videoAPI/getVideoData?category=movies`,
-			)) || [{ id: "0" }],
-		);
-		const documentariesData = formatVideoAPIData(
-			(await getJSONData(
-				`/API/videoAPI/getVideoData?category=documentaries`,
-			)) || [{ id: "0" }],
-		);
-		const tvshowsData = formatVideoAPIData(
-			(await getJSONData(
-				`/API/videoAPI/getVideoData?category=tvshows`,
-			)) || [{ id: "0" }],
+		const videosData = formatVideoAPIData(
+			(await getJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData`)) || [
+				{ id: "0" },
+			],
 		);
 
-		const videosData = [];
-		videosData.push(...moviesData);
-		videosData.push(...documentariesData);
-		videosData.push(...tvshowsData);
+		const moviesData = [];
+		const documentariesData = [];
+		const tvshowsData = [];
+
+		for (let i = 0; i < videosData.length; i++) {
+			if (videosData[i].category === "movies") {
+				console.log("movie");
+				moviesData.push(videosData[i]);
+			} else if (videosData[i].category === "documentarys") {
+				console.log("documentary");
+				documentariesData.push(videosData[i]);
+			} else if (videosData[i].category === "tvshows") {
+				console.log("tvshow");
+				tvshowsData.push(videosData[i]);
+			}
+		}
 
 		setWatchlistdb(watchlistData);
 		setMoviesdb(moviesData);
@@ -116,10 +118,4 @@ async function fetchData(
 	setWatchlist(watchlistData);
 }
 
-export {
-	getJSONData,
-	postJSONData,
-	deleteJSONData,
-	formatVideoAPIData,
-	fetchData,
-};
+export { getJSONData, postJSONData, deleteJSONData, formatVideoAPIData, fetchData };
