@@ -45,7 +45,8 @@ async function deleteVideo(urlName: string, setStatus: any) {
 		} else {
 			setStatus("Failed to remove!");
 		}
-	} catch (e: any) {
+	} catch (error) {
+		console.log(error);
 		setStatus("Failed to remove!");
 	}
 }
