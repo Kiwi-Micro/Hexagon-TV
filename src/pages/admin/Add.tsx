@@ -3,60 +3,45 @@ import GlobalFooter from "../../components/GlobalFooter";
 import CustomBreak from "../../components/CustomBreak";
 import { useState } from "react";
 import { UploadButton } from "../../utils/uploadthing";
-import { postJSONData } from "../../utils/api";
-
-/* TODO: Clean Up */
+import { addVideo } from "../../utils/videoManipulation";
+import { Video } from "../../utils/types";
 
 function Add() {
 	document.title = "Hexagon TV Add | Add Video";
 
-	const [thumbnailURL, setThumbnailURL] = useState("");
-	const [videoURL, setVideoURL] = useState("");
-	const [name, setName] = useState("");
-	const [description, setDescription] = useState("");
-	const [urlName, setUrlName] = useState("");
-	const [ageRating, setAgeRating] = useState("");
-	const [category, setCategory] = useState("");
+	const [video, setVideo] = useState<Video>({
+		id: 0,
+		name: "",
+		description: "",
+		category: "",
+		thumbnailURL: "",
+		videoURL: "",
+		date: "",
+		rating: "",
+		ratingInfo: "",
+		urlName: "",
+	});
 	const [alert, setAlert] = useState("");
 
-	async function handleSubmit() {
-		const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
-		const VITE_PUBLIC_CLERK_SIGN_IN_URL = import.meta.env.VITE_PUBLIC_CLERK_SIGN_IN_URL;
+	async function handleAddVideo() {
 		if (
-			!name ||
-			!description ||
-			!category ||
-			!thumbnailURL ||
-			!videoURL ||
-			!urlName ||
-			!ageRating
+			!video.name ||
+			!video.description ||
+			!video.category ||
+			!video.thumbnailURL ||
+			!video.videoURL
 		) {
 			setAlert("Please fill out all fields!");
 			return;
 		}
-		const data = await postJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/add`, {
-			userId: localStorage.getItem("userId") || "",
-			sessionId: localStorage.getItem("sessionId") || "",
-			name,
-			description,
-			category,
-			thumbnailURL,
-			videoURL,
-			urlName,
-			ageRating,
-		});
-		if (data.status !== "success") {
-			window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
-			return;
-		}
-		window.location.href = "/admin";
+		addVideo(video);
 	}
 
 	return (
 		<div className="main">
 			<GlobalNavBar />
-			<CustomBreak height={1} />
-			<div className="center">
+			<CustomBreak height={2} />
+			<div className="centerHorizontal">
 				<div className="addVideoPage">
 					<h1 style={{ textAlign: "center" }}>Add A Video</h1>
 					{alert && <p style={{ color: "red" }}>{alert}</p>}
@@ -64,13 +49,19 @@ function Add() {
 						<h2 style={{ textAlign: "center", marginBottom: "10px" }}>
 							Upload Thumbnail
 						</h2>
+						{video.thumbnailURL ? (
+							<img src={video.thumbnailURL} alt="Thumbnail" className="addVideoPreview" />
+						) : null}
 						<UploadButton
 							endpoint="thumbnail"
 							onUploadError={(error) => {
 								console.error("ERROR:", error, error.cause);
 							}}
 							onClientUploadComplete={(data: any) => {
-								setThumbnailURL(data[0].url);
+								setVideo((prevState: any) => ({
+									...prevState,
+									thumbnailURL: data[0].url,
+								}));
 							}}
 							headers={{
 								sessionId: localStorage.getItem("sessionId") || "",
@@ -78,13 +69,16 @@ function Add() {
 							}}
 						/>
 						<h2 style={{ textAlign: "center", marginBottom: "10px" }}>Upload Video</h2>
+						{video.videoURL ? (
+							<video src={video.videoURL} controls className="addVideoPreview" />
+						) : null}
 						<UploadButton
 							endpoint="video"
 							onUploadError={(error) => {
 								console.error("ERROR:", error, error.cause);
 							}}
 							onClientUploadComplete={(data: any) => {
-								setVideoURL(data[0].url);
+								setVideo((prevState: any) => ({ ...prevState, videoURL: data[0].url }));
 							}}
 							headers={{
 								sessionId: localStorage.getItem("sessionId") || "",
@@ -95,35 +89,47 @@ function Add() {
 							className="addVideoInput"
 							type="text"
 							placeholder="Name"
-							value={name}
-							onChange={(e) => setName(e.target.value)}
+							value={video.name}
+							onChange={(e) =>
+								setVideo((prevState: any) => ({ ...prevState, name: e.target.value }))
+							}
 						/>
 						<input
 							className="addVideoInput"
 							type="text"
 							placeholder="Description"
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
+							value={video.description}
+							onChange={(e) =>
+								setVideo((prevState: any) => ({
+									...prevState,
+									description: e.target.value,
+								}))
+							}
 						/>
 						<input
 							className="addVideoInput"
 							type="text"
 							placeholder="urlName"
-							value={urlName}
-							onChange={(e) => setUrlName(e.target.value)}
+							value={video.urlName}
+							onChange={(e) =>
+								setVideo((prevState: any) => ({ ...prevState, urlName: e.target.value }))
+							}
 						/>
 						<input
 							className="addVideoInput"
 							type="text"
 							placeholder="ageRating"
-							value={ageRating}
-							onChange={(e) => setAgeRating(e.target.value)}
+							value={video.rating}
+							onChange={(e) =>
+								setVideo((prevState: any) => ({ ...prevState, rating: e.target.value }))
+							}
 						/>
-						{/* dropdown */}
 						<select
 							id="category"
-							value={category || "none"}
-							onChange={(e) => setCategory(e.target.value)}
+							value={video.category || "none"}
+							onChange={(e) =>
+								setVideo((prevState: any) => ({ ...prevState, category: e.target.value }))
+							}
 							className="addVideoDropdown"
 						>
 							<option value="none" disabled hidden>
@@ -133,8 +139,8 @@ function Add() {
 							<option value="tvshows">TV Show</option>
 							<option value="documentaries">Documentaries</option>
 						</select>
-						<button className="addVideoButton" onClick={() => handleSubmit()}>
-							Submit
+						<button className="addVideoButton" onClick={() => handleAddVideo()}>
+							Add
 						</button>
 					</div>
 				</div>

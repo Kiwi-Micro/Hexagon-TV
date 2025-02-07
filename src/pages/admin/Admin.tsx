@@ -4,16 +4,12 @@ import CustomBreak from "../../components/CustomBreak";
 import { Video } from "../../utils/types";
 
 interface AdminProps {
-	movies: any;
-	documentaries: any;
-	tvshows: any;
+	allVideos: Video[];
 }
 
-function Admin({ movies, documentaries, tvshows }: AdminProps) {
-	movies;
-	documentaries;
-	tvshows;
+function Admin({ allVideos }: AdminProps) {
 	document.title = "Hexagon TV Admin | Home";
+
 	return (
 		<div className="main">
 			<GlobalNavBar />
@@ -30,7 +26,7 @@ function Admin({ movies, documentaries, tvshows }: AdminProps) {
 			</div>
 			<CustomBreak height={1} />
 			<div className="adminPageCardsWrapper">
-				{movies
+				{allVideos
 					.slice()
 					.reverse()
 					.map((video: Video) => (

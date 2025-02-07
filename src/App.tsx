@@ -58,12 +58,7 @@ function App() {
 							}
 						/>
 						<Route path="/search" element={<Search />} />
-						<Route
-							path="/admin"
-							element={
-								<Admin movies={movies} documentaries={documentaries} tvshows={tvshows} />
-							}
-						/>
+						<Route path="/admin" element={<Admin allVideos={videos} />} />
 						<Route path="/admin/add" element={<Add />} />
 						{renderAdminDeletePages(videos)}
 						{renderAdminEditPages(videos)}
