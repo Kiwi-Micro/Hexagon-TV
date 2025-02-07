@@ -85,26 +85,28 @@ async function fetchData(
 	}
 
 	if (shouldTrySetVideoData) {
-		const moviesData = formatVideoAPIData(
-			(await getJSONData(
-				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=movies`,
-			)) || [{ id: "0" }],
-		);
-		const documentariesData = formatVideoAPIData(
-			(await getJSONData(
-				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=documentaries`,
-			)) || [{ id: "0" }],
-		);
-		const tvshowsData = formatVideoAPIData(
-			(await getJSONData(
-				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=tvshows`,
-			)) || [{ id: "0" }],
+		const videosData = formatVideoAPIData(
+			(await getJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData`)) || [
+				{ id: "0" },
+			],
 		);
 
-		const videosData = [];
-		videosData.push(...moviesData);
-		videosData.push(...documentariesData);
-		videosData.push(...tvshowsData);
+		const moviesData = [];
+		const documentariesData = [];
+		const tvshowsData = [];
+
+		for (let i = 0; i < videosData.length; i++) {
+			if (videosData[i].category === "movies") {
+				console.log("movie");
+				moviesData.push(videosData[i]);
+			} else if (videosData[i].category === "documentarys") {
+				console.log("documentary");
+				documentariesData.push(videosData[i]);
+			} else if (videosData[i].category === "tvshows") {
+				console.log("tvshow");
+				tvshowsData.push(videosData[i]);
+			}
+		}
 
 		setWatchlistdb(watchlistData);
 		setMoviesdb(moviesData);
