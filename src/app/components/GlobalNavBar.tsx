@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { getJSONData } from "../utils/api";
-import { Video as Videos } from "../utils/types";
-import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/clerk-react";
+import type { Video as Videos } from "../utils/types";
+import {
+	SignedIn,
+	SignedOut,
+	UserButton,
+	SignInButton,
+} from "@clerk/clerk-react";
 import { AccountWatchlistTab, WatchlistDotIcon } from "./AccountMenuTabs";
 import VideoCard from "../components/VideoCard";
 import logo from "../assets/img/logo.png";
@@ -13,13 +18,11 @@ function GlobalNavBar() {
 	const [isMobile, setIsMobile] = useState(false);
 	const [shouldShowSearchBar, setShouldShowSearchBar] = useState(false);
 
-	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
-
 	useEffect(() => {
 		async function handleSearch(searchQuery: string) {
 			if (!searchQuery) return;
 			const data = await getJSONData(
-				`${VITE_PUBLIC_API_URL}/videoAPI/search?query=${searchQuery}`,
+				`/API/videoAPI/search?query=${searchQuery}`,
 			);
 			setResults(data as Videos[]);
 		}
@@ -90,7 +93,9 @@ function GlobalNavBar() {
 									style={{ width: "80px" }}
 									onChange={(e) => handleSearchChange(e)}
 									onClick={
-										query.length != 0 ? () => setShouldShowResults(true) : undefined
+										query.length != 0
+											? () => setShouldShowResults(true)
+											: undefined
 									}
 									onKeyDown={(e) => handleKeyDown(e)}
 									onBlur={() => handleClearSearch(false)}
@@ -131,7 +136,10 @@ function GlobalNavBar() {
 					{/* Account Button */}
 					<div style={{ marginLeft: "10px" }}>
 						<SignedOut>
-							<SignInButton forceRedirectUrl="/" signUpForceRedirectUrl="/">
+							<SignInButton
+								forceRedirectUrl="/"
+								signUpForceRedirectUrl="/"
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 32 32"

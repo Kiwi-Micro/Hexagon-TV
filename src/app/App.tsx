@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Video } from "./utils/types";
+import type { Video } from "./utils/types";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
 	renderVideoRoutes,
@@ -54,14 +54,22 @@ function App() {
 						<Route
 							path="/"
 							element={
-								<Index movies={movies} documentaries={documentaries} tvshows={tvshows} />
+								<Index
+									movies={movies}
+									documentaries={documentaries}
+									tvshows={tvshows}
+								/>
 							}
 						/>
 						<Route path="/search" element={<Search />} />
 						<Route
 							path="/admin"
 							element={
-								<Admin movies={movies} documentaries={documentaries} tvshows={tvshows} />
+								<Admin
+									movies={movies}
+									documentaries={documentaries}
+									tvshows={tvshows}
+								/>
 							}
 						/>
 						<Route path="/admin/add" element={<Add />} />

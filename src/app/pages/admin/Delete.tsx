@@ -1,6 +1,6 @@
 import GlobalNavBar from "../../components/GlobalNavBar";
 import GlobalFooter from "../../components/GlobalFooter";
-import { Video } from "../../utils/types";
+import type { Video } from "../../utils/types";
 import CustomBreak from "../../components/CustomBreak";
 import { useState } from "react";
 import { deleteJSONData } from "../../utils/api";
@@ -14,13 +14,12 @@ function handleCancel() {
 }
 
 async function handleRemove(urlName: string, setStatus: any) {
-	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
 	/* TODO: Fix the API Call */
 	const userId = localStorage.getItem("userId");
 	const sessionId = localStorage.getItem("sessionId");
 	setStatus("Removing...");
 	try {
-		const responce = await deleteJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/delete`, {
+		const responce = await deleteJSONData(`/API/videoAPI/delete`, {
 			urlName: urlName,
 			userId: userId,
 			sessionId: sessionId,

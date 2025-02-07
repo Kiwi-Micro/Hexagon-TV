@@ -1,6 +1,6 @@
 import GlobalNavBar from "../../components/GlobalNavBar";
 import GlobalFooter from "../../components/GlobalFooter";
-import { Video } from "../../utils/types";
+import type { Video } from "../../utils/types";
 import CustomBreak from "../../components/CustomBreak";
 
 interface EditProps {

@@ -2,7 +2,7 @@ import GlobalNavBar from "../components/GlobalNavBar";
 import GlobalFooter from "../components/GlobalFooter";
 import CustomBreak from "../components/CustomBreak";
 import VideoCarousel from "../components/VideoCarousel";
-import { Video } from "../utils/types";
+import type { Video } from "../utils/types";
 import hero from "../assets/hero.mp4";
 import heroPlaceholderImage from "../assets/img/heroPlaceholder.png";
 import { getUserWatchlist } from "../utils/userInfo";

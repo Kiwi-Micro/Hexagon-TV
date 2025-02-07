@@ -1,5 +1,10 @@
 # Hexagon TV
 
+# What I need to solve to be able to use bun:
+
+- [ ] Be able to deploy bun projects on vercel or just build them locally.
+- [ ] hot reloading for client. (comming soon)
+
 Hexagon TV is an open-source streaming service designed to deliver high-quality video content seamlessly. Built with reliability, and customization in mind.
 
 ---

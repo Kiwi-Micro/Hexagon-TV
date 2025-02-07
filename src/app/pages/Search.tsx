@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getJSONData } from "../utils/api";
-import { Video } from "../utils/types";
+import type { Video } from "../utils/types";
 import VideoCard from "../components/VideoCard";
 import GlobalNavBar from "../components/GlobalNavBar";
 import CustomBreak from "../components/CustomBreak";
@@ -11,13 +11,9 @@ function Search() {
 	const urlParams = new URLSearchParams(window.location.search);
 	const queryParam = urlParams.get("query");
 
-	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
-
 	async function handleSearch(query: string) {
 		if (!query) return;
-		const data = await getJSONData(
-			`${VITE_PUBLIC_API_URL}/videoAPI/search?query=${query}`,
-		);
+		const data = await getJSONData(`/API/videoAPI/search?query=${query}`);
 		setResults(data as Video[]);
 	}
 

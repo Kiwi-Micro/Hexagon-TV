@@ -1,14 +1,23 @@
 import { useUser, useSession } from "@clerk/clerk-react";
-import { Video } from "./types";
+import type { Video } from "./types";
 
 function setUserInfo() {
-	const { isSignedIn: isUserSignedIn, user, isLoaded: isUserLoaded } = useUser();
+	const {
+		isSignedIn: isUserSignedIn,
+		user,
+		isLoaded: isUserLoaded,
+	} = useUser();
 	const {
 		isLoaded: isSessionLoaded,
 		session,
 		isSignedIn: isSessionSignedIn,
 	} = useSession();
-	if (!isUserSignedIn || !isSessionSignedIn || !isUserLoaded || !isSessionLoaded) {
+	if (
+		!isUserSignedIn ||
+		!isSessionSignedIn ||
+		!isUserLoaded ||
+		!isSessionLoaded
+	) {
 		return false;
 	}
 	const username = user.username || "";

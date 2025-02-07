@@ -1,7 +1,7 @@
 import GlobalNavBar from "../../components/GlobalNavBar";
 import GlobalFooter from "../../components/GlobalFooter";
 import CustomBreak from "../../components/CustomBreak";
-import { Video } from "../../utils/types";
+import type { Video } from "../../utils/types";
 
 interface AdminProps {
 	movies: any;
@@ -24,19 +24,31 @@ function Admin({ movies, documentaries, tvshows }: AdminProps) {
 				.reverse()
 				.map((video: Video) => (
 					<div className="adminPageCard">
-						<img src={video.thumbnailURL} draggable="false" alt={video.name} />
+						<img
+							src={video.thumbnailURL}
+							draggable="false"
+							alt={video.name}
+						/>
 						<h2 style={{ marginLeft: "20px" }}>{video.name}</h2>
 						<div
-							style={{ display: "flex", flexDirection: "column", marginBottom: "20px" }}
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								marginBottom: "20px",
+							}}
 						>
 							<button
-								onClick={() => (window.location.href = `/admin/edit/${video.urlName}`)}
+								onClick={() =>
+									(window.location.href = `/admin/edit/${video.urlName}`)
+								}
 								className="whiteButton"
 							>
 								Edit
 							</button>
 							<button
-								onClick={() => (window.location.href = `/admin/delete/${video.urlName}`)}
+								onClick={() =>
+									(window.location.href = `/admin/delete/${video.urlName}`)
+								}
 								className="redButton"
 							>
 								Delete

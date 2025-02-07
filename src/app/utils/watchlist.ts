@@ -1,7 +1,8 @@
 import { postJSONData, deleteJSONData, fetchData } from "./api";
 
-const VITE_PUBLIC_CLERK_SIGN_IN_URL = import.meta.env.VITE_PUBLIC_CLERK_SIGN_IN_URL;
-const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
+const VITE_PUBLIC_CLERK_SIGN_IN_URL = await fetch(
+	"/API/keys/publicKey",
+).then((res) => res.json());
 
 async function addToWatchlist(
 	name: string,
@@ -14,7 +15,7 @@ async function addToWatchlist(
 	const sessionId = localStorage.getItem("sessionId") || "";
 	const userId = localStorage.getItem("userId") || "";
 	try {
-		const data = await postJSONData(`${VITE_PUBLIC_API_URL}/userAPI/addToWatchlist`, {
+		const data = await postJSONData(`/API/userAPI/addToWatchlist`, {
 			name,
 			urlName,
 			thumbnailURL,
@@ -29,22 +30,26 @@ async function addToWatchlist(
 		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(false);
-		console.log(error);
 		window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
 		return;
 	}
 }
 
-async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
+async function removeFromWatchlist(
+	urlName: string,
+	setIsInWatchlist: any,
+) {
 	setIsInWatchlist(false);
 	const username = localStorage.getItem("username") || "";
 	const sessionId = localStorage.getItem("sessionId") || "";
 	const userId = localStorage.getItem("userId") || "";
 	try {
-		const data = await deleteJSONData(
-			`${VITE_PUBLIC_API_URL}/userAPI/deleteFromWatchlist`,
-			{ urlName, username, sessionId, userId },
-		);
+		const data = await deleteJSONData(`/API/userAPI/deleteFromWatchlist`, {
+			urlName,
+			username,
+			sessionId,
+			userId,
+		});
 		if (data.status !== "success") {
 			window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
 			return;
@@ -52,7 +57,6 @@ async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
 		fetchData(false);
 	} catch (error) {
 		setIsInWatchlist(true);
-		console.log(error);
 		window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
 		return;
 	}

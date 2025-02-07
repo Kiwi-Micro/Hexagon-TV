@@ -1,5 +1,5 @@
 import VideoCard from "../components/VideoCard";
-import { Video } from "./types";
+import type { Video } from "./types";
 import VideoPage from "../pages/Video";
 import VideoViewer from "../pages/VideoViewer";
 import { Route } from "react-router-dom";
@@ -22,7 +22,11 @@ function renderVideoCard(db: any) {
 		});
 }
 
-function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
+function renderVideoRoutes(
+	db: Video[],
+	isViewer?: boolean,
+	watchlist?: any,
+) {
 	if (isViewer) {
 		return db.map((video: Video) => (
 			<Route
@@ -44,7 +48,12 @@ function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
 			key={video.urlName}
 			path={`/${video.urlName}`}
 			element={
-				<VideoPage key={video.urlName} videoInfo={video} db={db} watchlist={watchlist} />
+				<VideoPage
+					key={video.urlName}
+					videoInfo={video}
+					db={db}
+					watchlist={watchlist}
+				/>
 			}
 		/>
 	));

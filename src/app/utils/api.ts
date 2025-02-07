@@ -1,4 +1,4 @@
-import { Video } from "./types";
+import type { Video } from "./types";
 import { setWatchlist } from "./userInfo";
 
 async function getJSONData(url: string) {
@@ -73,13 +73,12 @@ async function fetchData(
 	setVideosdb?: any,
 	setLoading?: any,
 ) {
-	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
 	const username = localStorage.getItem("username");
 	let watchlistData: any = [];
 	if (username) {
 		watchlistData = formatVideoAPIData(
 			(await getJSONData(
-				`${VITE_PUBLIC_API_URL}/userAPI/getWatchlist?username=` + username,
+				`/API/userAPI/getWatchlist?username=` + username,
 			)) || [{ id: "0" }],
 		);
 	}
@@ -87,17 +86,17 @@ async function fetchData(
 	if (shouldTrySetVideoData) {
 		const moviesData = formatVideoAPIData(
 			(await getJSONData(
-				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=movies`,
+				`/API/videoAPI/getVideoData?category=movies`,
 			)) || [{ id: "0" }],
 		);
 		const documentariesData = formatVideoAPIData(
 			(await getJSONData(
-				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=documentaries`,
+				`/API/videoAPI/getVideoData?category=documentaries`,
 			)) || [{ id: "0" }],
 		);
 		const tvshowsData = formatVideoAPIData(
 			(await getJSONData(
-				`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData?category=tvshows`,
+				`/API/videoAPI/getVideoData?category=tvshows`,
 			)) || [{ id: "0" }],
 		);
 
@@ -117,4 +116,10 @@ async function fetchData(
 	setWatchlist(watchlistData);
 }
 
-export { getJSONData, postJSONData, deleteJSONData, formatVideoAPIData, fetchData };
+export {
+	getJSONData,
+	postJSONData,
+	deleteJSONData,
+	formatVideoAPIData,
+	fetchData,
+};
