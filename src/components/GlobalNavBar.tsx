@@ -11,6 +11,7 @@ function GlobalNavBar() {
 	const [shouldShowResults, setShouldShowResults] = useState(true);
 	const [results, setResults] = useState<Videos[]>([]);
 	const [isMobile, setIsMobile] = useState(false);
+	const [isOnAdminPage, setIsOnAdminPage] = useState(false);
 	const [shouldShowSearchBar, setShouldShowSearchBar] = useState(false);
 
 	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
@@ -28,6 +29,7 @@ function GlobalNavBar() {
 	}, [query]);
 
 	useEffect(() => {
+		setIsOnAdminPage(window.location.href.includes("/admin"));
 		setIsMobile(window.innerWidth < 740 ? true : false);
 		setShouldShowSearchBar(window.location.href.includes("/search"));
 	}, []);
@@ -57,7 +59,7 @@ function GlobalNavBar() {
 		<nav>
 			<ul>
 				<li>
-					<a href="/">
+					<a href={isOnAdminPage ? "/admin" : "/"}>
 						<img src={logo} alt="Logo" height="40px" />
 					</a>
 				</li>
