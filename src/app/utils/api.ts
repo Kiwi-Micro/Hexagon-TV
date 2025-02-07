@@ -85,9 +85,7 @@ async function fetchData(
 
 	if (shouldTrySetVideoData) {
 		const videosData = formatVideoAPIData(
-			(await getJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/getVideoData`)) || [
-				{ id: "0" },
-			],
+			(await getJSONData(`/API/videoAPI/getVideoData`)) || [{ id: "0" }],
 		);
 
 		const moviesData = [];
@@ -96,13 +94,10 @@ async function fetchData(
 
 		for (let i = 0; i < videosData.length; i++) {
 			if (videosData[i].category === "movies") {
-				console.log("movie");
 				moviesData.push(videosData[i]);
 			} else if (videosData[i].category === "documentarys") {
-				console.log("documentary");
 				documentariesData.push(videosData[i]);
 			} else if (videosData[i].category === "tvshows") {
-				console.log("tvshow");
 				tvshowsData.push(videosData[i]);
 			}
 		}

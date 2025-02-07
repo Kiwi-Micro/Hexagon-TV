@@ -5,9 +5,7 @@ import { getQueryString } from "../../../utils/network";
 async function getVideoDataEndpoint(req: any, res: any) {
 	printEndpointReached(req, res);
 	try {
-		const results = await getVideos(
-			getQueryString(req.url, "category") as string,
-		);
+		const results = await getVideos();
 		return res.json(results);
 	} catch (error) {
 		console.error("Error fetching videos:", error);

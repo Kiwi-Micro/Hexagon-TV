@@ -43,11 +43,10 @@ async function getVideosForSearch(query: string) {
 	return parseVideos(dbResults);
 }
 
-async function getVideos(category: string) {
-	const dbResults: ResultSet = await getDbConnection(true).execute({
-		sql: "SELECT * FROM videos WHERE category = ?",
-		args: [category],
-	});
+async function getVideos() {
+	const dbResults: ResultSet = await getDbConnection(true).execute(
+		"SELECT * FROM videos",
+	);
 
 	return parseVideos(dbResults);
 }
@@ -138,11 +137,4 @@ async function adminAuth(sessionId: string, userId: string) {
 	}
 }
 
-export {
-	getVideos,
-	getVideosForSearch,
-	addVideo,
-	deleteVideo,
-	auth,
-	adminAuth,
-};
+export { getVideos, getVideosForSearch, addVideo, deleteVideo, auth, adminAuth };
