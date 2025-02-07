@@ -16,6 +16,7 @@ Bun.serve({
 		"/search": index,
 		"/video/*": index,
 		"/watch/*": index,
+		"/admin": index,
 		"/admin/": index,
 		"/admin/add": index,
 		"/admin/edit/*": index,
