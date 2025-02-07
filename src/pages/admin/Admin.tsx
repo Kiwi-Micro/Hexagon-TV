@@ -19,31 +19,45 @@ function Admin({ movies, documentaries, tvshows }: AdminProps) {
 			<GlobalNavBar />
 			<CustomBreak height={3} />
 			<h1 style={{ textAlign: "center" }}>Admin Page</h1>
-			{movies
-				.slice(0, 3)
-				.reverse()
-				.map((video: Video) => (
-					<div className="adminPageCard">
-						<img src={video.thumbnailURL} draggable="false" alt={video.name} />
-						<h2 style={{ marginLeft: "20px" }}>{video.name}</h2>
-						<div
-							style={{ display: "flex", flexDirection: "column", marginBottom: "20px" }}
-						>
-							<button
-								onClick={() => (window.location.href = `/admin/edit/${video.urlName}`)}
-								className="whiteButton"
+			<CustomBreak height={1} />
+			<div className="addVideoButtonDiv">
+				<button
+					onClick={() => (window.location.href = "/admin/add")}
+					className="addVideoButton"
+				>
+					Add Video
+				</button>
+			</div>
+			<CustomBreak height={1} />
+			<div className="adminPageCardsWrapper">
+				{movies
+					.slice(0, 3)
+					.reverse()
+					.map((video: Video) => (
+						<div className="adminPageCard" key={video.urlName}>
+							<img src={video.thumbnailURL} draggable="false" alt={video.name} />
+							<h2 style={{ marginLeft: "20px" }}>{video.name}</h2>
+							<div
+								style={{ display: "flex", flexDirection: "column", marginBottom: "20px" }}
 							>
-								Edit
-							</button>
-							<button
-								onClick={() => (window.location.href = `/admin/delete/${video.urlName}`)}
-								className="redButton"
-							>
-								Delete
-							</button>
+								<button
+									onClick={() => (window.location.href = `/admin/edit/${video.urlName}`)}
+									className="whiteButton"
+								>
+									Edit
+								</button>
+								<button
+									onClick={() =>
+										(window.location.href = `/admin/delete/${video.urlName}`)
+									}
+									className="redButton"
+								>
+									Delete
+								</button>
+							</div>
 						</div>
-					</div>
-				))}
+					))}
+			</div>
 			<GlobalFooter />
 		</div>
 	);

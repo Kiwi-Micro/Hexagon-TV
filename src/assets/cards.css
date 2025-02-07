@@ -74,7 +74,12 @@
 	flex-direction: row;
 	align-items: center;
 	margin: 20px;
+	border-top: 1px solid #2a2b2c;
 	flex: 0 0 auto;
+}
+
+.adminPageCardsWrapper .adminPageCard:first-child {
+	border-top: none;
 }
 
 .adminPageCard h2 {
@@ -85,6 +90,7 @@
 }
 
 .adminPageCard img {
+	margin-top: 20px;
 	width: 260px;
 	height: 140px;
 	border-radius: 12px;
