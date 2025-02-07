@@ -31,7 +31,7 @@ function Admin({ movies, documentaries, tvshows }: AdminProps) {
 			<CustomBreak height={1} />
 			<div className="adminPageCardsWrapper">
 				{movies
-					.slice(0, 3)
+					.slice()
 					.reverse()
 					.map((video: Video) => (
 						<div className="adminPageCard" key={video.urlName}>
