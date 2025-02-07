@@ -10,12 +10,11 @@ interface DeleteProps {
 }
 
 function handleCancel() {
-	window.location.href = "/";
+	window.location.href = "/admin";
 }
 
 async function handleRemove(urlName: string, setStatus: any) {
 	const VITE_PUBLIC_API_URL = import.meta.env.VITE_PUBLIC_API_URL;
-	/* TODO: Fix the API Call */
 	const userId = localStorage.getItem("userId");
 	const sessionId = localStorage.getItem("sessionId");
 	setStatus("Removing...");
@@ -48,6 +47,7 @@ function Delete({ video }: DeleteProps) {
 				<div className="buttons">
 					<button
 						className="redButton"
+						style={{ width: "fit-content" }}
 						onClick={() => handleRemove(video.urlName, setStatus)}
 					>
 						{status}

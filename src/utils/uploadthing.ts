@@ -8,7 +8,7 @@ import {
 import type { OurFileRouter } from "./types";
 
 const initOpts = {
-	url: import.meta.env.VITE_API_URL,
+	url: import.meta.env.VITE_PUBLIC_API_URL,
 } satisfies GenerateTypedHelpersOptions;
 
 export const UploadButton = generateUploadButton<OurFileRouter>(initOpts);

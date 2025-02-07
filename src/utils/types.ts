@@ -16,14 +16,23 @@ type Video = {
 const f = createUploadthing();
 
 export const uploadRouter = {
-	videoAndImage: f(
+	video: f(
+		{
+			video: {
+				maxFileSize: "16GB",
+				maxFileCount: 1,
+			},
+		},
+		{
+			awaitServerData: true,
+		},
+	).onUploadComplete(async ({}) => {
+		return {};
+	}),
+	thumbnail: f(
 		{
 			image: {
 				maxFileSize: "4MB",
-				maxFileCount: 1,
-			},
-			video: {
-				maxFileSize: "16GB",
 				maxFileCount: 1,
 			},
 		},
