@@ -93,7 +93,7 @@ Method: `GET`
 
 URL Params:
 
-- category: The category of the video
+- None
 
 Body:
 
