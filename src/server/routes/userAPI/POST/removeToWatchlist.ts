@@ -4,9 +4,10 @@ import { printEndpointReached } from "../../../utils/messages";
 
 async function deleteFromWatchlistEndpoint(req: any, res: any) {
 	printEndpointReached(req, res);
-	if (await auth(req.body.sessionId, req.body.userId, req.body.username)) {
+	const reqBody = await req.json();
+	if (await auth(reqBody.sessionId, reqBody.userId, reqBody.username)) {
 		try {
-			const status = await deleteFromWatchlist(req.body);
+			const status = await deleteFromWatchlist(reqBody);
 			if (status) {
 				return res.json({ status: "success" });
 			} else {

@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { getJSONData } from "../utils/api";
 import type { Video as Videos } from "../utils/types";
-import {
-	SignedIn,
-	SignedOut,
-	UserButton,
-	SignInButton,
-} from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/clerk-react";
 import { AccountWatchlistTab, WatchlistDotIcon } from "./AccountMenuTabs";
 import VideoCard from "../components/VideoCard";
 import logo from "../assets/img/logo.png";
@@ -16,14 +11,13 @@ function GlobalNavBar() {
 	const [shouldShowResults, setShouldShowResults] = useState(true);
 	const [results, setResults] = useState<Videos[]>([]);
 	const [isMobile, setIsMobile] = useState(false);
+	const [isOnAdminPage, setIsOnAdminPage] = useState(false);
 	const [shouldShowSearchBar, setShouldShowSearchBar] = useState(false);
 
 	useEffect(() => {
 		async function handleSearch(searchQuery: string) {
 			if (!searchQuery) return;
-			const data = await getJSONData(
-				`/API/videoAPI/search?query=${searchQuery}`,
-			);
+			const data = await getJSONData(`/videoAPI/search?query=${searchQuery}`);
 			setResults(data as Videos[]);
 		}
 
@@ -31,6 +25,7 @@ function GlobalNavBar() {
 	}, [query]);
 
 	useEffect(() => {
+		setIsOnAdminPage(window.location.href.includes("/admin"));
 		setIsMobile(window.innerWidth < 740 ? true : false);
 		setShouldShowSearchBar(window.location.href.includes("/search"));
 	}, []);
@@ -60,7 +55,7 @@ function GlobalNavBar() {
 		<nav>
 			<ul>
 				<li>
-					<a href="/">
+					<a href={isOnAdminPage ? "/admin" : "/"}>
 						<img src={logo} alt="Logo" height="40px" />
 					</a>
 				</li>
@@ -93,9 +88,7 @@ function GlobalNavBar() {
 									style={{ width: "80px" }}
 									onChange={(e) => handleSearchChange(e)}
 									onClick={
-										query.length != 0
-											? () => setShouldShowResults(true)
-											: undefined
+										query.length != 0 ? () => setShouldShowResults(true) : undefined
 									}
 									onKeyDown={(e) => handleKeyDown(e)}
 									onBlur={() => handleClearSearch(false)}
@@ -136,10 +129,7 @@ function GlobalNavBar() {
 					{/* Account Button */}
 					<div style={{ marginLeft: "10px" }}>
 						<SignedOut>
-							<SignInButton
-								forceRedirectUrl="/"
-								signUpForceRedirectUrl="/"
-							>
+							<SignInButton forceRedirectUrl="/" signUpForceRedirectUrl="/">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 32 32"

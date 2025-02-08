@@ -3,20 +3,21 @@ import { printEndpointReached } from "../../../utils/messages";
 
 async function deleteVideoEndpoint(req: any, res: any) {
 	printEndpointReached(req, res);
-	if (await adminAuth(req.body.sessionId, req.body.userId)) {
+	const reqBody = await req.json();
+	if (await adminAuth(reqBody.sessionId, reqBody.userId)) {
 		try {
-			const status = await deleteVideo(req.body);
+			const status = await deleteVideo(reqBody);
 			if (status) {
 				return res.json({ status: "success" });
 			} else {
-				return res.status(409).json({ status: "server error" });
+				return res.json({ status: "server error" }, 500);
 			}
 		} catch (error) {
 			console.error("Error deleting video:", error);
-			return res.status(500).json({ status: "server srror" });
+			return res.json({ status: "server srror" }, 500);
 		}
 	} else {
-		return res.status(403).json({ status: "invalid credentials" });
+		return res.json({ status: "invalid credentials" }, 403);
 	}
 }
 

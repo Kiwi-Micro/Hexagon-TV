@@ -4,6 +4,7 @@
 
 - [ ] Be able to deploy bun projects on vercel or just build them locally.
 - [ ] Hot reloading for client. (comming soon)
+- [ ] Uploadthing Support.
 
 Hexagon TV is an open-source streaming service designed to deliver high-quality video content seamlessly. Built with reliability, and customization in mind.
 

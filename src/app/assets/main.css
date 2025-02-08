@@ -56,6 +56,23 @@ footer {
 	width: 100vw;
 }
 
+.centerVertical {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	height: 100vh;
+}
+
+.centerHorizontal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	width: 100vw;
+}
+
 .buttons {
 	display: flex;
 	flex-direction: row;
@@ -230,4 +247,76 @@ footer {
 	.searchPageVideosList h3 {
 		text-align: center;
 	}
+}
+
+/* Admin Page Styles */
+
+.addVideoPage {
+	margin: 20px;
+	width: fit-content;
+	padding-top: 20px;
+	background-color: #2a2b2c;
+	border-radius: 50px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.addVideoPageForm {
+	margin: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.addVideoInput {
+	background-color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	padding: 10px;
+	font-size: 16px;
+	width: 250px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.addVideoDropdown {
+	background-color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	padding: 10px;
+	font-size: 16px;
+	width: 270px;
+	height: 40px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.addVideoButtonDiv {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+}
+
+.addVideoButton {
+	background-color: #ffffff;
+	color: #000000;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	text-align: center;
+	display: inline-block;
+	font-size: 16px;
+	width: 270px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.addVideoPreview {
+	height: 200px;
+	margin-bottom: 10px;
+	border-radius: 12px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 }

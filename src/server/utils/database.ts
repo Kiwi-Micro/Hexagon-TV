@@ -112,6 +112,8 @@ async function auth(sessionId: string, userId: string, username: string) {
 
 async function adminAuth(sessionId: string, userId: string) {
 	try {
+		console.log(userId);
+		console.log(sessionId);
 		const status = "active";
 		const sessions = await clerkClient.sessions.getSessionList({
 			userId,
@@ -119,7 +121,7 @@ async function adminAuth(sessionId: string, userId: string) {
 		});
 		const user = await clerkClient.users.getUser(userId);
 		/* TODO: Change this to scan though the config file for that userId */
-		if (user.id !== "user_2rmBw1QKIHfEQryGHqBJnaSmBjm") {
+		if (user.id !== "user_2rdeTiDjEc9AHoLTd1vig5rklWI") {
 			return false;
 		}
 		for (const session of sessions.data) {

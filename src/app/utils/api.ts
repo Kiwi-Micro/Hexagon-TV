@@ -32,6 +32,7 @@ async function postJSONData(url: string, data: any) {
 }
 
 async function deleteJSONData(url: string, data: any) {
+	console.log(data);
 	try {
 		const response = await fetch(url, {
 			method: "DELETE",

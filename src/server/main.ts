@@ -10,6 +10,8 @@ import deleteVideoEndpoint from "./routes/videoAPI/POST/deleteVideo";
 const BUN_PUBLIC_CLERK_PUBLISHABLE_KEY =
 	process.env.BUN_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
 
+const BUN_PUBLIC_CLERK_SIGN_IN_URL = process.env.BUN_PUBLIC_CLERK_SIGN_IN_URL || "";
+
 Bun.serve({
 	static: {
 		"/": index,
@@ -26,6 +28,8 @@ Bun.serve({
 	async fetch(req) {
 		if (req.url.includes("/API/keys/publicKey")) {
 			return Response.json(BUN_PUBLIC_CLERK_PUBLISHABLE_KEY);
+		} else if (req.url.includes("/API/keys/signInURL")) {
+			return Response.json(BUN_PUBLIC_CLERK_SIGN_IN_URL);
 		} else if (req.url.includes("/API/userAPI/getWatchlist")) {
 			return getWatchlistEndpoint(req, Response);
 		} else if (req.url.includes("/API/userAPI/addToWatchlist")) {

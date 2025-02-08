@@ -1,8 +1,8 @@
 import { postJSONData, deleteJSONData, fetchData } from "./api";
 
-const VITE_PUBLIC_CLERK_SIGN_IN_URL = await fetch(
-	"/API/keys/publicKey",
-).then((res) => res.json());
+const VITE_PUBLIC_CLERK_SIGN_IN_URL = await fetch("/API/keys/signInURL").then((res) =>
+	res.json(),
+);
 
 async function addToWatchlist(
 	name: string,
@@ -35,10 +35,7 @@ async function addToWatchlist(
 	}
 }
 
-async function removeFromWatchlist(
-	urlName: string,
-	setIsInWatchlist: any,
-) {
+async function removeFromWatchlist(urlName: string, setIsInWatchlist: any) {
 	setIsInWatchlist(false);
 	const username = localStorage.getItem("username") || "";
 	const sessionId = localStorage.getItem("sessionId") || "";

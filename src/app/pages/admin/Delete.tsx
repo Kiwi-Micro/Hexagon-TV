@@ -3,35 +3,10 @@ import GlobalFooter from "../../components/GlobalFooter";
 import type { Video } from "../../utils/types";
 import CustomBreak from "../../components/CustomBreak";
 import { useState } from "react";
-import { deleteJSONData } from "../../utils/api";
+import { deleteVideo } from "../../utils/videoManipulation";
 
 interface DeleteProps {
 	video: Video;
-}
-
-function handleCancel() {
-	window.location.href = "/";
-}
-
-async function handleRemove(urlName: string, setStatus: any) {
-	/* TODO: Fix the API Call */
-	const userId = localStorage.getItem("userId");
-	const sessionId = localStorage.getItem("sessionId");
-	setStatus("Removing...");
-	try {
-		const responce = await deleteJSONData(`/API/videoAPI/delete`, {
-			urlName: urlName,
-			userId: userId,
-			sessionId: sessionId,
-		});
-		if (responce.status === "success") {
-			window.location.href = "/";
-		} else {
-			setStatus("Failed to remove!");
-		}
-	} catch (e: any) {
-		setStatus("Failed to remove!");
-	}
 }
 
 function Delete({ video }: DeleteProps) {
@@ -47,11 +22,15 @@ function Delete({ video }: DeleteProps) {
 				<div className="buttons">
 					<button
 						className="redButton"
-						onClick={() => handleRemove(video.urlName, setStatus)}
+						style={{ width: "fit-content" }}
+						onClick={() => deleteVideo(video.urlName, setStatus)}
 					>
 						{status}
 					</button>
-					<button className="whiteButton" onClick={() => handleCancel()}>
+					<button
+						className="whiteButton"
+						onClick={() => (window.location.href = "/admin")}
+					>
 						Cancel
 					</button>
 				</div>
