@@ -10,7 +10,7 @@ async function addVideo(video: Video) {
 	const thumbnailURL = video.thumbnailURL;
 	const videoURL = video.videoURL;
 	const urlName = video.urlName;
-	const ageRating = video.rating;
+	const ageRating = video.ageRating;
 	const data = await postJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/add`, {
 		userId: localStorage.getItem("userId") || "",
 		sessionId: localStorage.getItem("sessionId") || "",
@@ -39,7 +39,7 @@ async function updateVideo(video: VideoUpdate) {
 	const thumbnailURL = video.thumbnailURL;
 	const videoURL = video.videoURL;
 	const urlName = video.urlName;
-	const ageRating = video.rating;
+	const ageRating = video.ageRating;
 	const data = await postJSONData(`${VITE_PUBLIC_API_URL}/videoAPI/update`, {
 		userId: localStorage.getItem("userId") || "",
 		sessionId: localStorage.getItem("sessionId") || "",

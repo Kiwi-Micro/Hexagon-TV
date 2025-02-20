@@ -17,8 +17,8 @@ function Add() {
 		thumbnailURL: "",
 		videoURL: "",
 		date: "",
-		rating: "",
-		ratingInfo: "",
+		ageRating: "",
+		ageRatingInfo: "",
 		urlName: "",
 	});
 	const [alert, setAlert] = useState("");
@@ -119,9 +119,12 @@ function Add() {
 							className="addVideoInput"
 							type="text"
 							placeholder="ageRating"
-							value={video.rating}
+							value={video.ageRating}
 							onChange={(e) =>
-								setVideo((prevState: any) => ({ ...prevState, rating: e.target.value }))
+								setVideo((prevState: any) => ({
+									...prevState,
+									ageRating: e.target.value,
+								}))
 							}
 						/>
 						<select

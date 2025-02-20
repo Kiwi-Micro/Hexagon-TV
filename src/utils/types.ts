@@ -8,8 +8,8 @@ type Video = {
 	thumbnailURL: string;
 	videoURL: string;
 	date: string;
-	rating: string;
-	ratingInfo: string;
+	ageRating: string;
+	ageRatingInfo: string;
 	urlName: string;
 };
 
@@ -21,7 +21,7 @@ type VideoUpdate = {
 	thumbnailURL: string;
 	videoURL: string;
 	date: string;
-	rating: string;
+	ageRating: string;
 	urlName: string;
 	currentUrlName: string;
 };

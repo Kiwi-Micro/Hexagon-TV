@@ -23,7 +23,7 @@ function Edit({ videoData }: EditProps) {
 		thumbnailURL: videoData.thumbnailURL,
 		videoURL: videoData.videoURL,
 		date: videoData.date,
-		rating: videoData.rating,
+		ageRating: videoData.ageRating,
 		urlName: videoData.urlName,
 		currentUrlName: videoData.urlName,
 	});
@@ -125,9 +125,12 @@ function Edit({ videoData }: EditProps) {
 							className="addVideoInput"
 							type="text"
 							placeholder="ageRating"
-							value={video.rating}
+							value={video.ageRating}
 							onChange={(e) =>
-								setVideo((prevState: any) => ({ ...prevState, rating: e.target.value }))
+								setVideo((prevState: any) => ({
+									...prevState,
+									ageRating: e.target.value,
+								}))
 							}
 						/>
 						<select

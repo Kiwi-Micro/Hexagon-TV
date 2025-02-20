@@ -58,8 +58,8 @@ function formatVideoAPIData(db: Video[]) {
 		thumbnailURL: video.thumbnailURL,
 		videoURL: video.videoURL,
 		date: video.date,
-		rating: video.rating,
-		ratingInfo: video.ratingInfo,
+		ageRating: video.ageRating,
+		ageRatingInfo: video.ageRatingInfo,
 		urlName: video.urlName,
 	}));
 }

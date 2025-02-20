@@ -106,8 +106,8 @@ function Video({ videoInfo, db, watchlist }: ProductProps) {
 					</div>
 					<div className="aboutVideoItem">
 						<h3>{videoInfo.name} Age Rating:</h3>
-						<h4>{videoInfo.rating}</h4>
-						<p>{videoInfo.ratingInfo}</p>
+						<h4>{videoInfo.ageRating}</h4>
+						<p>{videoInfo.ageRatingInfo}</p>
 					</div>
 				</div>
 			</div>
