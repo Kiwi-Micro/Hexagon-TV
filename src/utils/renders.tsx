@@ -65,7 +65,7 @@ function renderAdminEditPages(db: Video[]) {
 		<Route
 			key={video.urlName}
 			path={`/admin/edit/${video.urlName}`}
-			element={<Edit key={video.urlName} video={video} />}
+			element={<Edit key={video.urlName} videoData={video} />}
 		/>
 	));
 }

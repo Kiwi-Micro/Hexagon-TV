@@ -13,6 +13,19 @@ type Video = {
 	urlName: string;
 };
 
+type VideoUpdate = {
+	id: number;
+	name: string;
+	description: string;
+	category: string;
+	thumbnailURL: string;
+	videoURL: string;
+	date: string;
+	rating: string;
+	urlName: string;
+	currentUrlName: string;
+};
+
 const f = createUploadthing();
 
 export const uploadRouter = {
@@ -46,4 +59,4 @@ export const uploadRouter = {
 
 type OurFileRouter = typeof uploadRouter;
 
-export type { Video, OurFileRouter };
+export type { Video, VideoUpdate, OurFileRouter };
