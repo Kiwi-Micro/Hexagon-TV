@@ -13,8 +13,6 @@ interface EditProps {
 function Edit({ videoData }: EditProps) {
 	document.title = "Hexagon TV Admin | Edit " + videoData.name;
 
-	console.log(videoData);
-
 	const [video, setVideo] = useState<VideoUpdate>({
 		id: videoData.id,
 		name: videoData.name,
@@ -30,13 +28,7 @@ function Edit({ videoData }: EditProps) {
 	const [alert, setAlert] = useState("");
 
 	async function handleUpdateVideo() {
-		if (
-			!video.name ||
-			!video.description ||
-			!video.category ||
-			!video.thumbnailURL ||
-			!video.videoURL
-		) {
+		if (!video.name || !video.description || !video.category || !video.thumbnailURL) {
 			setAlert("Please fill out all fields!");
 			return;
 		}
