@@ -133,7 +133,10 @@ function GlobalNavBar() {
 					{/* Account Button */}
 					<div style={{ marginLeft: "10px" }}>
 						<SignedOut>
-							<SignInButton forceRedirectUrl="/" signUpForceRedirectUrl="/">
+							<SignInButton
+								forceRedirectUrl={isOnAdminPage ? "/admin" : "/"}
+								signUpForceRedirectUrl={isOnAdminPage ? "/admin" : "/"}
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 32 32"
