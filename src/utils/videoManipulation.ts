@@ -51,6 +51,7 @@ async function updateVideo(video: VideoUpdate) {
 		videoURL,
 		urlName,
 		ageRating,
+		currentUrlName: video.currentUrlName,
 	});
 	if (data.status !== "success") {
 		window.location.href = VITE_PUBLIC_CLERK_SIGN_IN_URL;
