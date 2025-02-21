@@ -18,6 +18,9 @@ import Add from "./pages/admin/Add";
 
 function App() {
 	setUserInfo();
+	const userId = localStorage.getItem("userId");
+	const sessionId = localStorage.getItem("sessionId");
+	const username = localStorage.getItem("username");
 	const [watchlist, setWatchlistdb] = useState<Video[]>([]);
 	const [videos, setVideosdb] = useState<Video[]>([]);
 	const [movies, setMoviesdb] = useState<Video[]>([]);
@@ -54,9 +57,21 @@ function App() {
 							}
 						/>
 						<Route path="/search" element={<Search />} />
-						<Route path="/admin" element={<Admin allVideos={videos} />} />
-						<Route path="/admin/add" element={<Add />} />
-						{renderAdminEditPages(videos)}
+						{userId && sessionId && username ? (
+							<Route path="/admin" element={<Admin allVideos={videos} />} />
+						) : (
+							<>
+								{(window.location.href = import.meta.env.VITE_PUBLIC_CLERK_SIGN_IN_URL)}
+							</>
+						)}
+						{userId && sessionId && username ? (
+							<Route path="/admin/add" element={<Add />} />
+						) : (
+							<>
+								{(window.location.href = import.meta.env.VITE_PUBLIC_CLERK_SIGN_IN_URL)}
+							</>
+						)}
+						{userId && sessionId && username ? renderAdminEditPages(videos) : null}
 						{renderVideoRoutes(videos, false, watchlist)}
 						{renderVideoRoutes(videos, true)}
 						<Route path="/*" element={<NotFound />} />
