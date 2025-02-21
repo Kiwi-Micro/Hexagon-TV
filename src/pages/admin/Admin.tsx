@@ -13,17 +13,17 @@ function Admin({ allVideos }: AdminProps) {
 	document.title = "Hexagon TV Admin | Home";
 
 	const [showDeleteVideoPopup, setShowDeleteVideoPopup] = useState(false);
-	const [videoUrlNameToDelete, setVideoUrlNameToDelete] = useState("");
+	const [videoToDelete, setVideoToDelete] = useState<Video>();
 	const [status, setStatus] = useState("Remove");
 
 	function hidePopup() {
 		setShowDeleteVideoPopup(false);
-		setVideoUrlNameToDelete("");
+		setVideoToDelete(undefined);
 	}
 
-	function showPopup(videoUrlName: string) {
+	function showPopup(video: Video) {
+		setVideoToDelete(video);
 		setShowDeleteVideoPopup(true);
-		setVideoUrlNameToDelete(videoUrlName);
 	}
 
 	return (
@@ -32,12 +32,13 @@ function Admin({ allVideos }: AdminProps) {
 			{showDeleteVideoPopup ? (
 				<div className="deleteVideoPopup">
 					<div className="deleteVideoPopupText">
-						<h1>Are you sure you want to delete this video?</h1>
+						<h1>Are you sure you want to delete {videoToDelete!.name}?</h1>
 						<p>This action cannot be undone.</p>
 						<div className="deleteVideoPopupButtons">
 							<button
 								className="redButton"
-								onClick={() => deleteVideo(videoUrlNameToDelete, setStatus)}
+								style={{ width: "fit-content" }}
+								onClick={() => deleteVideo(videoToDelete!.urlName, setStatus)}
 							>
 								{status}
 							</button>
@@ -77,7 +78,7 @@ function Admin({ allVideos }: AdminProps) {
 								>
 									Edit
 								</button>
-								<button onClick={() => showPopup(video.urlName)} className="redButton">
+								<button onClick={() => showPopup(video)} className="redButton">
 									Delete
 								</button>
 							</div>
