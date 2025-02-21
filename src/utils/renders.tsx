@@ -3,7 +3,6 @@ import { Video } from "./types";
 import VideoPage from "../pages/Video";
 import VideoViewer from "../pages/VideoViewer";
 import { Route } from "react-router-dom";
-import Delete from "../pages/admin/Delete";
 import Edit from "../pages/admin/Edit";
 
 function renderVideoCard(db: any) {
@@ -50,16 +49,6 @@ function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
 	));
 }
 
-function renderAdminDeletePages(db: Video[]) {
-	return db.map((video: Video) => (
-		<Route
-			key={video.urlName}
-			path={`/admin/delete/${video.urlName}`}
-			element={<Delete key={video.urlName} video={video} />}
-		/>
-	));
-}
-
 function renderAdminEditPages(db: Video[]) {
 	return db.map((video: Video) => (
 		<Route
@@ -70,9 +59,4 @@ function renderAdminEditPages(db: Video[]) {
 	));
 }
 
-export {
-	renderVideoCard,
-	renderVideoRoutes,
-	renderAdminDeletePages,
-	renderAdminEditPages,
-};
+export { renderVideoCard, renderVideoRoutes, renderAdminEditPages };

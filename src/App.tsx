@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Video } from "./utils/types";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import {
-	renderVideoRoutes,
-	renderAdminDeletePages,
-	renderAdminEditPages,
-} from "./utils/renders";
+import { renderVideoRoutes, renderAdminEditPages } from "./utils/renders";
 import { fetchData } from "./utils/api";
 import { setUserInfo } from "./utils/userInfo";
 import Index from "./pages/Index";
@@ -60,7 +56,6 @@ function App() {
 						<Route path="/search" element={<Search />} />
 						<Route path="/admin" element={<Admin allVideos={videos} />} />
 						<Route path="/admin/add" element={<Add />} />
-						{renderAdminDeletePages(videos)}
 						{renderAdminEditPages(videos)}
 						{renderVideoRoutes(videos, false, watchlist)}
 						{renderVideoRoutes(videos, true)}
