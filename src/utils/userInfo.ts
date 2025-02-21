@@ -9,6 +9,9 @@ function setUserInfo() {
 		isSignedIn: isSessionSignedIn,
 	} = useSession();
 	if (!isUserSignedIn || !isSessionSignedIn || !isUserLoaded || !isSessionLoaded) {
+		localStorage.setItem("username", "");
+		localStorage.setItem("sessionId", "");
+		localStorage.setItem("userId", "");
 		return false;
 	}
 	const username = user.username || "";
