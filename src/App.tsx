@@ -59,18 +59,10 @@ function App() {
 						<Route path="/search" element={<Search />} />
 						{userId && sessionId && username ? (
 							<Route path="/admin" element={<Admin allVideos={videos} />} />
-						) : (
-							<>
-								{(window.location.href = import.meta.env.VITE_PUBLIC_CLERK_SIGN_IN_URL)}
-							</>
-						)}
+						) : null}
 						{userId && sessionId && username ? (
 							<Route path="/admin/add" element={<Add />} />
-						) : (
-							<>
-								{(window.location.href = import.meta.env.VITE_PUBLIC_CLERK_SIGN_IN_URL)}
-							</>
-						)}
+						) : null}
 						{userId && sessionId && username ? renderAdminEditPages(videos) : null}
 						{renderVideoRoutes(videos, false, watchlist)}
 						{renderVideoRoutes(videos, true)}
