@@ -58,7 +58,7 @@ function Search() {
 						<VideoCard
 							key={video.urlName}
 							name={video.name}
-							videoLink={`${video.urlName}.html`}
+							videoLink={`/video/${video.urlName}`}
 							thumbnailURL={video.thumbnailURL}
 						/>
 					))}

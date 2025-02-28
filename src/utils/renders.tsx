@@ -14,7 +14,7 @@ function renderVideoCard(db: any) {
 				<VideoCard
 					key={video.urlName}
 					name={video.name}
-					videoLink={`${video.urlName}`}
+					videoLink={`/video/${video.urlName}`}
 					thumbnailURL={video.thumbnailURL}
 				/>
 			);
@@ -41,7 +41,7 @@ function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
 	return db.map((video: Video) => (
 		<Route
 			key={video.urlName}
-			path={`/${video.urlName}`}
+			path={`/video/${video.urlName}`}
 			element={
 				<VideoPage key={video.urlName} videoInfo={video} db={db} watchlist={watchlist} />
 			}

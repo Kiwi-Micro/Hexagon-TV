@@ -122,7 +122,7 @@ function GlobalNavBar() {
 									<VideoCard
 										key={video.urlName}
 										name={video.name}
-										videoLink={`${video.urlName}`}
+										videoLink={`/video/${video.urlName}`}
 										thumbnailURL={video.thumbnailURL}
 										isASearchResult={true}
 									/>
