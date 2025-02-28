@@ -97,13 +97,10 @@ async function fetchData(
 
 		for (let i = 0; i < videosData.length; i++) {
 			if (videosData[i].category === "movies") {
-				console.log("movie");
 				moviesData.push(videosData[i]);
-			} else if (videosData[i].category === "documentarys") {
-				console.log("documentary");
+			} else if (videosData[i].category === "documentaries") {
 				documentariesData.push(videosData[i]);
 			} else if (videosData[i].category === "tvshows") {
-				console.log("tvshow");
 				tvshowsData.push(videosData[i]);
 			}
 		}
