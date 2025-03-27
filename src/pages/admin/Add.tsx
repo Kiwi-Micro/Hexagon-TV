@@ -5,6 +5,7 @@ import { useState } from "react";
 import { UploadButton } from "../../utils/uploadthing";
 import { addVideo } from "../../utils/videoManipulation";
 import { Video } from "../../utils/types";
+import { v4 as uudiV4 } from "uuid";
 
 function Add() {
 	document.title = "Hexagon TV Add | Add Video";
@@ -19,7 +20,7 @@ function Add() {
 		date: "",
 		ageRating: "",
 		ageRatingInfo: "",
-		urlName: "",
+		urlName: uudiV4(),
 	});
 	const [alert, setAlert] = useState("");
 
@@ -104,15 +105,6 @@ function Add() {
 									...prevState,
 									description: e.target.value,
 								}))
-							}
-						/>
-						<input
-							className="addVideoInput"
-							type="text"
-							placeholder="urlName"
-							value={video.urlName}
-							onChange={(e) =>
-								setVideo((prevState: any) => ({ ...prevState, urlName: e.target.value }))
 							}
 						/>
 						<input
