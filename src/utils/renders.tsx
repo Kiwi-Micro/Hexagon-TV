@@ -32,7 +32,7 @@ function renderVideoRoutes(db: Video[], isViewer?: boolean, watchlist?: any) {
 						key={video.urlName}
 						name={video.name}
 						videoURL={video.videoURL}
-						previousPage={`/${video.urlName}`}
+						previousPage={`/video/${video.urlName}`}
 					/>
 				}
 			/>
