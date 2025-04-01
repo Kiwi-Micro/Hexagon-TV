@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Video } from "./utils/types";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { renderVideoRoutes, renderAdminEditPages } from "./utils/renders";
 import { fetchData } from "./utils/api";
 import { setUserInfo } from "./utils/userInfo";
@@ -42,7 +41,6 @@ function App() {
 
 	return (
 		<div>
-			<SpeedInsights />
 			<Router>
 				{loading ? (
 					<div className="center">
